@@ -23,4 +23,4 @@
 
 ## Διάγραμμα περιπτώσεων χρήσης
 
-![](https://i.imgur.com/ZZ5OQym.png)
+![](use-case-diagram.png)
