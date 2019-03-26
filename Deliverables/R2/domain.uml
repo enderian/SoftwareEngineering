@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>Laboratory</OriginalElement>
+  <nodes>
+    <node x="185.25" y="756.0">User</node>
+    <node x="723.0" y="167.0">ScheduleSlot</node>
+    <node x="0.0" y="378.0">SessionStatus</node>
+    <node x="587.5" y="567.0">Laboratory</node>
+    <node x="239.50000000000003" y="0.0">SoftwarePackage</node>
+    <node x="194.5" y="145.0">TerminalConfiguration</node>
+    <node x="462.5" y="356.0">Terminal</node>
+    <node x="542.5" y="167.0">TerminalStatus</node>
+    <node x="156.0" y="411.0">TerminalConfigurationTemplate</node>
+    <node x="690.5" y="400.0">DaySchedule</node>
+    <node x="191.75" y="578.0">Session</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="TerminalConfiguration" target="SoftwarePackage">
+      <point x="0.0" y="-80.5" />
+      <point x="0.0" y="47.5" />
+    </edge>
+    <edge source="TerminalConfigurationTemplate" target="TerminalConfiguration">
+      <point x="0.0" y="-25.5" />
+      <point x="-82.0" y="80.5" />
+    </edge>
+    <edge source="User" target="Session">
+      <point x="0.0" y="-69.5" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="Session" target="Terminal">
+      <point x="49.75" y="-58.5" />
+      <point x="341.0" y="542.0" />
+      <point x="514.5" y="542.0" />
+      <point x="-52.0" y="80.5" />
+    </edge>
+    <edge source="Laboratory" target="Terminal">
+      <point x="-61.0" y="-69.5" />
+      <point x="648.5" y="542.0" />
+      <point x="618.5" y="542.0" />
+      <point x="52.0" y="80.5" />
+    </edge>
+    <edge source="Terminal" target="TerminalConfiguration">
+      <point x="-52.0" y="-80.5" />
+      <point x="514.5" y="331.0" />
+      <point x="440.5" y="331.0" />
+      <point x="82.0" y="80.5" />
+    </edge>
+    <edge source="Session" target="SessionStatus">
+      <point x="-49.75" y="-58.5" />
+      <point x="241.5" y="542.0" />
+      <point x="68.0" y="542.0" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="Laboratory" target="DaySchedule">
+      <point x="61.0" y="-69.5" />
+      <point x="770.5" y="542.0" />
+      <point x="800.5" y="542.0" />
+      <point x="0.0" y="36.5" />
+    </edge>
+    <edge source="DaySchedule" target="ScheduleSlot">
+      <point x="0.0" y="-36.5" />
+      <point x="0.0" y="58.5" />
+    </edge>
+    <edge source="Terminal" target="TerminalStatus">
+      <point x="52.0" y="-80.5" />
+      <point x="0.0" y="58.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.9" x="377.4999999999999" y="447.3333333333333" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
