@@ -177,4 +177,6 @@
 
 ### Κλάσεις ανάλυσης
 
+![](Deliverables/R2/ClassAnalysis.png)
+
 ### Συμπεριφορές
