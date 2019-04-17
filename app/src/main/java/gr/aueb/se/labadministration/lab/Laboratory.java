@@ -80,5 +80,28 @@ public class Laboratory {
         this.administrators = administrators;
     }
 
+    public boolean addDaySchedule(DaySchedule daySchedule){
+        return this.schedule.add(daySchedule);
+    }
+
+    public boolean removeDaySchedule(DaySchedule daySchedule){
+        return this.schedule.remove(daySchedule);
+    }
+
+    public boolean addTerminal(Terminal terminal){
+        return this.terminals.add(terminal);
+    }
+
+    public boolean removeTerminal(Terminal terminal){
+        return this.terminals.remove(terminal);
+    }
+
+    public boolean addAdministrator(Administrator administrator){
+        return this.administrators.add(administrator);
+    }
+
+    public boolean removeAdministrator(Administrator administrator){
+        return this.administrators.remove(administrator);
+    }
 
 }

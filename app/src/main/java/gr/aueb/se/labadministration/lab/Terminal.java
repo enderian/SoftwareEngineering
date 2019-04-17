@@ -3,6 +3,7 @@ package gr.aueb.se.labadministration.lab;
 import gr.aueb.se.labadministration.configurations.TerminalConfiguration;
 
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 public class Terminal {
 
@@ -15,6 +16,7 @@ public class Terminal {
     private int positionX;
     private int positionY;
     private TerminalConfiguration configuration;
+    private ArrayList<Session> sessions;
 
     public Terminal(String name, String hostname, InetAddress ipAddress, TerminalStatus status, int positionX, int positionY, TerminalConfiguration configuration) {
         this.name = name;
@@ -24,6 +26,7 @@ public class Terminal {
         this.positionX = positionX;
         this.positionY = positionY;
         this.configuration = configuration;
+        this.sessions = new ArrayList<Session>();
     }
 
     public String getName() {
@@ -80,5 +83,9 @@ public class Terminal {
 
     public void setConfiguration(TerminalConfiguration configuration) {
         this.configuration = configuration;
+    }
+
+    public boolean registerSession(Session session){
+        return this.sessions.add(session);
     }
 }

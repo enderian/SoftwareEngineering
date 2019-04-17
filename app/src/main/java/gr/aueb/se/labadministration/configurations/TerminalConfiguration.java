@@ -57,18 +57,10 @@ public class TerminalConfiguration {
     }
 
     public boolean addSoftwarePackage(SoftwarePackage softwarePackage){
-        if(softwarePackage!= null){
-            this.softwarePackages.add(softwarePackage);
-            return true;
-        }
-        return false;
+        return this.softwarePackages.add(softwarePackage);
     }
 
     public boolean removeSoftwarePackage(SoftwarePackage softwarePackage){
-        if(this.softwarePackages.contains(softwarePackage)){
-            this.softwarePackages.remove(softwarePackage);
-            return true;
-        }
-        return false;
+        return this.softwarePackages.remove(softwarePackage);
     }
 }
