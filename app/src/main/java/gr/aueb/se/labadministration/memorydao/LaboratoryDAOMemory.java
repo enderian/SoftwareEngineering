@@ -7,16 +7,16 @@ import java.util.ArrayList;
 
 public class LaboratoryDAOMemory implements LaboratoryDAO {
 
-    protected ArrayList<Laboratory> laboratories = new ArrayList<Laboratory>();
+    protected static ArrayList<Laboratory> laboratories = new ArrayList<Laboratory>();
 
     @Override
     public void save(Laboratory laboratory) {
-        this.laboratories.add(laboratory);
+        laboratories.add(laboratory);
     }
 
     @Override
     public void remove(Laboratory laboratory) {
-        this.laboratories.remove(laboratory);
+        laboratories.remove(laboratory);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class LaboratoryDAOMemory implements LaboratoryDAO {
 
     @Override
     public ArrayList<Laboratory> listAll() {
-        return this.laboratories;
+        return laboratories;
     }
 
 }

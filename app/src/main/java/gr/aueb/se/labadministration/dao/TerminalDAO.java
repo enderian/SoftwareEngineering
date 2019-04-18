@@ -15,7 +15,7 @@ public interface TerminalDAO {
 
     Terminal findByIP(InetAddress inetAddress);
 
-    ArrayList<Terminal> findByLab(String labName);
+    void updateStatus(Terminal terminal, Terminal.TerminalStatus status);
 
     ArrayList<Terminal> listAll();
 

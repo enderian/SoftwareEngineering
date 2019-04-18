@@ -5,7 +5,7 @@ import gr.aueb.se.labadministration.configurations.TerminalConfiguration;
 public class TerminalConfigurationBuilder {
     private String processor;
     private String graphicsCard;
-    private int storateCapacity;
+    private int storageCapacity;
     private int totalMemory;
     private String operatingSystem;
     private String name;
@@ -20,8 +20,8 @@ public class TerminalConfigurationBuilder {
         return this;
     }
 
-    public TerminalConfigurationBuilder setStorateCapacity(int storateCapacity) {
-        this.storateCapacity = storateCapacity;
+    public TerminalConfigurationBuilder setstorageCapacity(int storageCapacity) {
+        this.storageCapacity = storageCapacity;
         return this;
     }
 
@@ -41,6 +41,10 @@ public class TerminalConfigurationBuilder {
     }
 
     public TerminalConfiguration createTerminalConfiguration() {
-        return new TerminalConfiguration(processor, graphicsCard, storateCapacity, totalMemory, operatingSystem, name);
+        if (processor == null) return null;
+        if (operatingSystem == null) return null;
+        if (name == null) return null;
+        if (storageCapacity == 0 || totalMemory == 0) return null;
+        return new TerminalConfiguration(processor, graphicsCard, storageCapacity, totalMemory, operatingSystem, name);
     }
 }

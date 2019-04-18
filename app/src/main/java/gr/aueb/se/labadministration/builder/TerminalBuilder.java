@@ -6,10 +6,10 @@ import gr.aueb.se.labadministration.lab.Terminal;
 import java.net.InetAddress;
 
 public class TerminalBuilder {
+
     private String name;
     private String hostname;
     private InetAddress ipAddress;
-    private Terminal.TerminalStatus status;
     private int positionX;
     private int positionY;
     private TerminalConfiguration configuration;
@@ -29,11 +29,6 @@ public class TerminalBuilder {
         return this;
     }
 
-    public TerminalBuilder setStatus(Terminal.TerminalStatus status) {
-        this.status = status;
-        return this;
-    }
-
     public TerminalBuilder setPositionX(int positionX) {
         this.positionX = positionX;
         return this;
@@ -50,6 +45,10 @@ public class TerminalBuilder {
     }
 
     public Terminal createTerminal() {
-        return new Terminal(name, hostname, ipAddress, status, positionX, positionY, configuration);
+        if (name == null) return null;
+        if (hostname == null) return null;
+        if (ipAddress == null) return null;
+        if (configuration == null) return null;
+        return new Terminal(name, hostname, ipAddress, positionX, positionY, configuration);
     }
 }

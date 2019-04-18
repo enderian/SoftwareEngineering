@@ -34,4 +34,7 @@ public class User {
         return this.sessions.add(session);
     }
 
+    public ArrayList<Session> listSessions(){
+        return this.sessions;
+    }
 }

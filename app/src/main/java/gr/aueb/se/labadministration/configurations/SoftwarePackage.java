@@ -6,7 +6,10 @@ public class SoftwarePackage {
     private String installationCommand;
     private String uninstallCommand;
 
-    public SoftwarePackage() {
+    public SoftwarePackage(String name, String installationCommand, String uninstallCommand) {
+        this.name = name;
+        this.installationCommand = installationCommand;
+        this.uninstallCommand = uninstallCommand;
     }
 
     public String getName() {

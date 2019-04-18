@@ -10,7 +10,7 @@ public class TerminalConfigurationBuilderTest {
         TerminalConfiguration terminalConfiguration = new TerminalConfigurationBuilder()
                 .setProcessor("i7")
                 .setGraphicsCard("1070")
-                .setStorateCapacity(1024)
+                .setstorageCapacity(1024)
                 .setTotalMemory(16384)
                 .setOperatingSystem("DB")
                 .setName("UIID")

@@ -4,6 +4,7 @@ import gr.aueb.se.labadministration.configurations.TerminalConfiguration;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Terminal {
 
@@ -18,11 +19,10 @@ public class Terminal {
     private TerminalConfiguration configuration;
     private ArrayList<Session> sessions;
 
-    public Terminal(String name, String hostname, InetAddress ipAddress, TerminalStatus status, int positionX, int positionY, TerminalConfiguration configuration) {
+    public Terminal(String name, String hostname, InetAddress ipAddress, int positionX, int positionY, TerminalConfiguration configuration) {
         this.name = name;
         this.hostname = hostname;
         this.ipAddress = ipAddress;
-        this.status = status;
         this.positionX = positionX;
         this.positionY = positionY;
         this.configuration = configuration;
