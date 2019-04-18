@@ -46,7 +46,7 @@ public class Session {
         return endTime;
     }
 
-    private boolean updateSessions(){
+    public boolean updateSessions(){
         return this.user.registerSession(this) && this.terminal.registerSession(this);
     }
 }

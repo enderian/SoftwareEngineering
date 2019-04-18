@@ -46,4 +46,33 @@ public class TerminalConfigurationTest {
 
     }
 
+    @Test
+    public void getProcessor() {
+        Assert.assertEquals("i7", terminalConfiguration.getProcessor());
+    }
+
+    @Test
+    public void getGraphicsCard() {
+        Assert.assertEquals("1070", terminalConfiguration.getGraphicsCard());
+    }
+
+    @Test
+    public void getStorateCapacity() {
+        Assert.assertEquals(1024, terminalConfiguration.getStorateCapacity());
+    }
+
+    @Test
+    public void getTotalMemory() {
+        Assert.assertEquals(16384, terminalConfiguration.getTotalMemory());
+    }
+
+    @Test
+    public void getOperatingSystem() {
+        Assert.assertEquals("Dual Boot", terminalConfiguration.getOperatingSystem());
+    }
+
+    @Test
+    public void getName() {
+        Assert.assertEquals("UIID-11WU", terminalConfiguration.getName());
+    }
 }
