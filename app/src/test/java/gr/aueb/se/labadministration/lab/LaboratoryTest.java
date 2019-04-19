@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 public class LaboratoryTest {
 
@@ -39,6 +40,7 @@ public class LaboratoryTest {
                 .setPositionX(0).setPositionY(0).createTerminal();
         this.administrator = new Administrator("p31xxxxx", "hash", "S");
         this.laboratory = new Laboratory("LAB", "LOC", true);
+        this.laboratory.setOpen(true);
         this.laboratory.addDaySchedule(daySchedule);
         this.laboratory.addAdministrator(administrator);
         this.laboratory.addTerminal(terminal);
@@ -148,4 +150,58 @@ public class LaboratoryTest {
         Assert.assertNotNull(test);
     }
 
+    @Test
+    public void getName() {
+        Assert.assertEquals("LAB", this.laboratory.getName());
+    }
+
+    @Test
+    public void setName() {
+        this.laboratory.setName("NewName");
+    }
+
+    @Test
+    public void getLocation() {
+        Assert.assertEquals("LOC", this.laboratory.getLocation());
+    }
+
+    @Test
+    public void setLocation() {
+        this.laboratory.setLocation("NewLOC");
+    }
+
+    @Test
+    public void isOpen() {
+        Assert.assertTrue(this.laboratory.isOpen());
+    }
+
+    @Test
+    public void getSchedule() {
+        Assert.assertNotNull(this.laboratory.getSchedule());
+    }
+
+    @Test
+    public void setSchedule() {
+        this.laboratory.setSchedule(new ArrayList<DaySchedule>());
+    }
+
+    @Test
+    public void getTerminals() {
+        Assert.assertNotNull(this.laboratory.getTerminals());
+    }
+
+    @Test
+    public void setTerminals() {
+        this.laboratory.setTerminals(new ArrayList<Terminal>());
+    }
+
+    @Test
+    public void getAdministrators() {
+        Assert.assertNotNull(this.laboratory.getAdministrators());
+    }
+
+    @Test
+    public void setAdministrators() {
+        this.laboratory.setAdministrators(new ArrayList<Administrator>());
+    }
 }

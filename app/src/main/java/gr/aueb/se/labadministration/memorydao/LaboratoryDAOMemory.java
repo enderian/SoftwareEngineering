@@ -22,7 +22,7 @@ public class LaboratoryDAOMemory implements LaboratoryDAO {
     @Override
     public Laboratory findByName(String name) {
         for (Laboratory lab : laboratories){
-            if(lab.getName().equalsIgnoreCase(name)) return lab;
+            if(lab.getName().equals(name)) return lab;
         }
         return null;
     }

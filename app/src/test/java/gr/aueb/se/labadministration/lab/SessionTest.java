@@ -18,6 +18,7 @@ public class SessionTest {
     private Terminal terminal;
     private User user;
     private TerminalConfiguration configuration;
+    private Session session;
 
     @Before
     public void initiate() throws UnknownHostException {
@@ -40,12 +41,12 @@ public class SessionTest {
                 .setPositionY(1)
                 .createTerminal();
 
+        this.session = new Session(terminal, user, Session.SessionStatus.FINISHED, new Date(), new Date());
+
     }
 
     @Test
     public void addSession(){
-
-        Session session = new Session(terminal, user, Session.SessionStatus.FINISHED, new Date(), new Date());
 
         boolean result = session.updateSessions();
 
@@ -53,4 +54,33 @@ public class SessionTest {
 
     }
 
+    @Test
+    public void getTerminal() {
+        Assert.assertEquals(terminal, this.session.getTerminal());
+    }
+
+    @Test
+    public void getUser() {
+        Assert.assertEquals(user, this.session.getUser());
+    }
+
+    @Test
+    public void setUser() {
+        this.session.setUser(new User("1", "2", "3"));
+    }
+
+    @Test
+    public void getStatus() {
+        Assert.assertEquals(Session.SessionStatus.FINISHED, this.session.getStatus());
+    }
+
+    @Test
+    public void getStartTime() {
+        Assert.assertNotNull(this.session.getStartTime());
+    }
+
+    @Test
+    public void getEndTime() {
+        Assert.assertNotNull(this.session.getEndTime());
+    }
 }

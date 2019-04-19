@@ -75,4 +75,13 @@ public class TerminalConfigurationTest {
     public void getName() {
         Assert.assertEquals("UIID-11WU", terminalConfiguration.getName());
     }
+
+    @Test
+    public void copyConstructorTest(){
+
+        TerminalConfiguration test = new TerminalConfiguration(this.terminalConfiguration);
+
+        Assert.assertNotNull(test);
+
+    }
 }

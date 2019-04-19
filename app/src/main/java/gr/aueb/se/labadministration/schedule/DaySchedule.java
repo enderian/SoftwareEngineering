@@ -26,19 +26,11 @@ public class DaySchedule {
     }
 
     public boolean addSlot(ScheduleSlot slot){
-        if(slot != null){
-            this.slots.add(slot);
-            return true;
-        }
-        return false;
+        return this.slots.add(slot);
     }
 
     public boolean removeSlot(ScheduleSlot slot){
-        if(this.slots.contains(slot)){
-            this.slots.remove(slot);
-            return true;
-        }
-        return false;
+        return this.slots.remove(slot);
     }
 
 }
