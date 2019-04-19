@@ -2,5 +2,5 @@
 .idea/
 *.iml
 .vscode
-.gradle
-*.properties
+.gradle/
+local.properties
