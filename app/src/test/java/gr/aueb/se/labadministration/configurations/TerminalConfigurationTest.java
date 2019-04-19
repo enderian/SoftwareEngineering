@@ -13,7 +13,6 @@ public class TerminalConfigurationTest {
     public void TerminalConfigurationTest(){
         terminalConfiguration = new TerminalConfiguration("i7", "1070", 1024, 16384, "Dual Boot", "UIID-11WU");
         softwarePackage = new SoftwarePackage("1", "2", "3");
-        terminalConfiguration.addSoftwarePackage(softwarePackage);
     }
 
     @Test
@@ -28,6 +27,7 @@ public class TerminalConfigurationTest {
 
     @Test
     public void removeExistingPackageReturnsTrue(){
+        terminalConfiguration.addSoftwarePackage(softwarePackage);
 
         boolean result = terminalConfiguration.removeSoftwarePackage(softwarePackage);
 

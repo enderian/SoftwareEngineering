@@ -17,7 +17,6 @@ public class DayScheduleTest {
     public void initiate(){
         this.daySchedule = new DaySchedule(1);
         this.slot = new ScheduleSlot(new Date(), new Date(), "L", "T");
-        this.daySchedule.addSlot(this.slot);
     }
 
     @Test
@@ -34,6 +33,8 @@ public class DayScheduleTest {
 
     @Test
     public void getSlots() {
+        this.daySchedule.addSlot(this.slot);
+
         Assert.assertNotNull(this.daySchedule.getSlots());
     }
 
@@ -46,6 +47,8 @@ public class DayScheduleTest {
 
     @Test
     public void removeSlot() {
+        this.daySchedule.addSlot(this.slot);
+
         boolean result = this.daySchedule.removeSlot(this.slot);
 
         Assert.assertTrue(result);

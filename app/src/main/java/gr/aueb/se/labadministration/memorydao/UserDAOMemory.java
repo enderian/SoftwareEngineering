@@ -24,7 +24,7 @@ public class UserDAOMemory implements UserDAO {
     @Override
     public User find(String username) {
         for(User user : users){
-            if(user.getUsername().equalsIgnoreCase(username)) return user;
+            if(user.getUsername().equals(username)) return user;
         }
         return null;
     }

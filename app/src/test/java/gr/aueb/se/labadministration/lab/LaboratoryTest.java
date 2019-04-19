@@ -41,9 +41,6 @@ public class LaboratoryTest {
         this.administrator = new Administrator("p31xxxxx", "hash", "S");
         this.laboratory = new Laboratory("LAB", "LOC", true);
         this.laboratory.setOpen(true);
-        this.laboratory.addDaySchedule(daySchedule);
-        this.laboratory.addAdministrator(administrator);
-        this.laboratory.addTerminal(terminal);
     }
 
     @Test
@@ -58,6 +55,7 @@ public class LaboratoryTest {
 
     @Test
     public void removeExistingAdminReturnsTrue(){
+        this.laboratory.addAdministrator(administrator);
 
         boolean result = this.laboratory.removeAdministrator(administrator);
 
@@ -91,7 +89,8 @@ public class LaboratoryTest {
     }
 
     @Test
-    public void removeExistingTerminalReturnsTrue() throws UnknownHostException {
+    public void removeExistingTerminalReturnsTrue() {
+        this.laboratory.addTerminal(terminal);
 
         boolean result = this.laboratory.removeTerminal(terminal);
 
@@ -126,6 +125,7 @@ public class LaboratoryTest {
 
     @Test
     public void removeExistingDayScheduleReturnsTrue(){
+        this.laboratory.addDaySchedule(daySchedule);
 
         boolean result = this.laboratory.removeDaySchedule(daySchedule);
 
