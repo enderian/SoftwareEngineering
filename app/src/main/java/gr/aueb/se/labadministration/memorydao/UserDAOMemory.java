@@ -2,6 +2,7 @@ package gr.aueb.se.labadministration.memorydao;
 
 import gr.aueb.se.labadministration.dao.UserDAO;
 import gr.aueb.se.labadministration.lab.Session;
+import gr.aueb.se.labadministration.people.Administrator;
 import gr.aueb.se.labadministration.people.User;
 
 import java.util.ArrayList;
@@ -34,5 +35,14 @@ public class UserDAOMemory implements UserDAO {
             if(u.equals(user)) return u.listSessions();
         }
         return null;
+    }
+
+    @Override
+    public ArrayList<Administrator> listAllAdministrators(){
+        ArrayList<Administrator> administrators = new ArrayList<>();
+        for(User u : users){
+            if (u instanceof Administrator) administrators.add((Administrator)u);
+        }
+        return administrators;
     }
 }
