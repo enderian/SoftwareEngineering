@@ -17,8 +17,13 @@ public class SignInPresenter {
         this.signIn = new SignIn();
     }
 
-    public RequestResult performSignIn(String username, String password) throws NoSuchAlgorithmException {
-        return signIn.signInRequest(username, password, "student");
+    public RequestResult performSignIn(String username, String password){
+        try {
+            return signIn.signInRequest(username, password);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public void start(){
