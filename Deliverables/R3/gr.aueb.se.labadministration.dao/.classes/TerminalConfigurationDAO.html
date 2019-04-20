@@ -1,0 +1,64 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TerminalConfigurationDAO</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">gr.aueb.se.labadministration.dao</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TerminalConfigurationDAO (gr.aueb.se.labadministration.dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">TerminalConfigurationDAO</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package gr.aueb.se.labadministration.dao;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import gr.aueb.se.labadministration.configurations.TerminalConfiguration;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.util.ArrayList;
+<i>6</i>&nbsp;
+<i>7</i>&nbsp;public interface TerminalConfigurationDAO {
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;    void save(TerminalConfiguration configuration);
+<i>10</i>&nbsp;
+<i>11</i>&nbsp;    void delete(TerminalConfiguration configuration);
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    TerminalConfiguration findByName(String configurationName);
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;    ArrayList&lt;TerminalConfiguration&gt; listAll();
+<i>16</i>&nbsp;
+<i>17</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-04-20 19:07</div>
+</div>
+</body>
+</html>

@@ -31,12 +31,7 @@ public class SignInFragmentStub implements SignInFragment {
 
     @Override
     public void performSignIn(String username, String password) {
-        RequestResult result = null;
-        try {
-            result = presenter.performSignIn(username, password);
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
+        RequestResult result = presenter.performSignIn(username, password);
         success = result.isSuccessful();
         if(!result.isSuccessful()){
             fail = "Failed to login";
