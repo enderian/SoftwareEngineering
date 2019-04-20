@@ -32,4 +32,4 @@
 
 # Coverage Reports
 
-Το report για το coverage του κώδικα μπορεί να βρεθεί στην ιστοσελίδα index.html που βρίσκεται στον φάκελο Deliverables/R3.
+Το report για το coverage του κώδικα μπορεί να δημιουργηθεί μέσα από το Android Studio (Analyze -> Generate Coverage Report), αλλά συνοπτικά είχαμε 95% coverage στις κλάσεις, 99% coverage στις μεθόδους & 96% coverage στις γραμμές.
