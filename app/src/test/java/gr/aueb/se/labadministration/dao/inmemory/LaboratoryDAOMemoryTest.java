@@ -13,10 +13,6 @@ import gr.aueb.se.labadministration.dao.LaboratoryDAO;
 import gr.aueb.se.labadministration.dao.TerminalConfigurationDAO;
 import gr.aueb.se.labadministration.dao.TerminalDAO;
 import gr.aueb.se.labadministration.dao.UserDAO;
-import gr.aueb.se.labadministration.dao.inmemory.LaboratoryDAOMemory;
-import gr.aueb.se.labadministration.dao.inmemory.TerminalConfigurationDAOMemory;
-import gr.aueb.se.labadministration.dao.inmemory.TerminalDAOMemory;
-import gr.aueb.se.labadministration.dao.inmemory.UserDAOMemory;
 import gr.aueb.se.labadministration.domain.builder.LaboratoryBuilder;
 
 @RunWith(MockitoJUnitRunner.class)

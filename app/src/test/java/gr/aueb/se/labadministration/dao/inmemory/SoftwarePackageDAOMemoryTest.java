@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import gr.aueb.se.labadministration.dao.SoftwarePackageDAO;
-import gr.aueb.se.labadministration.dao.inmemory.SoftwarePackageDAOMemory;
 import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
 
 public class SoftwarePackageDAOMemoryTest {

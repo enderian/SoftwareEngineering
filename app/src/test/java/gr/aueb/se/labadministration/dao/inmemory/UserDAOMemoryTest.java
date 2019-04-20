@@ -4,7 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import gr.aueb.se.labadministration.dao.UserDAO;
-import gr.aueb.se.labadministration.dao.inmemory.UserDAOMemory;
 import gr.aueb.se.labadministration.domain.people.User;
 
 public class UserDAOMemoryTest {
