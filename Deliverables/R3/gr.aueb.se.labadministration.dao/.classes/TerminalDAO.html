@@ -1,0 +1,69 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TerminalDAO</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">gr.aueb.se.labadministration.dao</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TerminalDAO (gr.aueb.se.labadministration.dao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">TerminalDAO</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package gr.aueb.se.labadministration.dao;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import gr.aueb.se.labadministration.lab.Terminal;
+<i>4</i>&nbsp;
+<i>5</i>&nbsp;import java.net.InetAddress;
+<i>6</i>&nbsp;import java.util.ArrayList;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;public interface TerminalDAO {
+<i>9</i>&nbsp;
+<i>10</i>&nbsp;    void save(Terminal terminal);
+<i>11</i>&nbsp;
+<i>12</i>&nbsp;    void delete(Terminal terminal);
+<i>13</i>&nbsp;
+<i>14</i>&nbsp;    Terminal findByName(String terminalName);
+<i>15</i>&nbsp;
+<i>16</i>&nbsp;    Terminal findByIP(InetAddress inetAddress);
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    void updateStatus(Terminal terminal, Terminal.TerminalStatus status);
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;    ArrayList&lt;Terminal&gt; listAll();
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-04-20 19:07</div>
+</div>
+</body>
+</html>

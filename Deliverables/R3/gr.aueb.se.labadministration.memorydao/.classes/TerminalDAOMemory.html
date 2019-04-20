@@ -1,0 +1,133 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: TerminalDAOMemory</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">gr.aueb.se.labadministration.memorydao</a> ]
+</div>
+
+<h1>Coverage Summary for Class: TerminalDAOMemory (gr.aueb.se.labadministration.memorydao)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">TerminalDAOMemory</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/ 8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.5%
+  </span>
+  <span class="absValue">
+    (17/ 19)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package gr.aueb.se.labadministration.memorydao;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import gr.aueb.se.labadministration.dao.TerminalDAO;
+<i>4</i>&nbsp;import gr.aueb.se.labadministration.lab.Terminal;
+<i>5</i>&nbsp;
+<i>6</i>&nbsp;import java.net.InetAddress;
+<i>7</i>&nbsp;import java.util.ArrayList;
+<i>8</i>&nbsp;
+<b class="fc"><i>9</i>&nbsp;public class TerminalDAOMemory implements TerminalDAO {</b>
+<i>10</i>&nbsp;
+<b class="fc"><i>11</i>&nbsp;    protected static ArrayList&lt;Terminal&gt; terminals = new ArrayList&lt;Terminal&gt;();</b>
+<i>12</i>&nbsp;
+<i>13</i>&nbsp;    @Override
+<i>14</i>&nbsp;    public void save(Terminal terminal) {
+<b class="fc"><i>15</i>&nbsp;        terminals.add(terminal);</b>
+<b class="fc"><i>16</i>&nbsp;    }</b>
+<i>17</i>&nbsp;
+<i>18</i>&nbsp;    @Override
+<i>19</i>&nbsp;    public void delete(Terminal terminal) {
+<b class="fc"><i>20</i>&nbsp;        terminals.remove(terminal);</b>
+<b class="fc"><i>21</i>&nbsp;    }</b>
+<i>22</i>&nbsp;
+<i>23</i>&nbsp;    @Override
+<i>24</i>&nbsp;    public Terminal findByName(String terminalName) {
+<b class="fc"><i>25</i>&nbsp;        for(Terminal terminal : terminals){</b>
+<b class="fc"><i>26</i>&nbsp;            if(terminal.getName().equalsIgnoreCase(terminalName)) return terminal;</b>
+<b class="nc"><i>27</i>&nbsp;        }</b>
+<b class="fc"><i>28</i>&nbsp;        return null;</b>
+<i>29</i>&nbsp;    }
+<i>30</i>&nbsp;
+<i>31</i>&nbsp;    @Override
+<i>32</i>&nbsp;    public Terminal findByIP(InetAddress inetAddress) {
+<b class="fc"><i>33</i>&nbsp;        for(Terminal terminal : terminals){</b>
+<b class="fc"><i>34</i>&nbsp;            if(terminal.getIpAddress().equals(inetAddress)) return terminal;</b>
+<b class="nc"><i>35</i>&nbsp;        }</b>
+<b class="fc"><i>36</i>&nbsp;        return null;</b>
+<i>37</i>&nbsp;    }
+<i>38</i>&nbsp;
+<i>39</i>&nbsp;    @Override
+<i>40</i>&nbsp;    public void updateStatus(Terminal terminal, Terminal.TerminalStatus status){
+<b class="fc"><i>41</i>&nbsp;        for(Terminal t : terminals){</b>
+<b class="fc"><i>42</i>&nbsp;            if(t.equals(terminal)) terminal.setStatus(status);</b>
+<b class="fc"><i>43</i>&nbsp;        }</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    @Override
+<i>47</i>&nbsp;    public ArrayList&lt;Terminal&gt; listAll() {
+<b class="fc"><i>48</i>&nbsp;        return terminals;</b>
+<i>49</i>&nbsp;    }
+<i>50</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2019-04-20 19:07</div>
+</div>
+</body>
+</html>
