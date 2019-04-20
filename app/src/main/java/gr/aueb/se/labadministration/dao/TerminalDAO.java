@@ -1,6 +1,6 @@
 package gr.aueb.se.labadministration.dao;
 
-import gr.aueb.se.labadministration.lab.Terminal;
+import gr.aueb.se.labadministration.domain.lab.Terminal;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
