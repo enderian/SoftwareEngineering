@@ -30,4 +30,4 @@
 
 # Coverage Reports
 
-Το report για το coverage του κώδικα μπορεί να βρεθεί στην [παρακάτω ιστοσελίδα](Deliverables/R3/index.html).
+Το report για το coverage του κώδικα μπορεί να βρεθεί στην ιστοσελίδα index.html που βρίσκεται στον φάκελο Deliverables/R3.
