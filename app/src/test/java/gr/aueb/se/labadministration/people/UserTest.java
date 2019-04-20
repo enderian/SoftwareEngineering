@@ -24,7 +24,7 @@ public class UserTest {
 
     @Test
     public void getPasswordHash() {
-        Assert.assertEquals("1", this.user.getPasswordHash());
+        Assert.assertEquals("5E884898DA2847151D0E56F8DC6292773603DD6AABBDD62A11EF721D1542D8", this.user.getPasswordHash());
     }
 
     @Test
