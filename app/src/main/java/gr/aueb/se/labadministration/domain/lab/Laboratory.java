@@ -1,35 +1,29 @@
 package gr.aueb.se.labadministration.domain.lab;
 
+import com.google.common.collect.Lists;
+
 import gr.aueb.se.labadministration.domain.people.Administrator;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 
 import java.util.ArrayList;
 
-public class Laboratory {
+public class Laboratory implements Cloneable {
 
     private String name;
     private String location;
     private boolean isOpen;
+
     private ArrayList<DaySchedule> schedule;
     private ArrayList<Terminal> terminals;
     private ArrayList<Administrator> administrators;
 
-    public Laboratory(String name, String location, boolean isOpen) {
+    public Laboratory(String name, String location, boolean isOpen, ArrayList<DaySchedule> schedule, ArrayList<Terminal> terminals, ArrayList<Administrator> administrators) {
         this.name = name;
         this.location = location;
         this.isOpen = isOpen;
-        this.schedule = new ArrayList<DaySchedule>();
-        this.terminals = new ArrayList<Terminal>();
-        this.administrators = new ArrayList<Administrator>();
-    }
-
-    public Laboratory(Laboratory laboratory) {
-        this.name = laboratory.name;
-        this.location = laboratory.location;
-        this.isOpen = laboratory.isOpen;
-        this.schedule = laboratory.schedule;
-        this.terminals = laboratory.terminals;
-        this.administrators = laboratory.administrators;
+        this.schedule = schedule == null ? Lists.newArrayList() : schedule;
+        this.terminals = terminals == null ? Lists.newArrayList() : terminals;
+        this.administrators = administrators == null ? Lists.newArrayList() : administrators;
     }
 
     public String getName() {

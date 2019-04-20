@@ -1,14 +1,20 @@
 package gr.aueb.se.labadministration.domain.builder;
 
+import java.util.ArrayList;
+
+import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 
 public class TerminalConfigurationBuilder {
+
     private String processor;
     private String graphicsCard;
-    private int storageCapacity;
-    private int totalMemory;
+    private Integer storageCapacity;
+    private Integer totalMemory;
     private String operatingSystem;
     private String name;
+    private ArrayList<SoftwarePackage> softwarePackages;
+    private TerminalConfiguration terminalConfiguration;
 
     public TerminalConfigurationBuilder setProcessor(String processor) {
         this.processor = processor;
@@ -20,12 +26,12 @@ public class TerminalConfigurationBuilder {
         return this;
     }
 
-    public TerminalConfigurationBuilder setstorageCapacity(int storageCapacity) {
+    public TerminalConfigurationBuilder setStorageCapacity(Integer storageCapacity) {
         this.storageCapacity = storageCapacity;
         return this;
     }
 
-    public TerminalConfigurationBuilder setTotalMemory(int totalMemory) {
+    public TerminalConfigurationBuilder setTotalMemory(Integer totalMemory) {
         this.totalMemory = totalMemory;
         return this;
     }
@@ -40,11 +46,17 @@ public class TerminalConfigurationBuilder {
         return this;
     }
 
+    public TerminalConfigurationBuilder setSoftwarePackages(ArrayList<SoftwarePackage> softwarePackages) {
+        this.softwarePackages = softwarePackages;
+        return this;
+    }
+
+    public TerminalConfigurationBuilder setTerminalConfiguration(TerminalConfiguration terminalConfiguration) {
+        this.terminalConfiguration = terminalConfiguration;
+        return this;
+    }
+
     public TerminalConfiguration createTerminalConfiguration() {
-        if (processor == null) return null;
-        if (operatingSystem == null) return null;
-        if (name == null) return null;
-        if (storageCapacity == 0 || totalMemory == 0) return null;
-        return new TerminalConfiguration(processor, graphicsCard, storageCapacity, totalMemory, operatingSystem, name);
+        return new TerminalConfiguration(processor, graphicsCard, storageCapacity, totalMemory, operatingSystem, name, softwarePackages);
     }
 }

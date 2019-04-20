@@ -1,5 +1,8 @@
 package gr.aueb.se.labadministration.dao.inmemory;
 
+import com.google.common.collect.Lists;
+
+import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.dao.TerminalConfigurationDAO;
 
@@ -7,7 +10,22 @@ import java.util.ArrayList;
 
 public class TerminalConfigurationDAOMemory implements TerminalConfigurationDAO {
 
-    protected static ArrayList<TerminalConfiguration> configurations = new ArrayList<TerminalConfiguration>();
+    private ArrayList<TerminalConfiguration> configurations = Lists.newArrayList(
+            new TerminalConfigurationBuilder()
+                    .setName("Common")
+                    .setOperatingSystem("Windows")
+                    .setProcessor("i5")
+                    .setStorageCapacity(2014)
+                    .setTotalMemory(1024)
+                    .createTerminalConfiguration(),
+            new TerminalConfigurationBuilder()
+                    .setName("Graphics")
+                    .setOperatingSystem("Linux")
+                    .setProcessor("i7")
+                    .setStorageCapacity(2014)
+                    .setTotalMemory(1024)
+                    .createTerminalConfiguration()
+    );
 
     @Override
     public void save(TerminalConfiguration configuration) {

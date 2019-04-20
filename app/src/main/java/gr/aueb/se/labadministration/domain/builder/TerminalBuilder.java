@@ -45,10 +45,6 @@ public class TerminalBuilder {
     }
 
     public Terminal createTerminal() {
-        if (name == null) return null;
-        if (hostname == null) return null;
-        if (ipAddress == null) return null;
-        if (configuration == null) return null;
         return new Terminal(name, hostname, ipAddress, positionX, positionY, configuration);
     }
 }

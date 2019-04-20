@@ -1,8 +1,12 @@
 package gr.aueb.se.labadministration.domain.configurations;
 
+import com.google.common.collect.Lists;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 
 public class TerminalConfigurationTest {
 
@@ -10,13 +14,13 @@ public class TerminalConfigurationTest {
     private SoftwarePackage softwarePackage;
 
     @Before
-    public void TerminalConfigurationTest(){
-        terminalConfiguration = new TerminalConfiguration("i7", "1070", 1024, 16384, "Dual Boot", "UIID-11WU");
+    public void TerminalConfigurationTest() {
+        terminalConfiguration = new TerminalConfiguration("i7", "1070", 1024, 16384, "Dual Boot", "UIID-11WU", Lists.newArrayList());
         softwarePackage = new SoftwarePackage("1", "2", "3");
     }
 
     @Test
-    public void insertSoftwarePackageReturnsTrue(){
+    public void insertSoftwarePackageReturnsTrue() {
 
         SoftwarePackage newPackage = new SoftwarePackage("2", "1", "2");
         boolean result = terminalConfiguration.addSoftwarePackage(newPackage);
@@ -26,7 +30,7 @@ public class TerminalConfigurationTest {
     }
 
     @Test
-    public void removeExistingPackageReturnsTrue(){
+    public void removeExistingPackageReturnsTrue() {
         terminalConfiguration.addSoftwarePackage(softwarePackage);
 
         boolean result = terminalConfiguration.removeSoftwarePackage(softwarePackage);
@@ -36,7 +40,7 @@ public class TerminalConfigurationTest {
     }
 
     @Test
-    public void removeUnknownPackageReturnsFalse(){
+    public void removeUnknownPackageReturnsFalse() {
 
         SoftwarePackage testPackage = new SoftwarePackage("3", "1", "2");
 
@@ -58,7 +62,7 @@ public class TerminalConfigurationTest {
 
     @Test
     public void getStorateCapacity() {
-        Assert.assertEquals(1024, terminalConfiguration.getStorateCapacity());
+        Assert.assertEquals(1024, terminalConfiguration.getStorageCapacity());
     }
 
     @Test
@@ -76,12 +80,4 @@ public class TerminalConfigurationTest {
         Assert.assertEquals("UIID-11WU", terminalConfiguration.getName());
     }
 
-    @Test
-    public void copyConstructorTest(){
-
-        TerminalConfiguration test = new TerminalConfiguration(this.terminalConfiguration);
-
-        Assert.assertNotNull(test);
-
-    }
 }

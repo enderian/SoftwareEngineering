@@ -4,7 +4,7 @@ import gr.aueb.se.labadministration.domain.people.User;
 
 import java.util.Date;
 
-public class Session {
+public class Session implements Cloneable {
 
     public enum SessionStatus{STARTING, STARTED, FINISHED, INTERRUPTED}
 

@@ -1,22 +1,25 @@
 package gr.aueb.se.labadministration.domain.builder;
 
+import com.google.common.collect.Lists;
+
 import org.junit.Assert;
 import org.junit.Test;
 
+import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 
 
 public class TerminalConfigurationBuilderTest {
 
     @Test
-    public void createTerminalConfigurationWithGFX(){
+    public void createTerminalConfigurationWithGFX() {
 
         TerminalConfiguration configuration = new TerminalConfigurationBuilder()
                 .setName("1")
                 .setOperatingSystem("Windows")
                 .setProcessor("i7")
                 .setGraphicsCard("GT-710")
-                .setstorageCapacity(1024)
+                .setStorageCapacity(1024)
                 .setTotalMemory(8192)
                 .createTerminalConfiguration();
 
@@ -25,13 +28,13 @@ public class TerminalConfigurationBuilderTest {
     }
 
     @Test
-    public void createTerminalConfigurationWithNoGFX(){
+    public void createTerminalConfigurationWithNoGFX() {
 
         TerminalConfiguration configuration = new TerminalConfigurationBuilder()
                 .setName("1")
                 .setOperatingSystem("Windows")
                 .setProcessor("i7")
-                .setstorageCapacity(1024)
+                .setStorageCapacity(1024)
                 .setTotalMemory(8192)
                 .createTerminalConfiguration();
 
@@ -39,63 +42,50 @@ public class TerminalConfigurationBuilderTest {
 
     }
 
-    @Test
-    public void createTerminalConfigurationFailDueToNoName(){
-
-        TerminalConfiguration configuration = new TerminalConfigurationBuilder()
+    @Test(expected = IllegalArgumentException.class)
+    public void createTerminalConfigurationFailDueToNoName() {
+        new TerminalConfigurationBuilder()
                 .setOperatingSystem("Windows")
                 .setProcessor("i7")
                 .setGraphicsCard("GT-710")
-                .setstorageCapacity(1024)
+                .setStorageCapacity(1024)
                 .setTotalMemory(8192)
                 .createTerminalConfiguration();
-
-        Assert.assertNull(configuration);
-
     }
 
-    @Test
-    public void createTerminalConfigurationFailDueToNoOS(){
-
-        TerminalConfiguration configuration = new TerminalConfigurationBuilder()
+    @Test(expected = IllegalArgumentException.class)
+    public void createTerminalConfigurationFailDueToNoOS() {
+        new TerminalConfigurationBuilder()
                 .setName("1")
                 .setProcessor("i7")
                 .setGraphicsCard("GT-710")
-                .setstorageCapacity(1024)
+                .setStorageCapacity(1024)
                 .setTotalMemory(8192)
                 .createTerminalConfiguration();
-
-        Assert.assertNull(configuration);
-
     }
 
-    @Test
-    public void createTerminalConfigurationFailDueToNoStorage(){
-
-        TerminalConfiguration configuration = new TerminalConfigurationBuilder()
+    @Test(expected = IllegalArgumentException.class)
+    public void createTerminalConfigurationFailDueToNoStorage() {
+        new TerminalConfigurationBuilder()
                 .setName("1")
                 .setOperatingSystem("Windows")
                 .setProcessor("i7")
                 .setGraphicsCard("GT-710")
                 .setTotalMemory(8192)
                 .createTerminalConfiguration();
-
-        Assert.assertNull(configuration);
-
     }
 
-    @Test
-    public void createTerminalConfigurationFailDueToNoMemory(){
-
-        TerminalConfiguration configuration = new TerminalConfigurationBuilder()
+    @Test(expected = IllegalArgumentException.class)
+    public void createTerminalConfigurationFailDueToNoMemory() {
+        new TerminalConfigurationBuilder()
                 .setName("1")
                 .setOperatingSystem("Windows")
                 .setProcessor("i7")
                 .setGraphicsCard("GT-710")
-                .setstorageCapacity(1024)
+                .setStorageCapacity(1024)
+                .setSoftwarePackages(Lists.newArrayList(
+                        new SoftwarePackage("1", "2", "3")
+                ))
                 .createTerminalConfiguration();
-
-        Assert.assertNull(configuration);
-
     }
 }

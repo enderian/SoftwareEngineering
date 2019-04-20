@@ -1,5 +1,6 @@
 package gr.aueb.se.labadministration.domain.lab;
 
+import gr.aueb.se.labadministration.domain.builder.LaboratoryBuilder;
 import gr.aueb.se.labadministration.domain.builder.TerminalBuilder;
 import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
@@ -29,7 +30,7 @@ public class LaboratoryTest {
                 .setName("T")
                 .setOperatingSystem("OS")
                 .setProcessor("i")
-                .setstorageCapacity(2014)
+                .setStorageCapacity(2014)
                 .setTotalMemory(1024)
                 .createTerminalConfiguration();
         this.terminal = new TerminalBuilder()
@@ -39,7 +40,7 @@ public class LaboratoryTest {
                 .setName("T")
                 .setPositionX(0).setPositionY(0).createTerminal();
         this.administrator = new Administrator("p31xxxxx", "hash", "S");
-        this.laboratory = new Laboratory("LAB", "LOC", true);
+        this.laboratory = new LaboratoryBuilder().setName("LAB").setLocation("LOC").setIsOpen(true).createLaboratory();
         this.laboratory.setOpen(true);
     }
 
@@ -141,13 +142,6 @@ public class LaboratoryTest {
 
         Assert.assertFalse(result);
 
-    }
-
-    @Test
-    public void copyConstructorTest(){
-        Laboratory test = new Laboratory(laboratory);
-
-        Assert.assertNotNull(test);
     }
 
     @Test

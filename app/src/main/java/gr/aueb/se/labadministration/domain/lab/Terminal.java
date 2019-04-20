@@ -5,7 +5,7 @@ import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
-public class Terminal {
+public class Terminal implements Cloneable {
 
     public enum TerminalStatus{OFFLINE, AVAILABLE, IN_USE, IN_MAINTENANCE}
 
@@ -19,6 +19,20 @@ public class Terminal {
     private ArrayList<Session> sessions;
 
     public Terminal(String name, String hostname, InetAddress ipAddress, int positionX, int positionY, TerminalConfiguration configuration) {
+
+        if (name == null) {
+            throw new IllegalArgumentException("you must provide a name");
+        }
+        if (hostname == null) {
+            throw new IllegalArgumentException("you must provide a hostname");
+        }
+        if (ipAddress == null) {
+            throw new IllegalArgumentException("you must provide an IP address");
+        }
+        if (configuration == null) {
+            throw new IllegalArgumentException("you must provide a TerminalConfiguration");
+        }
+
         this.name = name;
         this.hostname = hostname;
         this.ipAddress = ipAddress;

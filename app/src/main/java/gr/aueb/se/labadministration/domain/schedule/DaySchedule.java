@@ -2,7 +2,7 @@ package gr.aueb.se.labadministration.domain.schedule;
 
 import java.util.ArrayList;
 
-public class DaySchedule {
+public class DaySchedule implements Cloneable  {
 
     private int day;
     private ArrayList<ScheduleSlot> slots;
@@ -10,11 +10,6 @@ public class DaySchedule {
     public DaySchedule(int day) {
         this.day = day;
         this.slots = new ArrayList<ScheduleSlot>();
-    }
-
-    public DaySchedule(DaySchedule daySchedule) {
-        this.day = daySchedule.day;
-        this.slots = daySchedule.slots;
     }
 
     public int getDay() {

@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Cloneable  {
 
     private String username;
     private String passwordHash;
@@ -17,7 +17,7 @@ public class User {
         this.username = username;
         this.passwordHash = passwordHash;
         this.affiliation = affiliation;
-        this.sessions = new ArrayList<Session>();
+        this.sessions = new ArrayList<>();
     }
 
     public String getUsername() {

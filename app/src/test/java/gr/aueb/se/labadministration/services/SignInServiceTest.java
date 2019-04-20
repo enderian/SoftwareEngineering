@@ -44,7 +44,7 @@ public class SignInServiceTest {
     }
 
     @Test
-    public void successfulSignIn() throws NoSuchAlgorithmException {
+    public void successfulSignIn() {
         SignInResult signInResult = this.signIn.execute("p3160026", "password");
 
         Assert.assertTrue(signInResult.isSuccessful());
@@ -52,7 +52,7 @@ public class SignInServiceTest {
     }
 
     @Test
-    public void testEmptyPassword() throws NoSuchAlgorithmException {
+    public void testEmptyPassword() {
         SignInResult signInResult = this.signIn.execute("p3160026", null);
 
         Assert.assertFalse(signInResult.isSuccessful());
@@ -60,7 +60,7 @@ public class SignInServiceTest {
     }
 
     @Test
-    public void registerUser() throws NoSuchAlgorithmException {
+    public void registerUser() {
         SignInResult signInResult = this.signIn.execute("p3160026", "password");
 
         Assert.assertTrue(signInResult.isSuccessful());
@@ -68,7 +68,7 @@ public class SignInServiceTest {
     }
 
     @Test
-    public void forbiddenUser() throws NoSuchAlgorithmException {
+    public void forbiddenUser() {
         SignInResult signInResult = this.signIn.execute("d2111111", "password");
 
         Assert.assertFalse(signInResult.isSuccessful());
@@ -76,15 +76,15 @@ public class SignInServiceTest {
     }
 
     @Test
-    public void nonExistentUser() throws NoSuchAlgorithmException {
+    public void nonExistentUser() {
         SignInResult signInResult = this.signIn.execute("p3160000", "password");
 
         Assert.assertFalse(signInResult.isSuccessful());
-        Assert.assertEquals("User not found", signInResult.getReasonOfFailure());
+        Assert.assertEquals("User not found.", signInResult.getReasonOfFailure());
     }
 
     @Test
-    public void wrongPassword() throws NoSuchAlgorithmException {
+    public void wrongPassword() {
         SignInResult signInResult = this.signIn.execute("p3160026", "passwor");
 
         Assert.assertFalse(signInResult.isSuccessful());
@@ -92,7 +92,7 @@ public class SignInServiceTest {
     }
 
     @Test
-    public void brokenParameters() throws NoSuchAlgorithmException {
+    public void brokenParameters() {
         SignInResult signInResult = this.signIn.execute(null, null);
 
         Assert.assertFalse(signInResult.isSuccessful());
@@ -100,10 +100,20 @@ public class SignInServiceTest {
     }
 
     @Test
-    public void notStudentLogin() throws NoSuchAlgorithmException {
+    public void notStudentLogin() {
         SignInResult signInResult = this.signIn.execute("iamateacher", "password");
 
         Assert.assertTrue(signInResult.isSuccessful());
         Assert.assertEquals("Success", signInResult.getReasonOfFailure());
+    }
+
+    @Test
+    public void hashPassword() throws NoSuchAlgorithmException {
+        Assert.assertEquals(SignInServiceImpl.hashPassword("password"),
+                "5E884898DA2847151D0E56F8DC6292773603DD6AABBDD62A11EF721D1542D8");
+        Assert.assertEquals(SignInServiceImpl.hashPassword("user123"),
+                "E66E38BD8C19B24CF0EE388183162EA7CD63FF7912DBB22B5E83286B4446");
+        Assert.assertEquals(SignInServiceImpl.hashPassword("aueb"),
+                "BCB1496530F97CAF5AD2638187D19D498B957B19EF2F81DDE25C22E99FBBAF5F");
     }
 }

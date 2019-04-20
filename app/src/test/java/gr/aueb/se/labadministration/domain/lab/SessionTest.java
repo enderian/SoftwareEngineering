@@ -27,7 +27,7 @@ public class SessionTest {
                 .setName("T")
                 .setOperatingSystem("OS")
                 .setProcessor("i")
-                .setstorageCapacity(2014)
+                .setStorageCapacity(2014)
                 .setTotalMemory(1024)
                 .createTerminalConfiguration();
 

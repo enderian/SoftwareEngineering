@@ -1,6 +1,6 @@
 package gr.aueb.se.labadministration.domain.configurations;
 
-public class SoftwarePackage {
+public class SoftwarePackage implements Cloneable {
 
     private String name;
     private String installationCommand;

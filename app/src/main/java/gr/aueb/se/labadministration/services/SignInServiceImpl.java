@@ -14,7 +14,7 @@ public class SignInServiceImpl implements SignInService {
     private UserDAO userDAO;
 
     @Override
-    public SignInResult execute(String username, String password) throws NoSuchAlgorithmException {
+    public SignInResult execute(String username, String password) {
 
         if (username == null || password == null)
             return new SignInResult(false, "Unknown parameters");
@@ -26,14 +26,20 @@ public class SignInServiceImpl implements SignInService {
         if (!username.startsWith("p3") && user.getAffiliation().equals("student"))
             return new SignInResult(false, "You are not allowed to login");
 
-        String hashedPassword = hashPassword(password);
+        String hashedPassword;
+        try {
+            hashedPassword = hashPassword(password);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException("Unable to hash password.", e);
+        }
         if(hashedPassword.equals(user.getPasswordHash())){
             return new SignInResult(true, "Success");
         }
+
         return new SignInResult(false, "Wrong password");
     }
 
-    private String hashPassword(String password) throws NoSuchAlgorithmException {
+    public static String hashPassword(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(password.getBytes());
         byte[] messageDigest = md.digest();

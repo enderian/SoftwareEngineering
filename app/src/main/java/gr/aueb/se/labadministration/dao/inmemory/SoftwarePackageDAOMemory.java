@@ -1,5 +1,7 @@
 package gr.aueb.se.labadministration.dao.inmemory;
 
+import com.google.common.collect.Lists;
+
 import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
 import gr.aueb.se.labadministration.dao.SoftwarePackageDAO;
 
@@ -7,7 +9,16 @@ import java.util.ArrayList;
 
 public class SoftwarePackageDAOMemory implements SoftwarePackageDAO {
 
-    protected static ArrayList<SoftwarePackage> softwarePackages = new ArrayList<SoftwarePackage>();
+    private ArrayList<SoftwarePackage> softwarePackages = Lists.newArrayList(
+            new SoftwarePackage(
+                    "vscode",
+                    "apt install vscode",
+                    "apt remove vscode"),
+            new SoftwarePackage(
+                    "VisualStudio",
+                    "cocoa install VisualStudio",
+                    "cocoa remove VisualStudio")
+    );
 
     @Override
     public void save(SoftwarePackage softwarePackage) {

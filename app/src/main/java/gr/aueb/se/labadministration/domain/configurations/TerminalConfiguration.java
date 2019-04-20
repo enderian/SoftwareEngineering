@@ -1,31 +1,51 @@
 package gr.aueb.se.labadministration.domain.configurations;
 
-import java.util.ArrayList;
+import com.google.common.collect.Lists;
 
-public class TerminalConfiguration {
+import java.util.ArrayList;
+import java.util.Optional;
+
+public class TerminalConfiguration implements Cloneable {
 
     private String processor;
     private String graphicsCard;
-    private int storateCapacity;
+    private int storageCapacity;
     private int totalMemory;
     private String operatingSystem;
     private String name;
     private ArrayList<SoftwarePackage> softwarePackages;
 
-    public TerminalConfiguration(String processor, String graphicsCard, int storateCapacity, int totalMemory, String operatingSystem, String name) {
+    public TerminalConfiguration(String processor, String graphicsCard, Integer storageCapacity, Integer totalMemory, String operatingSystem, String name, ArrayList<SoftwarePackage> softwarePackages) {
+
+        if (name == null) {
+            throw new IllegalArgumentException("you must provide a name");
+        }
+        if (processor == null) {
+            throw new IllegalArgumentException("you must provide a processor");
+        }
+        if (operatingSystem == null) {
+            throw new IllegalArgumentException("you must provide an operatingSystem");
+        }
+        if (storageCapacity == null) {
+            throw new IllegalArgumentException("you must provide storageCapacity");
+        }
+        if (totalMemory == null) {
+            throw new IllegalArgumentException("you must provide totalMemory");
+        }
+
         this.processor = processor;
         this.graphicsCard = graphicsCard;
-        this.storateCapacity = storateCapacity;
+        this.storageCapacity = storageCapacity;
         this.totalMemory = totalMemory;
         this.operatingSystem = operatingSystem;
         this.name = name;
-        this.softwarePackages = new ArrayList<SoftwarePackage>();
+        this.softwarePackages = softwarePackages == null ? Lists.newArrayList() : softwarePackages;
     }
 
     public TerminalConfiguration(TerminalConfiguration terminalConfiguration) {
         this.processor = terminalConfiguration.processor;
         this.graphicsCard = terminalConfiguration.graphicsCard;
-        this.storateCapacity = terminalConfiguration.storateCapacity;
+        this.storageCapacity = terminalConfiguration.storageCapacity;
         this.totalMemory = terminalConfiguration.totalMemory;
         this.operatingSystem = terminalConfiguration.operatingSystem;
         this.name = terminalConfiguration.name;
@@ -40,8 +60,8 @@ public class TerminalConfiguration {
         return graphicsCard;
     }
 
-    public int getStorateCapacity() {
-        return storateCapacity;
+    public int getStorageCapacity() {
+        return storageCapacity;
     }
 
     public int getTotalMemory() {

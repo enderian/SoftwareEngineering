@@ -18,13 +18,6 @@ public class DayScheduleTest {
     }
 
     @Test
-    public void testCopyConstructor(){
-        DaySchedule newDS = new DaySchedule(this.daySchedule);
-
-        Assert.assertNotNull(newDS);
-    }
-
-    @Test
     public void getDay() {
         Assert.assertEquals(1, this.daySchedule.getDay());
     }
