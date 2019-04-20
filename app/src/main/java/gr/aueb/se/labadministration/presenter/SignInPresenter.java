@@ -19,7 +19,7 @@ public class SignInPresenter {
 
     public RequestResult performSignIn(String username, String password){
         try {
-            return signIn.signInRequest(username, password, "student");
+            return signIn.signInRequest(username, password);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

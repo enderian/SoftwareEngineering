@@ -1,6 +1,8 @@
 package gr.aueb.se.labadministration.people;
 
 import gr.aueb.se.labadministration.lab.Session;
+import gr.aueb.se.labadministration.utilities.Password;
+import gr.aueb.se.labadministration.utilities.RequestResult;
 
 import java.util.ArrayList;
 
@@ -15,7 +17,7 @@ public class User {
         this.username = username;
         this.passwordHash = passwordHash;
         this.affiliation = affiliation;
-        this.sessions = new ArrayList<Session>();
+        this.sessions = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -36,5 +38,17 @@ public class User {
 
     public ArrayList<Session> listSessions(){
         return this.sessions;
+    }
+
+    public RequestResult signIn(String password) {
+        if (password == null) return new RequestResult(false, "Password cannot be empty");
+        if (username != null && !username.startsWith("p3") && affiliation.equals("student"))
+            return new RequestResult(false, "You are not allowed to login");
+
+        String hashedPassword = Password.hash(password);
+        if(hashedPassword.equals(getPasswordHash())){
+            return new RequestResult(true, "Success");
+        }
+        return new RequestResult(false, "Wrong password");
     }
 }

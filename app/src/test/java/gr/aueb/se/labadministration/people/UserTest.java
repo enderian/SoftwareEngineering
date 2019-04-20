@@ -13,7 +13,7 @@ public class UserTest {
     @Before
     public void initiate(){
 
-        this.user = new User("p31xxxx", "1", "2");
+        this.user = new User("p31xxxx", "5E884898DA2847151D0E56F8DC6292773603DD6AABBDD62A11EF721D1542D8", "2");
 
     }
 
@@ -35,5 +35,10 @@ public class UserTest {
     @Test
     public void listSessions() {
         Assert.assertNotNull(this.user.listSessions());
+    }
+
+    @Test
+    public void signIn() {
+        Assert.assertTrue(this.user.signIn("password").isSuccessful());
     }
 }
