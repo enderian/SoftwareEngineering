@@ -4,7 +4,6 @@ import java.security.NoSuchAlgorithmException;
 
 import gr.aueb.se.labadministration.interfaces.SignInFragment;
 import gr.aueb.se.labadministration.presenter.SignInPresenter;
-import gr.aueb.se.labadministration.services.SignIn;
 import gr.aueb.se.labadministration.utilities.RequestResult;
 
 public class SignInFragmentStub implements SignInFragment {
@@ -32,7 +31,12 @@ public class SignInFragmentStub implements SignInFragment {
 
     @Override
     public void performSignIn(String username, String password) {
-        RequestResult result = presenter.performSignIn(username, password);
+        RequestResult result = null;
+        try {
+            result = presenter.performSignIn(username, password);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
         success = result.isSuccessful();
         if(!result.isSuccessful()){
             fail = "Failed to login";

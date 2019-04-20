@@ -42,7 +42,21 @@ public class SignInPresenterTest {
         presenter.start();
         stub.performSignIn("p3160026", "password");
 
+        stub.hide();
+
         Assert.assertTrue(stub.getSuccess());
+    }
+
+    @Test
+    public void failedSignIn(){
+        this.userDAO.save(user);
+
+        presenter.start();
+        stub.performSignIn("p3160026", "passwor");
+
+        Assert.assertFalse(stub.getSuccess());
+        Assert.assertEquals("Failed to login", stub.getFail());
+        Assert.assertNotNull(stub.getReasonOfFailure());
     }
 
 }
