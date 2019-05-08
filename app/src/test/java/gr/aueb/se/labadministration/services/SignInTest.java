@@ -1,7 +1,6 @@
 package gr.aueb.se.labadministration.services;
 
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -9,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
 
 import gr.aueb.se.labadministration.dao.UserDAO;
 import gr.aueb.se.labadministration.memorydao.UserDAOMemory;
-import gr.aueb.se.labadministration.people.User;
+import gr.aueb.se.labadministration.domain.people.User;
 import gr.aueb.se.labadministration.utilities.RequestResult;
 
 public class SignInTest {

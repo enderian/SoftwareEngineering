@@ -6,11 +6,9 @@ import org.junit.Test;
 
 import gr.aueb.se.labadministration.dao.UserDAO;
 import gr.aueb.se.labadministration.memorydao.UserDAOMemory;
-import gr.aueb.se.labadministration.people.User;
+import gr.aueb.se.labadministration.domain.people.User;
 import gr.aueb.se.labadministration.services.SignIn;
 import gr.aueb.se.labadministration.stubs.SignInFragmentStub;
-
-import static org.junit.Assert.*;
 
 public class SignInPresenterTest {
 

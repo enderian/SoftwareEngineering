@@ -1,6 +1,6 @@
 package gr.aueb.se.labadministration.memorydao;
 
-import gr.aueb.se.labadministration.configurations.SoftwarePackage;
+import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
 import gr.aueb.se.labadministration.dao.SoftwarePackageDAO;
 
 import java.util.ArrayList;

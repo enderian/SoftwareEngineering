@@ -1,6 +1,6 @@
 package gr.aueb.se.labadministration.memorydao;
 
-import gr.aueb.se.labadministration.configurations.TerminalConfiguration;
+import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.dao.TerminalConfigurationDAO;
 
 import java.util.ArrayList;

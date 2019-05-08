@@ -1,32 +1,29 @@
 package gr.aueb.se.labadministration.dao;
 
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.nio.channels.SeekableByteChannel;
 import java.util.ArrayList;
 import java.util.Date;
 
-import gr.aueb.se.labadministration.builder.TerminalBuilder;
-import gr.aueb.se.labadministration.builder.TerminalConfigurationBuilder;
-import gr.aueb.se.labadministration.configurations.SoftwarePackage;
-import gr.aueb.se.labadministration.configurations.TerminalConfiguration;
-import gr.aueb.se.labadministration.lab.Laboratory;
-import gr.aueb.se.labadministration.lab.Session;
-import gr.aueb.se.labadministration.lab.Terminal;
+import gr.aueb.se.labadministration.domain.builder.TerminalBuilder;
+import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
+import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
+import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
+import gr.aueb.se.labadministration.domain.lab.Laboratory;
+import gr.aueb.se.labadministration.domain.lab.Session;
+import gr.aueb.se.labadministration.domain.lab.Terminal;
 import gr.aueb.se.labadministration.memorydao.LaboratoryDAOMemory;
 import gr.aueb.se.labadministration.memorydao.SoftwarePackageDAOMemory;
 import gr.aueb.se.labadministration.memorydao.TerminalConfigurationDAOMemory;
 import gr.aueb.se.labadministration.memorydao.TerminalDAOMemory;
 import gr.aueb.se.labadministration.memorydao.UserDAOMemory;
-import gr.aueb.se.labadministration.people.Administrator;
-import gr.aueb.se.labadministration.people.User;
-import gr.aueb.se.labadministration.schedule.DaySchedule;
+import gr.aueb.se.labadministration.domain.people.Administrator;
+import gr.aueb.se.labadministration.domain.people.User;
+import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 
 public class MemoryDAOTests {
 
