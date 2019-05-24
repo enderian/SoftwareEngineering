@@ -91,4 +91,10 @@
         android:text="@string/submit"
         android:textColor="@color/white" />
 
+    <Button
+        android:id="@+id/recoveryButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/recoverPassword" />
+
 </LinearLayout>
