@@ -1,4 +1,4 @@
-###### Παραδοτέο R3
+### Παραδοτέο R3
 
 > Έχει γίνει και μερική υλοποίηση του παραδοτέου με Guice (dependency injection) και Mockito στο branch R3-Guice.
 

@@ -1,99 +1,69 @@
 package gr.aueb.se.labadministration.activities;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
+import android.content.ServiceConnection;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.net.URL;
-
 import gr.aueb.se.labadministration.R;
-import gr.aueb.se.labadministration.domain.people.User;
-import gr.aueb.se.labadministration.interfaces.Presenter;
-import gr.aueb.se.labadministration.memorydao.UserDAOMemory;
-import gr.aueb.se.labadministration.presenter.SignInPresenter;
+import gr.aueb.se.labadministration.services.SignInService;
+import gr.aueb.se.labadministration.utilities.RequestResult;
 
-public class SignInActivity extends AppCompatActivity implements gr.aueb.se.labadministration.interfaces.SignInActivityInterface {
-
+public class SignInActivity extends AppCompatActivity {
 
     EditText usernameEditText;
     EditText passwordEditText;
     Button submitButton;
-    Button recoveryButton;
 
-    SignInPresenter presenter;
+    SignInService service;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            SignInActivity.this.service = ((SignInService.SignInBinder) service).getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            SignInActivity.this.service = null;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
-        // Create and start presenter
-        new SignInPresenter(this).start();
+        bindService(new Intent(this, SignInService.class), serviceConnection, Context.BIND_AUTO_CREATE);
 
         // Initialization of activity components
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         submitButton = findViewById(R.id.submitButton);
-        recoveryButton = findViewById(R.id.recoveryButton);
 
-
+        passwordEditText.setOnEditorActionListener((view, id, button) -> submitButton.callOnClick());
         submitButton.setOnClickListener(view -> {
-            presenter.performSignIn();
-        });
-
-        // recovery button redirect user to external link for credentials recovery
-        recoveryButton.setOnClickListener(view ->{
-            URL url;
-            Uri uri;
-            try {
-                url = new URL("https://www.aueb.gr/");
-                uri = Uri.parse( url.toURI().toString() );
-                Intent browse = new Intent( Intent.ACTION_VIEW , uri );
-                startActivity( browse );
-            } catch (Exception e) {
-                e.printStackTrace();
+            RequestResult requestResult = this.service.signInRequest(getUsername(), getPassword());
+            if (requestResult.isSuccessful()) {
+                Intent myIntent = new Intent(this, LabActivity.class);
+                startActivity(myIntent);
+            } else {
+                Toast.makeText(getApplicationContext(), requestResult.getReasonOfFailure(), Toast.LENGTH_SHORT).show();
             }
         });
-        recoveryButton.setVisibility(View.GONE); // recoveryButton only appears when user submit wrong credentials.
     }
 
-    @Override
     public String getUsername() {
         return (usernameEditText == null) ? null : usernameEditText.getText().toString();
     }
 
-    @Override
     public String getPassword() {
         return (passwordEditText == null) ? null : passwordEditText.getText().toString();
     }
-
-    @Override
-    public void showFailure() {
-        Toast.makeText(getApplicationContext(),"username or/and password are wrong.",Toast.LENGTH_SHORT).show();
-        if(recoveryButton != null){ // show button for credentials recovery
-            recoveryButton.setVisibility(View.VISIBLE);
-            recoveryButton.setText("RECOVER CREDENTIALS");
-        }
-    }
-
-    @Override
-    public void close() { // activity close only if sign in was successful.
-        Intent myIntent = new Intent(this, LabActivity.class);
-        startActivity(myIntent);
-    }
-
-    @Override
-    public void setPresenter(Presenter presenter) {
-        this.presenter = (SignInPresenter) presenter;
-    }
-
-    public void Initialization(){
-
-    }
-
 }

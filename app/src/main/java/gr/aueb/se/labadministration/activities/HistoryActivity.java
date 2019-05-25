@@ -17,11 +17,8 @@ import java.util.ArrayList;
 
 import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.domain.lab.Session;
-import gr.aueb.se.labadministration.interfaces.HistoryActivityInterface;
-import gr.aueb.se.labadministration.interfaces.Presenter;
-import gr.aueb.se.labadministration.presenter.HistoryPresenter;
 
-public class HistoryActivity extends AppCompatActivity implements HistoryActivityInterface {
+public class HistoryActivity extends AppCompatActivity{
 
     SearchView historySearchView;
     ListView resultListView;
@@ -31,7 +28,6 @@ public class HistoryActivity extends AppCompatActivity implements HistoryActivit
     RadioButton computerRadioButton;
     RadioButton userRadioButton;
     RadioButton enabledRadioButton;
-    HistoryPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +35,6 @@ public class HistoryActivity extends AppCompatActivity implements HistoryActivit
         setContentView(R.layout.activity_history_projection);
 
         makeActionBar();
-
-        new HistoryPresenter(this).start();
 
         historySearchView = findViewById(R.id.historySearchView);
         resultListView = findViewById(R.id.resultListView);
@@ -54,7 +48,7 @@ public class HistoryActivity extends AppCompatActivity implements HistoryActivit
         historySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-                presenter.searchEvent();
+
                 return false;
             }
 
@@ -79,7 +73,6 @@ public class HistoryActivity extends AppCompatActivity implements HistoryActivit
     //this method is called when user press any button of navigation bar(wifi, cellular, refresh)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.nav_history:
                 startActivity(new Intent(this, HistoryActivity.class));
@@ -88,8 +81,6 @@ public class HistoryActivity extends AppCompatActivity implements HistoryActivit
                 startActivity(new Intent(this, LabActivity.class));
                 break;
             default:
-
-
         }
         return super.onOptionsItemSelected(item);
     }
@@ -101,30 +92,20 @@ public class HistoryActivity extends AppCompatActivity implements HistoryActivit
         actionBar.setDisplayUseLogoEnabled(true);// display app_icon.
     }
 
-
-    @Override
-    public void setPresenter(Presenter presenter) {
-        this.presenter = (HistoryPresenter) presenter;
-    }
-
-    @Override
     public String getOption(){
         int selectedId = radioGroup.getCheckedRadioButtonId();
         enabledRadioButton = findViewById(selectedId);
         return enabledRadioButton.getText().toString();
     }
 
-    @Override
     public String getId(){
         return historySearchView.getQuery().toString();
     }
 
-    @Override
     public void showError(String error){
         Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
     public void showResult(ArrayList<Session> sessions){
         if (sessions.size() == 0){
             Toast.makeText(getApplicationContext(), "There is no session.", Toast.LENGTH_SHORT).show();

@@ -11,19 +11,13 @@ import gr.aueb.se.labadministration.memorydao.UserDAOMemory;
 import gr.aueb.se.labadministration.domain.people.User;
 import gr.aueb.se.labadministration.utilities.RequestResult;
 
-public class SignInTest {
+public class SignInServiceTest {
 
-    private static UserDAO userDAO;
-    private static SignIn signIn;
+    private static SignInService signIn;
 
     @BeforeClass
     public static void setup(){
-        userDAO = new UserDAOMemory();
-        userDAO.save(new User("d2111111", "5E884898DA2847151D0E56F8DC6292773603DD6AABBDD62A11EF721D1542D8", "student"));
-        userDAO.save(new User("p3160026", "5E884898DA2847151D0E56F8DC6292773603DD6AABBDD62A11EF721D1542D8", "student"));
-        userDAO.save(new User("username", "5E884898DA2847151D0E56F8DC6292773603DD6AABBDD62A11EF721D1542D8", "teacher"));
-
-        signIn = new SignIn();
+        signIn = new SignInServiceStub();
     }
 
     @Test
@@ -32,7 +26,6 @@ public class SignInTest {
 
         Assert.assertTrue(requestResult.isSuccessful());
         Assert.assertEquals("Success", requestResult.getReasonOfFailure());
-
     }
 
     @Test
@@ -82,7 +75,7 @@ public class SignInTest {
     @Test
     public void notStudentLogin() throws NoSuchAlgorithmException {
 
-        RequestResult requestResult = signIn.signInRequest("username", "password");
+        RequestResult requestResult = signIn.signInRequest("teacher", "password");
 
         Assert.assertTrue(requestResult.isSuccessful());
         Assert.assertEquals("Success", requestResult.getReasonOfFailure());
