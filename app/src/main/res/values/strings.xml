@@ -6,13 +6,12 @@
 
     <!-- Activity Sign In -->
     <string name="username">Username:</string>
-    <string name="usernameHint">username</string>
-    <string name="passwordHint">password</string>
     <string name="password">Password:</string>
     <string name="signIn">Sign In</string>
     <string name="submit">Submit</string>
-    <string name="recoverPassword">recover credentials</string>
-    <string name="computer">computer</string>
-    <string name="user">user</string>
+
+    <!-- Search Sign In -->
+    <string name="computer">Computer</string>
+    <string name="user">User</string>
 
 </resources>

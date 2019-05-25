@@ -37,6 +37,11 @@ public class UserDAOMemory implements UserDAO {
     }
 
     @Override
+    public ArrayList<User> listUsers() {
+        return users;
+    }
+
+    @Override
     public ArrayList<Session> listAllSessions(User user) {
         for(User u : users){
             if(u.equals(user)) return u.listSessions();

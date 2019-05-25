@@ -1,46 +1,58 @@
 package gr.aueb.se.labadministration.activities;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SearchView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.domain.lab.Session;
+import gr.aueb.se.labadministration.services.HistoryService;
 
 public class HistoryActivity extends AppCompatActivity{
 
     SearchView historySearchView;
     ListView resultListView;
+
     ArrayAdapter<Session> adapter;
     ArrayList<Session> resultsArrayList = new ArrayList<>();
     RadioGroup radioGroup;
-    RadioButton computerRadioButton;
-    RadioButton userRadioButton;
-    RadioButton enabledRadioButton;
+
+    HistoryService service;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            HistoryActivity.this.service = ((HistoryService.HistoryServiceBinder) service).getService();
+        }
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            HistoryActivity.this.service = null;
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_projection);
-
+        setContentView(R.layout.activity_history);
         makeActionBar();
+        bindService(new Intent(this, HistoryService.class), serviceConnection, Context.BIND_AUTO_CREATE);
 
         historySearchView = findViewById(R.id.historySearchView);
         resultListView = findViewById(R.id.resultListView);
         radioGroup = findViewById(R.id.radioGroup);
-        computerRadioButton = findViewById(R.id.computerRadioButton);
-        userRadioButton = findViewById(R.id.userRadioButton);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1 , resultsArrayList);
         resultListView.setAdapter(adapter);
@@ -48,8 +60,19 @@ public class HistoryActivity extends AppCompatActivity{
         historySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
-
-                return false;
+                resultsArrayList.clear();
+                switch (radioGroup.getCheckedRadioButtonId()) {
+                    case R.id.userRadioButton: {
+                        resultsArrayList.addAll(service.findSessionsByUser(s));
+                        break;
+                    }
+                    case R.id.computerRadioButton: {
+                        resultsArrayList.addAll(service.findSessionsByComputer(s));
+                        break;
+                    }
+                    default: return false;
+                }
+                return true;
             }
 
             @Override
@@ -60,7 +83,6 @@ public class HistoryActivity extends AppCompatActivity{
 
         historySearchView.setIconified(false);
         historySearchView.clearFocus();
-
     }
 
     // this method shows menu at main_activity
@@ -90,27 +112,5 @@ public class HistoryActivity extends AppCompatActivity{
         ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(R.drawable.app_icon);
         actionBar.setDisplayUseLogoEnabled(true);// display app_icon.
-    }
-
-    public String getOption(){
-        int selectedId = radioGroup.getCheckedRadioButtonId();
-        enabledRadioButton = findViewById(selectedId);
-        return enabledRadioButton.getText().toString();
-    }
-
-    public String getId(){
-        return historySearchView.getQuery().toString();
-    }
-
-    public void showError(String error){
-        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
-    }
-
-    public void showResult(ArrayList<Session> sessions){
-        if (sessions.size() == 0){
-            Toast.makeText(getApplicationContext(), "There is no session.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        resultsArrayList.addAll(sessions);
     }
 }

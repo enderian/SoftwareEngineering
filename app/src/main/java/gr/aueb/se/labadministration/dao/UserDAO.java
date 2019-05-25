@@ -14,6 +14,8 @@ public interface UserDAO {
 
     User find(String username);
 
+    ArrayList<User> listUsers();
+
     ArrayList<Session> listAllSessions(User user);
 
     ArrayList<Administrator> listAllAdministrators();

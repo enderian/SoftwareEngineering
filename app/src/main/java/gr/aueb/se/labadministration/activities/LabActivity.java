@@ -14,8 +14,7 @@ public class LabActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lab_projection);
-
+        setContentView(R.layout.activity_lab);
         makeActionBar();
     }
 
@@ -38,8 +37,6 @@ public class LabActivity extends AppCompatActivity {
                 startActivity(new Intent(this, LabActivity.class));
                 break;
             default:
-
-
         }
         return super.onOptionsItemSelected(item);
     }

@@ -28,7 +28,6 @@ public class SignInActivity extends AppCompatActivity {
         public void onServiceConnected(ComponentName name, IBinder service) {
             SignInActivity.this.service = ((SignInService.SignInBinder) service).getService();
         }
-
         @Override
         public void onServiceDisconnected(ComponentName name) {
             SignInActivity.this.service = null;

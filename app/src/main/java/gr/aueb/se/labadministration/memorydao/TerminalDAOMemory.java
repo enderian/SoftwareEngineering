@@ -10,6 +10,10 @@ public class TerminalDAOMemory implements TerminalDAO {
 
     protected static ArrayList<Terminal> terminals = new ArrayList<Terminal>();
 
+    static {
+
+    }
+
     @Override
     public void save(Terminal terminal) {
         terminals.add(terminal);
