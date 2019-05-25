@@ -87,7 +87,7 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
 
     @Override
     public void close() { // activity close only if sign in was successful.
-        // TODO go to the nexr activity
+        // TODO go to the next activity
     }
 
     @Override
