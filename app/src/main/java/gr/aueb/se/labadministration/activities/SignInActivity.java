@@ -17,11 +17,11 @@ import gr.aueb.se.labadministration.utilities.RequestResult;
 
 public class SignInActivity extends AppCompatActivity {
 
-    EditText usernameEditText;
-    EditText passwordEditText;
-    Button submitButton;
+    private EditText usernameEditText;
+    private EditText passwordEditText;
+    private Button submitButton;
 
-    SignInService service;
+    private SignInService service;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -38,7 +38,6 @@ public class SignInActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
         bindService(new Intent(this, SignInService.class), serviceConnection, Context.BIND_AUTO_CREATE);
 
         // Initialization of activity components
@@ -50,8 +49,9 @@ public class SignInActivity extends AppCompatActivity {
         submitButton.setOnClickListener(view -> {
             RequestResult requestResult = this.service.signInRequest(getUsername(), getPassword());
             if (requestResult.isSuccessful()) {
-                Intent myIntent = new Intent(this, LabActivity.class);
-                startActivity(myIntent);
+                Intent intent = new Intent(this, LabActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), requestResult.getReasonOfFailure(), Toast.LENGTH_SHORT).show();
             }

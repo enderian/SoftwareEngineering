@@ -23,14 +23,14 @@ import gr.aueb.se.labadministration.services.HistoryService;
 
 public class HistoryActivity extends AppCompatActivity{
 
-    SearchView historySearchView;
-    ListView resultListView;
+    private SearchView historySearchView;
+    private ListView resultListView;
 
-    ArrayAdapter<Session> adapter;
-    ArrayList<Session> resultsArrayList = new ArrayList<>();
-    RadioGroup radioGroup;
+    private ArrayAdapter<Session> adapter;
+    private ArrayList<Session> resultsArrayList = new ArrayList<>();
+    private RadioGroup radioGroup;
 
-    HistoryService service;
+    private HistoryService service;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override

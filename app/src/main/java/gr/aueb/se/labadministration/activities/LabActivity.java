@@ -28,7 +28,6 @@ public class LabActivity extends AppCompatActivity {
     //this method is called when user press any button of navigation bar(wifi, cellular, refresh)
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
             case R.id.nav_history:
                 startActivity(new Intent(this, HistoryActivity.class));

@@ -2,7 +2,9 @@ package gr.aueb.se.labadministration.domain.lab;
 
 import gr.aueb.se.labadministration.domain.people.User;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public class Session {
 
@@ -47,5 +49,13 @@ public class Session {
 
     public Date getEndTime() {
         return endTime;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s (%s): %s",
+                terminal.getName(),
+                new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(startTime),
+                user.getUsername());
     }
 }
