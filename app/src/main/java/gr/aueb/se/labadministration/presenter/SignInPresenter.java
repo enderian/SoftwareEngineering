@@ -9,8 +9,8 @@ import gr.aueb.se.labadministration.utilities.RequestResult;
 
 public class SignInPresenter implements Presenter {
 
-    private SignInActivity signInActivity;
-    private SignIn signIn;
+    private SignInActivity signInActivity; // View Object
+    private SignIn signIn; // Model Object
     private RequestResult result = null;
 
     public SignInPresenter(SignInActivity signInActivity) {
@@ -18,15 +18,23 @@ public class SignInPresenter implements Presenter {
         this.signIn = new SignIn();
     }
 
-    public RequestResult performSignIn(String username, String password){
+    public RequestResult performSignIn(){
         try {
-            return signIn.signInRequest(username, password);
+            String username = signInActivity.getUsername();
+            String password = signInActivity.getPassword();
+            result =  signIn.signInRequest(username, password);
+            if(!result.isSuccessful()){
+                signInActivity.showFailure();
+            }else{
+                signInActivity.close();
+            }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    @Override
     public void start(){
         signInActivity.setPresenter(this);
         signInActivity.open();

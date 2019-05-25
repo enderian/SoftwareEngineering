@@ -9,22 +9,22 @@ public class SignInActivityStub implements SignInActivity {
 
     private boolean opened;
     private SignInPresenter presenter;
-    private String failureMessage;
-    private boolean getSuccess;
+    private boolean success = true;
+    String username, password;
 
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
     public void showFailure() {
-        failureMessage = "username or/and password are wrong.";
+        success = false;
     }
 
     @Override
@@ -45,5 +45,17 @@ public class SignInActivityStub implements SignInActivity {
 
     public boolean isOpened() {
         return opened;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
+    }
+
+    public void setUsername(String username){
+        this.username = username;
+    }
+
+    public boolean isSuccess(){
+        return  success;
     }
 }

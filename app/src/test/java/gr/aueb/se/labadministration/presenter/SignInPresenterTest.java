@@ -37,24 +37,26 @@ public class SignInPresenterTest {
     public void successfulSignIn(){
         this.userDAO.save(user);
 
+        stub.setPassword("password");
+        stub.setUsername("p3160026");
         presenter.start();
-        stub.performSignIn("p3160026", "password");
+        presenter.performSignIn();
 
         stub.close();
 
-        Assert.assertTrue(stub.getSuccess());
+        Assert.assertTrue(stub.isSuccess());
     }
 
     @Test
     public void failedSignIn(){
         this.userDAO.save(user);
 
+        stub.setPassword("passord");
+        stub.setUsername("p3160026");
         presenter.start();
-        stub.performSignIn("p3160026", "passwor");
+        presenter.performSignIn();
 
-        Assert.assertFalse(stub.getSuccess());
-        Assert.assertEquals("Failed to login", stub.getFail());
-        Assert.assertNotNull(stub.getReasonOfFailure());
+        Assert.assertFalse(stub.isSuccess());
     }
 
 }

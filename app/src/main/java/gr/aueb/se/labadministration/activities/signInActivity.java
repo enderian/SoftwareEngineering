@@ -31,6 +31,10 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
+        // Create and start presenter
+        new SignInPresenter(this).start();
+
+        // Initialization of activity components
         usernameEditText = findViewById(R.id.usernameEditText);
         passwordEditText = findViewById(R.id.passwordEditText);
         submitButton = findViewById(R.id.submitButton);
@@ -38,9 +42,10 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
 
 
         submitButton.setOnClickListener(view -> {
-
+            presenter.performSignIn();
         });
 
+        // recovery button redirect user to external link for credentials recovery
         recoveryButton.setOnClickListener(view ->{
             URL url;
             Uri uri;
@@ -53,7 +58,7 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
                 e.printStackTrace();
             }
         });
-        recoveryButton.setVisibility(View.GONE);
+        recoveryButton.setVisibility(View.GONE); // recoveryButton only appears when user submit wrong credentials.
     }
 
     @Override
@@ -69,7 +74,7 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
     @Override
     public void showFailure() {
         Toast.makeText(getApplicationContext(),"username or/and password are wrong.",Toast.LENGTH_SHORT).show();
-        if(recoveryButton != null){
+        if(recoveryButton != null){ // show button for credentials recovery
             recoveryButton.setVisibility(View.VISIBLE);
             recoveryButton.setText("RECOVER CREDENTIALS");
         }
@@ -81,7 +86,7 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
     }
 
     @Override
-    public void close() {
+    public void close() { // activity close only if sign in was successful.
         // TODO go to the nexr activity
     }
 
