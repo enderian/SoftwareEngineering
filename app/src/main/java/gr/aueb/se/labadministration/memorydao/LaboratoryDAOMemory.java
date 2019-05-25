@@ -9,6 +9,12 @@ public class LaboratoryDAOMemory implements LaboratoryDAO {
 
     protected static ArrayList<Laboratory> laboratories = new ArrayList<Laboratory>();
 
+    static {
+        laboratories.add(new Laboratory("Lab1", "Aueb", true));
+        laboratories.add(new Laboratory("Lab2", "Aueb", false));
+        laboratories.add(new Laboratory("Lab3", "Aueb at Troy", true));
+    }
+
     @Override
     public void save(Laboratory laboratory) {
         laboratories.add(laboratory);

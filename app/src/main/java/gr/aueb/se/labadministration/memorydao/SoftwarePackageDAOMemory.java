@@ -9,6 +9,12 @@ public class SoftwarePackageDAOMemory implements SoftwarePackageDAO {
 
     protected static ArrayList<SoftwarePackage> softwarePackages = new ArrayList<SoftwarePackage>();
 
+    static{
+        softwarePackages.add(new SoftwarePackage("soft1", "make -i https://...", "rm -r /*"));
+        softwarePackages.add(new SoftwarePackage("soft2", "make -i https://...", "rm -r /*"));
+        softwarePackages.add(new SoftwarePackage("soft3", "make -i https://...", "rm -r /*"));
+    }
+
     @Override
     public void save(SoftwarePackage softwarePackage) {
         softwarePackages.add(softwarePackage);
