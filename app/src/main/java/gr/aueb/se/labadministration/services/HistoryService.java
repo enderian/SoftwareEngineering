@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,13 @@ public class HistoryService extends Service {
 
     public TerminalDAO getTerminalDAO() {
         return terminalDAO;
+    }
+
+
+    public List<Session> allSessions() {
+        return getTerminalDAO().listAll().stream()
+                .flatMap(terminal -> terminal.getSessions().stream())
+                .collect(Collectors.toList());
     }
 
     public List<Session> findSessionsByUser(String query) {

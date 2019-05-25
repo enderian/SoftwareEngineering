@@ -1,14 +1,15 @@
 package gr.aueb.se.labadministration.domain.builder;
 
-import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
-import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
-import gr.aueb.se.labadministration.domain.lab.Terminal;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+
+import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
+import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
+import gr.aueb.se.labadministration.domain.lab.Terminal;
 
 public class TerminalBuilderTest {
 
@@ -31,7 +32,6 @@ public class TerminalBuilderTest {
 
     @Test
     public void createTerminal() throws UnknownHostException {
-
         Terminal terminal = new TerminalBuilder()
                 .setConfiguration(terminalConfiguration)
                 .setHostname("Lab-TestName")
@@ -42,12 +42,10 @@ public class TerminalBuilderTest {
                 .createTerminal();
 
         Assert.assertNotNull(terminal);
-
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void createTerminalFailDueToNoConf() throws UnknownHostException {
-
         Terminal terminal = new TerminalBuilder()
                 .setHostname("Lab-TestName")
                 .setName("TestName")
@@ -55,14 +53,10 @@ public class TerminalBuilderTest {
                 .setPositionX(1)
                 .setPositionY(0)
                 .createTerminal();
-
-        Assert.assertNull(terminal);
-
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void createTerminalFailDueToNoHostname() throws UnknownHostException {
-
         Terminal terminal = new TerminalBuilder()
                 .setConfiguration(terminalConfiguration)
                 .setName("TestName")
@@ -70,14 +64,10 @@ public class TerminalBuilderTest {
                 .setPositionX(1)
                 .setPositionY(0)
                 .createTerminal();
-
-        Assert.assertNull(terminal);
-
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void createTerminalFailDueToNoName() throws UnknownHostException {
-
         Terminal terminal = new TerminalBuilder()
                 .setConfiguration(terminalConfiguration)
                 .setHostname("Lab-TestName")
@@ -85,14 +75,10 @@ public class TerminalBuilderTest {
                 .setPositionX(1)
                 .setPositionY(0)
                 .createTerminal();
-
-        Assert.assertNull(terminal);
-
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void createTerminalFailDueToNoIP() {
-
         Terminal terminal = new TerminalBuilder()
                 .setConfiguration(terminalConfiguration)
                 .setHostname("Lab-TestName")
@@ -100,8 +86,5 @@ public class TerminalBuilderTest {
                 .setPositionX(1)
                 .setPositionY(0)
                 .createTerminal();
-
-        Assert.assertNull(terminal);
-
     }
 }

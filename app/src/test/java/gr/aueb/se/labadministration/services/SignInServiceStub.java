@@ -34,6 +34,11 @@ public class SignInServiceStub extends SignInService {
             }
 
             @Override
+            public ArrayList<User> listUsers() {
+                return null;
+            }
+
+            @Override
             public ArrayList<Session> listAllSessions(User user) {
                 return null;
             }

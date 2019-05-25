@@ -20,6 +20,9 @@ public class Session {
         this.status = status;
         this.startTime = startTime;
         this.endTime = endTime;
+
+        this.user.registerSession(this);
+        this.terminal.registerSession(this);
     }
 
     public Terminal getTerminal() {
@@ -44,9 +47,5 @@ public class Session {
 
     public Date getEndTime() {
         return endTime;
-    }
-
-    public boolean updateSessions(){
-        return this.user.registerSession(this) && this.terminal.registerSession(this);
     }
 }

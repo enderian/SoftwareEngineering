@@ -46,15 +46,6 @@ public class SessionTest {
     }
 
     @Test
-    public void addSession(){
-
-        boolean result = session.updateSessions();
-
-        Assert.assertTrue(result);
-
-    }
-
-    @Test
     public void getTerminal() {
         Assert.assertEquals(terminal, this.session.getTerminal());
     }

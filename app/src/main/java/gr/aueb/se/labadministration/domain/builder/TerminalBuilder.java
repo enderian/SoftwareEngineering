@@ -4,6 +4,7 @@ import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
 
 import java.net.InetAddress;
+import java.util.Objects;
 
 public class TerminalBuilder {
 
@@ -45,10 +46,10 @@ public class TerminalBuilder {
     }
 
     public Terminal createTerminal() {
-        if (name == null) return null;
-        if (hostname == null) return null;
-        if (ipAddress == null) return null;
-        if (configuration == null) return null;
+        Objects.requireNonNull(name, "name is null");
+        Objects.requireNonNull(hostname, "hostname is null");
+        Objects.requireNonNull(ipAddress, "ipAddress is null");
+        Objects.requireNonNull(configuration, "configuration is null");
         return new Terminal(name, hostname, ipAddress, positionX, positionY, configuration);
     }
 }

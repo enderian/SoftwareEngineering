@@ -61,13 +61,20 @@ public class HistoryActivity extends AppCompatActivity{
             @Override
             public boolean onQueryTextSubmit(String s) {
                 resultsArrayList.clear();
+                if (s.isEmpty()) {
+                    resultsArrayList.addAll(service.allSessions());
+                    adapter.notifyDataSetChanged();
+                    return true;
+                }
                 switch (radioGroup.getCheckedRadioButtonId()) {
                     case R.id.userRadioButton: {
                         resultsArrayList.addAll(service.findSessionsByUser(s));
+                        adapter.notifyDataSetChanged();
                         break;
                     }
                     case R.id.computerRadioButton: {
                         resultsArrayList.addAll(service.findSessionsByComputer(s));
+                        adapter.notifyDataSetChanged();
                         break;
                     }
                     default: return false;

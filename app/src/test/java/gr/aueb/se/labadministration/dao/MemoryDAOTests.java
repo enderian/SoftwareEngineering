@@ -283,8 +283,6 @@ public class MemoryDAOTests {
     @Test
     public void listAllSessionsUserExistsInDAO(){
         this.userDAO.save(this.user);
-        this.userSession.updateSessions();
-        this.adminSession.updateSessions();
 
         ArrayList<Session> result = this.userDAO.listAllSessions(this.user);
 
