@@ -12,5 +12,7 @@
     <string name="signIn">Sign In</string>
     <string name="submit">Submit</string>
     <string name="recoverPassword">recover credentials</string>
+    <string name="computer">computer</string>
+    <string name="user">user</string>
 
 </resources>
