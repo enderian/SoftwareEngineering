@@ -77,6 +77,7 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
         if(recoveryButton != null){ // show button for credentials recovery
             recoveryButton.setVisibility(View.VISIBLE);
             recoveryButton.setText("RECOVER CREDENTIALS");
+            close(); //TODO need to remove this statement, I have it only for testing purpose
         }
     }
 
@@ -87,7 +88,8 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
 
     @Override
     public void close() { // activity close only if sign in was successful.
-        // TODO go to the next activity
+        Intent myIntent = new Intent(this, LabProjection.class);
+        startActivity(myIntent);
     }
 
     @Override
