@@ -101,15 +101,6 @@ public class HistoryActivity extends AppCompatActivity implements HistoryActivit
         actionBar.setDisplayUseLogoEnabled(true);// display app_icon.
     }
 
-    @Override
-    public void open() {
-
-    }
-
-    @Override
-    public void close() {
-
-    }
 
     @Override
     public void setPresenter(Presenter presenter) {

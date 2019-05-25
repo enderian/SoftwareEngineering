@@ -12,7 +12,9 @@ import android.widget.Toast;
 import java.net.URL;
 
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.domain.people.User;
 import gr.aueb.se.labadministration.interfaces.Presenter;
+import gr.aueb.se.labadministration.memorydao.UserDAOMemory;
 import gr.aueb.se.labadministration.presenter.SignInPresenter;
 
 public class SignInActivity extends AppCompatActivity implements gr.aueb.se.labadministration.interfaces.SignInActivityInterface {
@@ -76,13 +78,7 @@ public class SignInActivity extends AppCompatActivity implements gr.aueb.se.laba
         if(recoveryButton != null){ // show button for credentials recovery
             recoveryButton.setVisibility(View.VISIBLE);
             recoveryButton.setText("RECOVER CREDENTIALS");
-            close(); //TODO need to remove this statement, I have it only for testing purpose
         }
-    }
-
-    @Override
-    public void open() {
-        // doesn't need implementation because this is launcher activity. It's open.
     }
 
     @Override
@@ -95,4 +91,9 @@ public class SignInActivity extends AppCompatActivity implements gr.aueb.se.laba
     public void setPresenter(Presenter presenter) {
         this.presenter = (SignInPresenter) presenter;
     }
+
+    public void Initialization(){
+
+    }
+
 }

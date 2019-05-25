@@ -6,7 +6,7 @@ import gr.aueb.se.labadministration.presenter.SignInPresenter;
 
 public class SignInActivityStub implements SignInActivityInterface {
 
-    private boolean opened;
+    private boolean closed;
     private SignInPresenter presenter;
     private boolean success = true;
     String username, password;
@@ -27,23 +27,17 @@ public class SignInActivityStub implements SignInActivityInterface {
     }
 
     @Override
-    public void open() {
-        this.opened = true;
-    }
-
-    @Override
-    public void close() {
-        this.opened = false;
-    }
-
-    @Override
     public void setPresenter(Presenter presenter) {
         this.presenter = (SignInPresenter) presenter;
     }
 
+    @Override
+    public void close(){
+        closed = true;
+    }
 
-    public boolean isOpened() {
-        return opened;
+    public boolean isClosed() {
+        return closed;
     }
 
     public void setPassword(String password){

@@ -28,12 +28,6 @@ public class SignInPresenterTest {
     }
 
     @Test
-    public void fragmentOpened(){
-        presenter.start();
-        Assert.assertTrue(stub.isOpened());
-    }
-
-    @Test
     public void successfulSignIn(){
         this.userDAO.save(user);
 
@@ -41,8 +35,6 @@ public class SignInPresenterTest {
         stub.setUsername("p3160026");
         presenter.start();
         presenter.performSignIn();
-
-        stub.close();
 
         Assert.assertTrue(stub.isSuccess());
     }

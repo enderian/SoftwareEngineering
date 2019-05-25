@@ -40,16 +40,6 @@ public class HistoryActivityStub implements HistoryActivityInterface {
     }
 
     @Override
-    public void open() {
-
-    }
-
-    @Override
-    public void close() {
-
-    }
-
-    @Override
     public void setPresenter(Presenter presenter) {
         this.presenter = (HistoryPresenter) presenter;
     }

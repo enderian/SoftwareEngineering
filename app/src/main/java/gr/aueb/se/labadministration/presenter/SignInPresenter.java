@@ -37,6 +37,5 @@ public class SignInPresenter implements Presenter {
     @Override
     public void start(){
         signInActivity.setPresenter(this);
-        signInActivity.open();
     }
 }

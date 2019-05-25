@@ -47,12 +47,10 @@ public class HistoryPresenter implements Presenter {
             sessionsResult.addAll(dao.listAllSessions(user));
         }
         historyActivity.showResult(sessionsResult);
-        historyActivity.close();
     }
 
     @Override
     public void start() {
         historyActivity.setPresenter(this);
-        historyActivity.open();
     }
 }
