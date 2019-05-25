@@ -2,18 +2,19 @@ package gr.aueb.se.labadministration.presenter;
 
 import java.security.NoSuchAlgorithmException;
 
-import gr.aueb.se.labadministration.interfaces.SignInFragment;
+import gr.aueb.se.labadministration.interfaces.Presenter;
+import gr.aueb.se.labadministration.interfaces.SignInActivity;
 import gr.aueb.se.labadministration.services.SignIn;
 import gr.aueb.se.labadministration.utilities.RequestResult;
 
-public class SignInPresenter {
+public class SignInPresenter implements Presenter {
 
-    private SignInFragment signInFragment;
+    private SignInActivity signInActivity;
     private SignIn signIn;
     private RequestResult result = null;
 
-    public SignInPresenter(SignInFragment signInFragment) {
-        this.signInFragment = signInFragment;
+    public SignInPresenter(SignInActivity signInActivity) {
+        this.signInActivity = signInActivity;
         this.signIn = new SignIn();
     }
 
@@ -27,7 +28,7 @@ public class SignInPresenter {
     }
 
     public void start(){
-        signInFragment.setSignInPresenter(this);
-        signInFragment.show();
+        signInActivity.setPresenter(this);
+        signInActivity.open();
     }
 }

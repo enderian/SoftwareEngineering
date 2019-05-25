@@ -12,14 +12,19 @@ import android.widget.Toast;
 import java.net.URL;
 
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.interfaces.Presenter;
+import gr.aueb.se.labadministration.interfaces.SignInActivity;
+import gr.aueb.se.labadministration.presenter.SignInPresenter;
 
-public class signInActivity extends AppCompatActivity {
+public class signInActivity extends AppCompatActivity implements SignInActivity {
 
 
     EditText usernameEditText;
     EditText passwordEditText;
     Button submitButton;
     Button recoveryButton;
+
+    SignInPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,20 +39,6 @@ public class signInActivity extends AppCompatActivity {
 
         submitButton.setOnClickListener(view -> {
 
-            String username = usernameEditText.getText().toString();
-            String password = passwordEditText.getText().toString();
-
-            //TODO check credentials
-            if(false){
-                // correct credentials
-                //TODO access to app
-            }else{
-                // wrong credentials
-                Toast.makeText(getApplicationContext(),"username or/and password are wrong.",Toast.LENGTH_SHORT).show();
-                recoveryButton.setVisibility(View.VISIBLE);
-                recoveryButton.setText("RECOVER CREDENTIALS");
-
-            }
         });
 
         recoveryButton.setOnClickListener(view ->{
@@ -63,5 +54,39 @@ public class signInActivity extends AppCompatActivity {
             }
         });
         recoveryButton.setVisibility(View.GONE);
+    }
+
+    @Override
+    public String getUsername() {
+        return (usernameEditText == null) ? null : usernameEditText.getText().toString();
+    }
+
+    @Override
+    public String getPassword() {
+        return (passwordEditText == null) ? null : passwordEditText.getText().toString();
+    }
+
+    @Override
+    public void showFailure() {
+        Toast.makeText(getApplicationContext(),"username or/and password are wrong.",Toast.LENGTH_SHORT).show();
+        if(recoveryButton != null){
+            recoveryButton.setVisibility(View.VISIBLE);
+            recoveryButton.setText("RECOVER CREDENTIALS");
+        }
+    }
+
+    @Override
+    public void open() {
+        // doesn't need implementation because this is launcher activity. It's open.
+    }
+
+    @Override
+    public void close() {
+        // TODO go to the nexr activity
+    }
+
+    @Override
+    public void setPresenter(Presenter presenter) {
+        this.presenter = (SignInPresenter) presenter;
     }
 }
