@@ -1,17 +1,12 @@
 package gr.aueb.se.labadministration.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -21,17 +16,22 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.domain.lab.Session;
+import gr.aueb.se.labadministration.interfaces.HistoryActivityInterface;
+import gr.aueb.se.labadministration.interfaces.Presenter;
+import gr.aueb.se.labadministration.presenter.HistoryPresenter;
 
-public class HistoryProjection extends AppCompatActivity {
+public class HistoryActivity extends AppCompatActivity implements HistoryActivityInterface {
 
     SearchView historySearchView;
     ListView resultListView;
-    ArrayAdapter<String> adapter;
-    ArrayList<String> resultsArrayList = new ArrayList<>();
+    ArrayAdapter<Session> adapter;
+    ArrayList<Session> resultsArrayList = new ArrayList<>();
     RadioGroup radioGroup;
     RadioButton computerRadioButton;
     RadioButton userRadioButton;
     RadioButton enabledRadioButton;
+    HistoryPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,41 +40,26 @@ public class HistoryProjection extends AppCompatActivity {
 
         makeActionBar();
 
+        new HistoryPresenter(this).start();
+
         historySearchView = findViewById(R.id.historySearchView);
         resultListView = findViewById(R.id.resultListView);
         radioGroup = findViewById(R.id.radioGroup);
-        computerRadioButton = findViewById(R.id.userRadioButton);
+        computerRadioButton = findViewById(R.id.computerRadioButton);
         userRadioButton = findViewById(R.id.userRadioButton);
-
-        resultsArrayList.add("Test");
-        resultsArrayList.add("Kostas");
-        resultsArrayList.add("Kokoras");
-        resultsArrayList.add("test");
-        resultsArrayList.add("stop");
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1 , resultsArrayList);
         resultListView.setAdapter(adapter);
 
-        radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
-        {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                int selectedId = radioGroup.getCheckedRadioButtonId();
-                enabledRadioButton = findViewById(selectedId);
-                Toast.makeText(getApplicationContext(), enabledRadioButton.getText(), Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
         historySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String s) {
+                presenter.searchEvent();
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String s) {
-                adapter.getFilter().filter(s);
                 return false;
             }
         });
@@ -97,10 +82,10 @@ public class HistoryProjection extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.nav_history:
-                startActivity(new Intent(this, HistoryProjection.class));
+                startActivity(new Intent(this, HistoryActivity.class));
                 break;
             case R.id.nav_patterns:
-                startActivity(new Intent(this, LabProjection.class));
+                startActivity(new Intent(this, LabActivity.class));
                 break;
             default:
 
@@ -114,6 +99,46 @@ public class HistoryProjection extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(R.drawable.app_icon);
         actionBar.setDisplayUseLogoEnabled(true);// display app_icon.
-        actionBar.setDisplayShowHomeEnabled(true);// display back button.
+    }
+
+    @Override
+    public void open() {
+
+    }
+
+    @Override
+    public void close() {
+
+    }
+
+    @Override
+    public void setPresenter(Presenter presenter) {
+        this.presenter = (HistoryPresenter) presenter;
+    }
+
+    @Override
+    public String getOption(){
+        int selectedId = radioGroup.getCheckedRadioButtonId();
+        enabledRadioButton = findViewById(selectedId);
+        return enabledRadioButton.getText().toString();
+    }
+
+    @Override
+    public String getId(){
+        return historySearchView.getQuery().toString();
+    }
+
+    @Override
+    public void showError(String error){
+        Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showResult(ArrayList<Session> sessions){
+        if (sessions.size() == 0){
+            Toast.makeText(getApplicationContext(), "There is no session.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        resultsArrayList.addAll(sessions);
     }
 }

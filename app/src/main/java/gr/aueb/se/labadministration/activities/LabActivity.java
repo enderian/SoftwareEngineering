@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import gr.aueb.se.labadministration.R;
 
-public class LabProjection extends AppCompatActivity {
+public class LabActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,10 @@ public class LabProjection extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.nav_history:
-                startActivity(new Intent(this, HistoryProjection.class));
+                startActivity(new Intent(this, HistoryActivity.class));
                 break;
             case R.id.nav_patterns:
-                startActivity(new Intent(this, LabProjection.class));
+                startActivity(new Intent(this, LabActivity.class));
                 break;
             default:
 

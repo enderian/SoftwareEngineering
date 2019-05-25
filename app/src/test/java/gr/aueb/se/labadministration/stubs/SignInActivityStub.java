@@ -1,11 +1,10 @@
 package gr.aueb.se.labadministration.stubs;
 
 import gr.aueb.se.labadministration.interfaces.Presenter;
-import gr.aueb.se.labadministration.interfaces.SignInActivity;
+import gr.aueb.se.labadministration.interfaces.SignInActivityInterface;
 import gr.aueb.se.labadministration.presenter.SignInPresenter;
-import gr.aueb.se.labadministration.utilities.RequestResult;
 
-public class SignInActivityStub implements SignInActivity {
+public class SignInActivityStub implements SignInActivityInterface {
 
     private boolean opened;
     private SignInPresenter presenter;

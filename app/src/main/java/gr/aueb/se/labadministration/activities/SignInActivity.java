@@ -13,10 +13,9 @@ import java.net.URL;
 
 import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.interfaces.Presenter;
-import gr.aueb.se.labadministration.interfaces.SignInActivity;
 import gr.aueb.se.labadministration.presenter.SignInPresenter;
 
-public class signInActivity extends AppCompatActivity implements SignInActivity {
+public class SignInActivity extends AppCompatActivity implements gr.aueb.se.labadministration.interfaces.SignInActivityInterface {
 
 
     EditText usernameEditText;
@@ -88,7 +87,7 @@ public class signInActivity extends AppCompatActivity implements SignInActivity 
 
     @Override
     public void close() { // activity close only if sign in was successful.
-        Intent myIntent = new Intent(this, LabProjection.class);
+        Intent myIntent = new Intent(this, LabActivity.class);
         startActivity(myIntent);
     }
 

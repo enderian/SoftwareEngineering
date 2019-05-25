@@ -9,9 +9,9 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.HistoryProjection"></activity>
-        <activity android:name=".activities.LabProjection" />
-        <activity android:name=".activities.signInActivity">
+        <activity android:name=".activities.HistoryActivity"></activity>
+        <activity android:name=".activities.LabActivity" />
+        <activity android:name=".activities.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

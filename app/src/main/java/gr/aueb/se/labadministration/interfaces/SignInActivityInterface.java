@@ -1,7 +1,7 @@
 package gr.aueb.se.labadministration.interfaces;
 
 
-public interface SignInActivity extends View{
+public interface SignInActivityInterface extends ViewInterface {
 
     String getPassword();
     String getUsername();

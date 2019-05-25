@@ -87,4 +87,8 @@ public class Terminal {
     public boolean registerSession(Session session){
         return this.sessions.add(session);
     }
+
+    public ArrayList<Session> getSessions(){
+        return sessions;
+    }
 }
