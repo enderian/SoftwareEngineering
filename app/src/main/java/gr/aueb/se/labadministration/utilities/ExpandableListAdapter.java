@@ -1,4 +1,4 @@
-package gr.aueb.se.labadministration.activities;
+package gr.aueb.se.labadministration.utilities;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
@@ -84,6 +85,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
         TextView listItem = view.findViewById(R.id.listItem);
         listItem.setText(childText);
+        listItem.setOnClickListener(v ->  {
+            // TODO code to show each computer elements, mabe in Fragment
+        });
         return view;
     }
 
