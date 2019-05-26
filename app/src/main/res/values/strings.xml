@@ -23,6 +23,18 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_new_configuration">New Configuration</string>
-    <string name="title_activity_test">TestActivity</string>
+
+    <!-- Activity Configuration -->
+    <string name="hardware">Hardware Configuration</string>
+    <string name="software">Software Configureation</string>
+    <string name="grafics">Graphics Card</string>
+    <string name="processor">Processor</string>
+    <string name="ram">RAM</string>
+    <string name="storage">Storage Capacity</string>
+    <string name="confName">Configuration Name</string>
+    <string name="osName">OS</string>
+    <string name="creationCommand">Creation Command</string>
+    <string name="deleteCommand">Delete Command</string>
+
 
 </resources>

@@ -4,9 +4,10 @@ import gr.aueb.se.labadministration.domain.lab.Session;
 import gr.aueb.se.labadministration.utilities.Password;
 import gr.aueb.se.labadministration.utilities.RequestResult;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class User {
+public class User implements Serializable {
 
     private String username;
     private String passwordHash;

@@ -1,6 +1,8 @@
 package gr.aueb.se.labadministration.domain.configurations;
 
-public class SoftwarePackage {
+import java.io.Serializable;
+
+public class SoftwarePackage implements Serializable {
 
     private String name;
     private String installationCommand;

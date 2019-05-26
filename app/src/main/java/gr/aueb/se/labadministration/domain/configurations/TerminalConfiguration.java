@@ -1,8 +1,9 @@
 package gr.aueb.se.labadministration.domain.configurations;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class TerminalConfiguration {
+public class TerminalConfiguration implements Serializable {
 
     private String processor;
     private String graphicsCard;
