@@ -27,11 +27,10 @@ import gr.aueb.se.labadministration.utilities.ExpandableListAdapter;
 
 public class LabActivity extends AppCompatActivity {
 
-    private ExpandableListView listView;
-    private ExpandableListAdapter listAdapter;
-    private List<String> listHeader;
-    private HashMap<String, List<String>>  listHashMap;
-    private TextView listItem;
+    private ExpandableListView listViewLabs, listViewComputers, listViewShedules;
+    private ExpandableListAdapter listAdapterLabs, listAdapterComputers, listAdapterShedules;
+    private List<String> listLabs, listComputers, listShedules;
+    private HashMap<String, List<String>>  listHashMapLabs, listHashMapComputers, listHashMapShedules;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,27 +38,41 @@ public class LabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lab);
         makeActionBar();
 
-        listView = findViewById(R.id.labExpandableListView);
-        initData();
-        listAdapter = new ExpandableListAdapter(this, listHeader, listHashMap);
-        listView.setAdapter(listAdapter);
+        // Labs List Configuration
+        listViewLabs = findViewById(R.id.labListParrent);
+        initListHashLabs();
+        listAdapterLabs = new ExpandableListAdapter(this, listLabs, listHashMapLabs);
+        listViewLabs.setAdapter(listAdapterLabs);
+
+
 
     }
 
+    void initListComputers(){
+        listComputers = new ArrayList<>();
+        listHashMapComputers = new HashMap<>();
 
-    void initData(){
-        listHeader = new ArrayList<>();
-        listHashMap = new HashMap<>();
+    }
+
+    void initListHashShedule(){
+        listShedules = new ArrayList<>();
+        listHashMapShedules = new HashMap<>();
+
+    }
+
+    void initListHashLabs(){
+        listLabs = new ArrayList<>();
+        listHashMapLabs = new HashMap<>();
 
         LaboratoryDAO laboratoryDAO = new LaboratoryDAOMemory();
         List<Laboratory> labs = laboratoryDAO.listAll();
         for(Laboratory lab: labs){
-            listHeader.add(lab.getName());
+            listLabs.add(lab.getName());
             List<String> terminals = new ArrayList<>();
             for(Terminal t: lab.getTerminals()){
                 terminals.add(t.getName());
             }
-            listHashMap.put(listHeader.get(listHeader.size()-1), terminals);
+            listHashMapLabs.put(listLabs.get(listHashMapLabs.size()-1), terminals);
         }
 
     }

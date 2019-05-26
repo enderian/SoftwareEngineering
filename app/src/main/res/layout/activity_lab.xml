@@ -9,9 +9,24 @@
     android:background="@color/activityBackground">
 
     <ExpandableListView
-        android:id="@+id/labExpandableListView"
+        android:id="@+id/labListParrent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorList"></ExpandableListView>
+        android:background="@color/colorList">
+
+        <ExpandableListView
+            android:id="@+id/labListFirstChild"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorList"></ExpandableListView>
+
+        <ExpandableListView
+            android:id="@+id/labListSecondChild"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorList">
+
+        </ExpandableListView>
+    </ExpandableListView>
 
 </LinearLayout>
