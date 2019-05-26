@@ -3,9 +3,10 @@ package gr.aueb.se.labadministration.domain.lab;
 import gr.aueb.se.labadministration.domain.people.Administrator;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Laboratory {
+public class Laboratory implements Serializable {
 
     private String name;
     private String location;

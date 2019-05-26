@@ -2,11 +2,12 @@ package gr.aueb.se.labadministration.domain.lab;
 
 import gr.aueb.se.labadministration.domain.people.User;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class Session {
+public class Session implements Serializable {
 
     public enum SessionStatus{STARTING, STARTED, FINISHED, INTERRUPTED};
 

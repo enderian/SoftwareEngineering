@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".activities.NewTerminalActivity"></activity>
-        <activity android:name=".activities.NewConfigurationActivity" />
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/title_activity_main" />

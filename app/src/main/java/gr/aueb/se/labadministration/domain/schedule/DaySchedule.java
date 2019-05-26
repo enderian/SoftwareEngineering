@@ -1,8 +1,9 @@
 package gr.aueb.se.labadministration.domain.schedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class DaySchedule {
+public class DaySchedule implements Serializable {
 
     private int day;
     private ArrayList<ScheduleSlot> slots;

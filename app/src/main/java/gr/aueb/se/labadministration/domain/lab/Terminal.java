@@ -2,10 +2,11 @@ package gr.aueb.se.labadministration.domain.lab;
 
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
-public class Terminal {
+public class Terminal implements Serializable {
 
     public enum TerminalStatus{OFFLINE, AVAILABLE, IN_USE, IN_MAINTENANCE};
 
