@@ -47,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         switchFragment(new LabFragment());
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+
+        boolean administrator = getIntent().getBooleanExtra("administrator", false);
+
+        navView.getMenu().findItem(R.id.nav_history).setVisible(administrator);
+        navView.getMenu().findItem(R.id.nav_configuration).setVisible(administrator);
     }
 
     @Override

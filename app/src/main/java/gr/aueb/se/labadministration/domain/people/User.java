@@ -41,14 +41,14 @@ public class User {
     }
 
     public RequestResult signIn(String password) {
-        if (password == null) return new RequestResult(false, "Password cannot be empty");
+        if (password == null) return new RequestResult(false, false, "Password cannot be empty");
         if (username != null && !username.startsWith("p3") && affiliation.equals("student"))
-            return new RequestResult(false, "You are not allowed to login");
+            return new RequestResult(false, false, "You are not allowed to login");
 
         String hashedPassword = Password.hash(password);
         if(hashedPassword.equals(getPasswordHash())){
-            return new RequestResult(true, "Success");
+            return new RequestResult(true, !affiliation.equals("student"), "Success");
         }
-        return new RequestResult(false, "Wrong password");
+        return new RequestResult(false, false,"Wrong password");
     }
 }
