@@ -46,6 +46,10 @@ public class LabService extends Service {
         getLaboratoryDAO().save(lab);
     }
 
+    public Terminal findTerminal(String name){
+        return getTerminalDAO().findByName(name);
+    }
+
     public List<Laboratory> listLabs(){
         return getLaboratoryDAO().listAll();
     }

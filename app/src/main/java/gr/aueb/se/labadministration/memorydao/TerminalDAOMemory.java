@@ -18,38 +18,46 @@ public class TerminalDAOMemory implements TerminalDAO {
 
     static {
         try {
-            terminals.add(new TerminalBuilder()
+            Terminal term1 = new TerminalBuilder()
                     .setHostname("cslab1-22")
                     .setName("CSLAB1-22")
                     .setPositionX(0)
                     .setPositionY(0)
                     .setIpAddress(InetAddress.getByName("172.16.1.22"))
                     .setConfiguration(TerminalConfigurationDAOMemory.configurations.get(0))
-                    .createTerminal());
-            terminals.add(new TerminalBuilder()
+                    .createTerminal();
+            Terminal term2 = new TerminalBuilder()
                     .setHostname("cslab1-23")
                     .setName("CSLAB1-23")
                     .setPositionX(1)
                     .setPositionY(0)
                     .setIpAddress(InetAddress.getByName("172.16.1.23"))
                     .setConfiguration(TerminalConfigurationDAOMemory.configurations.get(0))
-                    .createTerminal());
-            terminals.add(new TerminalBuilder()
+                    .createTerminal();
+            Terminal term3 = new TerminalBuilder()
                     .setHostname("cslab2-32")
                     .setName("CSLAB2-32")
                     .setPositionX(0)
                     .setPositionY(0)
                     .setIpAddress(InetAddress.getByName("172.16.2.32"))
                     .setConfiguration(TerminalConfigurationDAOMemory.configurations.get(1))
-                    .createTerminal());
-            terminals.add(new TerminalBuilder()
+                    .createTerminal();
+            Terminal term4 = new TerminalBuilder()
                     .setHostname("cslab2-33")
                     .setName("CSLAB2-33")
                     .setPositionX(1)
                     .setPositionY(0)
                     .setIpAddress(InetAddress.getByName("172.16.2.33"))
                     .setConfiguration(TerminalConfigurationDAOMemory.configurations.get(1))
-                    .createTerminal());
+                    .createTerminal();
+            term1.setStatus(Terminal.TerminalStatus.AVAILABLE);
+            term2.setStatus(Terminal.TerminalStatus.IN_MAINTENANCE);
+            term3.setStatus(Terminal.TerminalStatus.IN_USE);
+            term4.setStatus(Terminal.TerminalStatus.OFFLINE);
+            terminals.add(term1);
+            terminals.add(term2);
+            terminals.add(term3);
+            terminals.add(term4);
         } catch (UnknownHostException ignored) {}
     }
 

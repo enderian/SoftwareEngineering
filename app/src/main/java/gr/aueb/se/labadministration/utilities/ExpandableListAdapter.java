@@ -2,16 +2,26 @@ package gr.aueb.se.labadministration.utilities;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.HashMap;
 import java.util.List;
 
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.domain.lab.Terminal;
+import gr.aueb.se.labadministration.fragments.TerminalFragment;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
@@ -76,6 +86,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         final String childText = (String)getChild(i, i1);
+        System.out.println(childText);
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_item, null);
@@ -84,7 +95,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         listItem.setText(childText);
         listItem.setOnClickListener(v ->  {
             // TODO code to show each computer elements, mabe in Fragment
-            listItem.setText("TODO: go to Fragment(ExpandableListAdapter)");
+            //listItem.setText("TODO: go to Fragment(ExpandableListAdapter)");
+            FragmentTransaction manager = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+            TerminalFragment terminalFragment = new TerminalFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("terminal_name", childText);
+            terminalFragment.setArguments(bundle);
+            manager.add(terminalFragment, "Terminal");
+            manager.commit();
+
         });
         return view;
     }
