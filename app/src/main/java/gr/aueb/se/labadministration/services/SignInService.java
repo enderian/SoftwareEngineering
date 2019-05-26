@@ -33,7 +33,7 @@ public class SignInService extends Service {
 
     public RequestResult signInRequest(String username, String password) {
         User user = getUserDAO().find(username);
-        if (user == null) return new RequestResult(false, "User not found");
+        if (user == null) return new RequestResult(false, false, "User not found");
         return user.signIn(password);
     }
 
