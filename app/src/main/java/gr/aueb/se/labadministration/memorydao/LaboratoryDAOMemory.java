@@ -36,6 +36,8 @@ public class LaboratoryDAOMemory implements LaboratoryDAO {
         laboratories.remove(laboratory);
     }
 
+
+
     @Override
     public Laboratory findByName(String name) {
         for (Laboratory lab : laboratories){

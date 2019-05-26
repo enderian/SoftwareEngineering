@@ -37,7 +37,6 @@ public class HistoryService extends Service {
         return terminalDAO;
     }
 
-
     public List<Session> allSessions() {
         return getTerminalDAO().listAll().stream()
                 .flatMap(terminal -> terminal.getSessions().stream())

@@ -1,6 +1,11 @@
 package gr.aueb.se.labadministration.fragments;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +27,7 @@ import gr.aueb.se.labadministration.domain.lab.Laboratory;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 import gr.aueb.se.labadministration.memorydao.LaboratoryDAOMemory;
+import gr.aueb.se.labadministration.services.LabService;
 import gr.aueb.se.labadministration.utilities.ExpandableListAdapter;
 
 public class LabFragment extends Fragment {
@@ -32,9 +38,24 @@ public class LabFragment extends Fragment {
     private HashMap<String, List<String>>  listHashMapComputers, listHashMapShedules;
     private RadioGroup labsRadioGroup;
 
+    private LabService service;
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            LabFragment.this.service = ((LabService.LabServiceBinder) iBinder).getService();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            LabFragment.this.service = null;
+        }
+    };
+
     @Override
     public void onStart() {
         super.onStart();
+        getActivity().bindService(new Intent(getContext(), LabService.class), serviceConnection, Context.BIND_AUTO_CREATE);
 
         listComputers = new ArrayList<>();
         listHashMapComputers = new HashMap<>();
@@ -71,7 +92,6 @@ public class LabFragment extends Fragment {
 
         labsRadioGroup.check(R.id.lab1RadioButton);
     }
-
 
     void updateComputers(String labName){
 

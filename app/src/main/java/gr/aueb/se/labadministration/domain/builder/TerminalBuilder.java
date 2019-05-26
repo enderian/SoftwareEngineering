@@ -1,6 +1,7 @@
 package gr.aueb.se.labadministration.domain.builder;
 
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
+import gr.aueb.se.labadministration.domain.lab.Laboratory;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
 
 import java.net.InetAddress;
