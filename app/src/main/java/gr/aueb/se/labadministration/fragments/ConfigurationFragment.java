@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.activities.NewConfigurationActivity;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 
 
