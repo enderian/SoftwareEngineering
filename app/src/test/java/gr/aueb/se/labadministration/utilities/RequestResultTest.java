@@ -12,7 +12,7 @@ public class RequestResultTest {
 
     @Before
     public void initialize(){
-        this.requestResult = new RequestResult(true, "Success");
+        this.requestResult = new RequestResult(true,false, "Success");
     }
 
     @Test
