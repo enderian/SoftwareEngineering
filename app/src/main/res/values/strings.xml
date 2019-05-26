@@ -1,8 +1,11 @@
 <resources>
     <string name="app_name"> CS Labs App</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- Activity Labs -->
+    <string name="lab1">Lab1</string>
+    <string name="lab2">Lab2</string>
+    <string name="lab3">Lab3</string>
+
 
     <!-- Activity Sign In -->
     <string name="username">Username:</string>

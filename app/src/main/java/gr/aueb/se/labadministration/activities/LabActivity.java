@@ -11,6 +11,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +29,11 @@ import gr.aueb.se.labadministration.utilities.ExpandableListAdapter;
 
 public class LabActivity extends AppCompatActivity {
 
-    private ExpandableListView listViewLabs, listViewComputers, listViewShedules;
-    private ExpandableListAdapter listAdapterLabs, listAdapterComputers, listAdapterShedules;
-    private List<String> listLabs, listComputers, listShedules;
-    private HashMap<String, List<String>>  listHashMapLabs, listHashMapComputers, listHashMapShedules;
+    private ExpandableListView listViewComputers, listViewShedules;
+    private ExpandableListAdapter listAdapterComputers, listAdapterShedules;
+    private List<String> listComputers, listShedules;
+    private HashMap<String, List<String>>  listHashMapComputers, listHashMapShedules;
+    private RadioGroup labsRadioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,19 +41,45 @@ public class LabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lab);
         makeActionBar();
 
-        // Labs List Configuration
-        listViewLabs = findViewById(R.id.labListParrent);
-        initListHashLabs();
-        listAdapterLabs = new ExpandableListAdapter(this, listLabs, listHashMapLabs);
-        listViewLabs.setAdapter(listAdapterLabs);
+        labsRadioGroup = findViewById(R.id.labsRadioGroup);
+        labsRadioGroup.check(R.id.lab1RadioButton);
+        labsRadioGroup.setOnCheckedChangeListener( (group, checkedId) ->
+            {
+                RadioButton checkedRadioButton = group.findViewById(checkedId);
+                boolean isChecked = checkedRadioButton.isChecked();
+                if (isChecked)
+                {
+                    updateComputers(checkedRadioButton.getText().toString());
+                }
+            });
 
-    }
 
-    void initListComputers(){
+        // Computer List Configuration
+        listViewComputers = findViewById(R.id.labListComputers);
         listComputers = new ArrayList<>();
         listHashMapComputers = new HashMap<>();
+        listAdapterComputers = new ExpandableListAdapter(this, listComputers, listHashMapComputers);
+        listViewComputers.setAdapter(listAdapterComputers);
+
 
     }
+
+    void updateComputers(String labName){
+
+        listComputers.clear();
+        listHashMapComputers.clear();
+
+        LaboratoryDAO laboratoryDAO = new LaboratoryDAOMemory();
+        Laboratory lab = laboratoryDAO.findByName(labName);
+        listComputers.add(lab.getName());
+        List<String> terminals = new ArrayList<>();
+        for(Terminal t: lab.getTerminals()){
+            terminals.add(t.getName());
+        }
+        listHashMapComputers.put(lab.getName(), terminals);
+        listAdapterComputers.notifyDataSetChanged();
+    }
+
 
     void initListHashShedule(){
         listShedules = new ArrayList<>();
@@ -58,22 +87,6 @@ public class LabActivity extends AppCompatActivity {
 
     }
 
-    void initListHashLabs(){
-        listLabs = new ArrayList<>();
-        listHashMapLabs = new HashMap<>();
-
-        LaboratoryDAO laboratoryDAO = new LaboratoryDAOMemory();
-        List<Laboratory> labs = laboratoryDAO.listAll();
-        for(Laboratory lab: labs){
-            listLabs.add(lab.getName());
-            List<String> terminals = new ArrayList<>();
-            for(Terminal t: lab.getTerminals()){
-                terminals.add(t.getName());
-            }
-            listHashMapLabs.put(lab.getName(), terminals);
-        }
-
-    }
 
 
     // this method shows menu at main_activity

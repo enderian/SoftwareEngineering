@@ -8,10 +8,47 @@
     android:orientation="vertical"
     android:background="@color/activityBackground">
 
+    <RadioGroup
+        android:id="@+id/labsRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="7dp">
+
+        <RadioButton
+            android:id="@+id/lab1RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lab1" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lab2" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/lab3" />
+
+    </RadioGroup>
+
     <ExpandableListView
-        android:id="@+id/labListParrent"
+        android:id="@+id/labListComputers"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorList"/>
+        android:background="@color/colorList" />
+
+    <ExpandableListView
+        android:id="@+id/labListShedules"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorList">
+
+    </ExpandableListView>
 
 </LinearLayout>
