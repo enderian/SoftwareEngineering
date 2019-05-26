@@ -37,11 +37,38 @@
 
     </RadioGroup>
 
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/computerTab"
+        android:padding="7px"/>
+
     <ExpandableListView
         android:id="@+id/labListComputers"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorList" />
+        android:layout_height="wrap_content"
+        android:background="@color/colorList">
+
+    </ExpandableListView>
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/scheduleTab"
+        android:padding="7px"/>
 
     <ExpandableListView
         android:id="@+id/labListShedules"

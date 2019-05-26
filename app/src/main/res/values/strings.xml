@@ -5,6 +5,8 @@
     <string name="lab1">Lab1</string>
     <string name="lab2">Lab2</string>
     <string name="lab3">Lab3</string>
+    <string name="computerTab">Computers</string>
+    <string name="scheduleTab">Schedule</string>
 
 
     <!-- Activity Sign In -->
