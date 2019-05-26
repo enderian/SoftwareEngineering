@@ -45,15 +45,15 @@ public class LabService extends Service {
     }
 
     public List<Laboratory> listLabs(){
-        return laboratoryDAO.listAll();
+        return getLaboratoryDAO().listAll();
     }
 
     public List<Terminal> listComputers(Laboratory lab){
-        return laboratoryDAO.findByName(lab.getName()).getTerminals();
+        return getLaboratoryDAO().findByName(lab.getName()).getTerminals();
     }
 
     public List<DaySchedule> listSchedule(Laboratory lab){
-        return laboratoryDAO.findByName(lab.getName()).getSchedule();
+        return getLaboratoryDAO().findByName(lab.getName()).getSchedule();
     }
 
     @Override
