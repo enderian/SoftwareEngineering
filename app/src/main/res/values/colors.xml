@@ -3,6 +3,7 @@
     <color name="colorPrimary">#FFB92C</color>
     <color name="colorPrimaryDark">#EE9E00</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="colorList">#FFD386</color>
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="activityBackground">#fff3db</color>

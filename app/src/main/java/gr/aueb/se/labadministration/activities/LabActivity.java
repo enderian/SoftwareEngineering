@@ -6,16 +6,52 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ExpandableListView;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.dao.LaboratoryDAO;
+import gr.aueb.se.labadministration.domain.lab.Laboratory;
+import gr.aueb.se.labadministration.domain.lab.Terminal;
+import gr.aueb.se.labadministration.memorydao.LaboratoryDAOMemory;
 
 public class LabActivity extends AppCompatActivity {
+
+    private ExpandableListView listView;
+    private ExpandableListAdapter listAdapter;
+    private List<String> listHeader;
+    private HashMap<String, List<String>>  listHashMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab);
         makeActionBar();
+
+        listView = findViewById(R.id.labExpandableListView);
+        initData();
+        listAdapter = new ExpandableListAdapter(this, listHeader, listHashMap);
+        listView.setAdapter(listAdapter);
+    }
+
+    public void initData(){
+        listHeader = new ArrayList<>();
+        listHashMap = new HashMap<>();
+
+        LaboratoryDAO laboratoryDAO = new LaboratoryDAOMemory();
+        List<Laboratory> labs = laboratoryDAO.listAll();
+        for(Laboratory lab: labs){
+            listHeader.add(lab.getName());
+            List<String> terminals = new ArrayList<>();
+            for(Terminal t: lab.getTerminals()){
+                terminals.add(t.getName());
+            }
+            listHashMap.put(listHeader.get(listHeader.size()-1), terminals);
+        }
+
     }
 
     // this method shows menu at main_activity
