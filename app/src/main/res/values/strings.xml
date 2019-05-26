@@ -35,6 +35,7 @@
     <string name="osName">OS</string>
     <string name="creationCommand">Creation Command</string>
     <string name="deleteCommand">Delete Command</string>
+    <string name="add_software_package">Add Software Package</string>
 
 
 </resources>

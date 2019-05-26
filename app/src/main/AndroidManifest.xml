@@ -9,10 +9,6 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.NewTerminalActivity"></activity>
-        <activity
-            android:name=".activities.MainActivity"
-            android:label="@string/title_activity_main" />
 
         <service
             android:name=".services.SignInService"
@@ -26,6 +22,14 @@
             android:name=".services.HistoryService"
             android:enabled="true"
             android:exported="false" />
+
+        <activity android:name=".activities.NewConfigurationActivity" />
+
+        <activity android:name=".activities.NewTerminalActivity" />
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/title_activity_main" />
 
         <activity android:name=".activities.SignInActivity">
             <intent-filter>
