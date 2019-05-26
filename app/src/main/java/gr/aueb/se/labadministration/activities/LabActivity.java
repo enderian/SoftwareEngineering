@@ -24,6 +24,7 @@ import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.dao.LaboratoryDAO;
 import gr.aueb.se.labadministration.domain.lab.Laboratory;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
+import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 import gr.aueb.se.labadministration.memorydao.LaboratoryDAOMemory;
 import gr.aueb.se.labadministration.utilities.ExpandableListAdapter;
 
@@ -41,26 +42,41 @@ public class LabActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lab);
         makeActionBar();
 
-        labsRadioGroup = findViewById(R.id.labsRadioGroup);
-        labsRadioGroup.check(R.id.lab1RadioButton);
-        labsRadioGroup.setOnCheckedChangeListener( (group, checkedId) ->
-            {
-                RadioButton checkedRadioButton = group.findViewById(checkedId);
-                boolean isChecked = checkedRadioButton.isChecked();
-                if (isChecked)
-                {
-                    updateComputers(checkedRadioButton.getText().toString());
-                }
-            });
 
+        listComputers = new ArrayList<>();
+        listHashMapComputers = new HashMap<>();
+
+        listShedules= new ArrayList<>();
+        listHashMapShedules = new HashMap<>();
+
+        labsRadioGroup = findViewById(R.id.labsRadioGroup);
+        labsRadioGroup.setOnCheckedChangeListener( (group, checkedId) ->
+        {
+            RadioButton checkedRadioButton = group.findViewById(checkedId);
+            boolean isChecked = checkedRadioButton.isChecked();
+            if (isChecked)
+            {
+                updateComputers(checkedRadioButton.getText().toString());
+                updateShedule(checkedRadioButton.getText().toString());
+                listAdapterComputers.notifyDataSetChanged();
+                listAdapterShedules.notifyDataSetChanged();
+            }
+        });
+
+        updateComputers("Lab1");
+        updateShedule("Lab1");
 
         // Computer List Configuration
         listViewComputers = findViewById(R.id.labListComputers);
-        listComputers = new ArrayList<>();
-        listHashMapComputers = new HashMap<>();
         listAdapterComputers = new ExpandableListAdapter(this, listComputers, listHashMapComputers);
         listViewComputers.setAdapter(listAdapterComputers);
 
+        // Computer List Configuration
+        listViewShedules = findViewById(R.id.labListShedules);
+        listAdapterShedules = new ExpandableListAdapter(this, listShedules, listHashMapShedules);
+        listViewShedules.setAdapter(listAdapterShedules);
+
+        labsRadioGroup.check(R.id.lab1RadioButton);
 
     }
 
@@ -77,14 +93,21 @@ public class LabActivity extends AppCompatActivity {
             terminals.add(t.getName());
         }
         listHashMapComputers.put(lab.getName(), terminals);
-        listAdapterComputers.notifyDataSetChanged();
     }
 
 
-    void initListHashShedule(){
-        listShedules = new ArrayList<>();
-        listHashMapShedules = new HashMap<>();
+    void updateShedule(String labName){
+        listShedules.clear();
+        listHashMapShedules.clear();
 
+        LaboratoryDAO laboratoryDAO = new LaboratoryDAOMemory();
+        Laboratory lab = laboratoryDAO.findByName(labName);
+        listShedules.add(lab.getName());
+        ArrayList<String> schedules = new ArrayList<>();
+        for(DaySchedule s: lab.getSchedule()){
+            schedules.add("Day: " + s.getDay());
+        }
+        listHashMapShedules.put(lab.getName(), schedules);
     }
 
 

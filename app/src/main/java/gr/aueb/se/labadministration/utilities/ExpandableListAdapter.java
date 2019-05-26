@@ -85,6 +85,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         listItem.setText(childText);
         listItem.setOnClickListener(v ->  {
             // TODO code to show each computer elements, mabe in Fragment
+            listItem.setText("TODO: go to Fragment(ExpandableListAdapter)");
         });
         return view;
     }
