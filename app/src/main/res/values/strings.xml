@@ -8,7 +8,6 @@
     <string name="computerTab">Computers</string>
     <string name="scheduleTab">Schedule</string>
 
-
     <!-- Activity Sign In -->
     <string name="username">Username:</string>
     <string name="password">Password:</string>
@@ -18,9 +17,12 @@
     <!-- Search Sign In -->
     <string name="computer">Computer</string>
     <string name="user">User</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">CSLabs</string>
+
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="title_activity_new_configuration">New Configuration</string>
+    <string name="title_activity_test">TestActivity</string>
 
 </resources>

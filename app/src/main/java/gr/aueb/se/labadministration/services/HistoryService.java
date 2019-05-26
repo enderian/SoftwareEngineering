@@ -5,19 +5,12 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import gr.aueb.se.labadministration.dao.LaboratoryDAO;
 import gr.aueb.se.labadministration.dao.TerminalDAO;
-import gr.aueb.se.labadministration.dao.UserDAO;
 import gr.aueb.se.labadministration.domain.lab.Session;
-import gr.aueb.se.labadministration.domain.lab.Terminal;
-import gr.aueb.se.labadministration.domain.people.User;
-import gr.aueb.se.labadministration.memorydao.LaboratoryDAOMemory;
 import gr.aueb.se.labadministration.memorydao.TerminalDAOMemory;
-import gr.aueb.se.labadministration.memorydao.UserDAOMemory;
 
 public class HistoryService extends Service {
 

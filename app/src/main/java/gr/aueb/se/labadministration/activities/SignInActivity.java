@@ -4,15 +4,15 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import gr.aueb.se.labadministration.R;
-import gr.aueb.se.labadministration.fragments.LabFragment;
 import gr.aueb.se.labadministration.services.SignInService;
 import gr.aueb.se.labadministration.utilities.RequestResult;
 
@@ -51,7 +51,7 @@ public class SignInActivity extends AppCompatActivity {
             RequestResult requestResult = this.service.signInRequest(getUsername(), getPassword());
             if (requestResult.isSuccessful()) {
                 Intent intent = new Intent(this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), requestResult.getReasonOfFailure(), Toast.LENGTH_SHORT).show();

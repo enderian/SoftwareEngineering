@@ -1,12 +1,13 @@
 package gr.aueb.se.labadministration.activities;
 
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.fragments.ConfigurationFragment;
@@ -32,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             };
 
-    private void switchFragment(Fragment fragment) {
+    public void switchFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.fragment_view, fragment);
+        transaction.replace(R.id.fragment_view, fragment);
         transaction.commit();
     }
 
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         switchFragment(new LabFragment());
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    @Override
+    public void onBackPressed() {
+        getSupportFragmentManager().popBackStack();
     }
 
     // makes the action bar.

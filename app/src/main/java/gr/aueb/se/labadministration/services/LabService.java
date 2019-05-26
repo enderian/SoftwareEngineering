@@ -9,16 +9,11 @@ import java.util.List;
 
 import gr.aueb.se.labadministration.dao.LaboratoryDAO;
 import gr.aueb.se.labadministration.dao.TerminalDAO;
-import gr.aueb.se.labadministration.dao.UserDAO;
 import gr.aueb.se.labadministration.domain.lab.Laboratory;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
-import gr.aueb.se.labadministration.domain.people.User;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 import gr.aueb.se.labadministration.memorydao.LaboratoryDAOMemory;
 import gr.aueb.se.labadministration.memorydao.TerminalDAOMemory;
-import gr.aueb.se.labadministration.memorydao.UserDAOMemory;
-import gr.aueb.se.labadministration.utilities.ExpandableListAdapter;
-import gr.aueb.se.labadministration.utilities.RequestResult;
 
 public class LabService extends Service {
 
