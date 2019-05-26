@@ -47,7 +47,7 @@ public class LabActivity extends AppCompatActivity {
     }
 
 
-    public void initData(){
+    void initData(){
         listHeader = new ArrayList<>();
         listHashMap = new HashMap<>();
 
@@ -64,6 +64,7 @@ public class LabActivity extends AppCompatActivity {
 
     }
 
+
     // this method shows menu at main_activity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -78,7 +79,7 @@ public class LabActivity extends AppCompatActivity {
             case R.id.nav_history:
                 startActivity(new Intent(this, HistoryActivity.class));
                 break;
-            case R.id.nav_configuration:
+            case R.id.nav_labs:
                 startActivity(new Intent(this, LabActivity.class));
                 break;
             default: // R.id.nav_configuration

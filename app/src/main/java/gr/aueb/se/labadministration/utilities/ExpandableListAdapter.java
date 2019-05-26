@@ -7,9 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,8 +17,8 @@ import gr.aueb.se.labadministration.R;
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    private List<String> listDataHeader;
-    private HashMap<String, List<String>> listHashMap;
+    private List<String> listDataHeader; // contains the main categories e.x. lab1, lab2, lab3 etc.
+    private HashMap<String, List<String>> listHashMap; // connects each main category with her items e.x. String lab1, List<String> computer_101, computer_102 etc.
 
     public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
         this.context = context;
