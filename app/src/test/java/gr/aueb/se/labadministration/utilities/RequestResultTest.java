@@ -12,7 +12,7 @@ public class RequestResultTest {
 
     @Before
     public void initialize(){
-        this.requestResult = new RequestResult(true,false, "Success");
+        this.requestResult = new RequestResult(true,true, "Success");
     }
 
     @Test
@@ -23,5 +23,10 @@ public class RequestResultTest {
     @Test
     public void getReasonOfFailure() {
         Assert.assertNotNull(this.requestResult.getReasonOfFailure());
+    }
+
+    @Test
+    public void isAdministrator() {
+        Assert.assertTrue(this.requestResult.isAdministrator());
     }
 }

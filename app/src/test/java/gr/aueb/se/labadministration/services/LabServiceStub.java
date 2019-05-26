@@ -5,6 +5,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import gr.aueb.se.labadministration.dao.LaboratoryDAO;
+import gr.aueb.se.labadministration.dao.TerminalDAO;
 import gr.aueb.se.labadministration.domain.builder.TerminalBuilder;
 import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
@@ -67,4 +68,56 @@ public class LabServiceStub extends LabService{
         };
     }
 
+    @Override
+    public TerminalDAO getTerminalDAO() {
+        return new TerminalDAO() {
+            @Override
+            public void save(Terminal terminal) {
+
+            }
+
+            @Override
+            public void delete(Terminal terminal) {
+
+            }
+
+            @Override
+            public Terminal findByName(String terminalName) {
+                TerminalConfiguration configuration = new TerminalConfigurationBuilder()
+                        .setName("T")
+                        .setOperatingSystem("OS")
+                        .setProcessor("i")
+                        .setstorageCapacity(2014)
+                        .setTotalMemory(1024)
+                        .createTerminalConfiguration();
+                Terminal terminal = null;
+                try {
+                    terminal = new TerminalBuilder()
+                            .setConfiguration(configuration)
+                            .setHostname("T")
+                            .setIpAddress(InetAddress.getByName("127.0.0.1"))
+                            .setName("T")
+                            .setPositionX(0).setPositionY(0).createTerminal();
+                } catch (UnknownHostException e) {
+                    e.printStackTrace();
+                }
+                return terminal;
+            }
+
+            @Override
+            public Terminal findByIP(InetAddress inetAddress) {
+                return null;
+            }
+
+            @Override
+            public void updateStatus(Terminal terminal, Terminal.TerminalStatus status) {
+
+            }
+
+            @Override
+            public ArrayList<Terminal> listAll() {
+                return null;
+            }
+        };
+    }
 }

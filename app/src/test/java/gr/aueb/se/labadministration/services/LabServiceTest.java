@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.List;
 
+import gr.aueb.se.labadministration.dao.LaboratoryDAO;
 import gr.aueb.se.labadministration.domain.builder.TerminalBuilder;
 import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
@@ -71,5 +72,19 @@ public class LabServiceTest {
         labService.saveTerminal(lab, terminal);
 
         Assert.assertNotNull(labService.getTerminalDAO().findByName("T2"));
+    }
+
+    @Test
+    public void findTerminal() {
+        Terminal test = labService.findTerminal("LAB");
+
+        Assert.assertNotNull(test);
+    }
+
+    @Test
+    public void getLaboratoryDAO() {
+        LaboratoryDAO dao = labService.getLaboratoryDAO();
+
+        Assert.assertNotNull(dao);
     }
 }

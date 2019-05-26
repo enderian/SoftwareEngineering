@@ -281,6 +281,13 @@ public class MemoryDAOTests {
     }
 
     @Test
+    public void listAllUsers(){
+        ArrayList<User> users = userDAO.listUsers();
+
+        Assert.assertTrue(!users.isEmpty());
+    }
+
+    @Test
     public void listAllSessionsUserExistsInDAO(){
         this.userDAO.save(this.user);
 

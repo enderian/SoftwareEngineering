@@ -6,10 +6,12 @@ import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import gr.aueb.se.labadministration.domain.builder.TerminalBuilder;
 import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
+import gr.aueb.se.labadministration.domain.people.User;
 
 public class TerminalTest {
 
@@ -34,6 +36,10 @@ public class TerminalTest {
                 .setPositionX(1)
                 .setPositionY(1)
                 .createTerminal();
+
+        this.terminal.registerSession(new Session(terminal,
+                new User("d2", null, null),
+                null, null, null));
 
         this.terminal.setStatus(Terminal.TerminalStatus.AVAILABLE);
     }
@@ -108,4 +114,10 @@ public class TerminalTest {
         this.terminal.setStatus(Terminal.TerminalStatus.IN_USE);
     }
 
+    @Test
+    public void getSessions() {
+        ArrayList<Session> sessions = terminal.getSessions();
+
+        Assert.assertTrue(!sessions.isEmpty());
+    }
 }

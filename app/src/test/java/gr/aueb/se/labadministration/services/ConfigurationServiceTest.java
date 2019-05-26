@@ -1,15 +1,16 @@
 package gr.aueb.se.labadministration.services;
 
+import android.os.IBinder;
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
 
+import gr.aueb.se.labadministration.dao.TerminalConfigurationDAO;
 import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
-
-import static org.junit.Assert.*;
 
 public class ConfigurationServiceTest {
 
@@ -57,4 +58,19 @@ public class ConfigurationServiceTest {
 
         Assert.assertEquals(test.getName(), "T");
     }
+
+    @Test
+    public void getAllConfigs(){
+        TerminalConfigurationDAO dao = configurationService.getTerminalConfigurationDAO();
+
+        Assert.assertNotNull(dao);
+    }
+
+    @Test
+    public void getTerminalConfigurationDAO() {
+        TerminalConfigurationDAO dao = configurationService.getTerminalConfigurationDAO();
+
+        Assert.assertNotNull(dao);
+    }
+
 }

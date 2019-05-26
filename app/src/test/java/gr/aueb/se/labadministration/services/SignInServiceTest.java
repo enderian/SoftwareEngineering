@@ -80,4 +80,11 @@ public class SignInServiceTest {
         Assert.assertTrue(requestResult.isSuccessful());
         Assert.assertEquals("Success", requestResult.getReasonOfFailure());
     }
+
+    @Test
+    public void getUserDAO() {
+        UserDAO dao = signIn.getUserDAO();
+
+        Assert.assertNotNull(dao);
+    }
 }
