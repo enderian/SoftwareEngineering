@@ -14,7 +14,6 @@ import gr.aueb.se.labadministration.fragments.HistoryFragment;
 import gr.aueb.se.labadministration.fragments.LabFragment;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView mTextMessage;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
@@ -27,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_configuration:
                         switchFragment(new ConfigurationFragment());
+                        break;
                     default: return false;
                 }
                 return true;
@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         makeActionBar();
         switchFragment(new LabFragment());
         BottomNavigationView navView = findViewById(R.id.nav_view);
-        mTextMessage = findViewById(R.id.message);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 

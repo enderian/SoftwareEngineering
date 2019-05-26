@@ -97,34 +97,4 @@ public class HistoryFragment extends Fragment {
         historySearchView.setIconified(false);
         historySearchView.clearFocus();
     }
-
-    // this method shows menu at main_activity
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //this method is called when user press any button of navigation bar(wifi, cellular, refresh)
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_history:
-                startActivity(new Intent(this, HistoryActivity.class));
-                break;
-            case R.id.nav_labs:
-                startActivity(new Intent(this, LabActivity.class));
-                break;
-            default: // R.id.nav_configuration
-                startActivity(new Intent(this, ConfigurationActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    // makes the action bar.
-    private void makeActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setIcon(R.drawable.app_icon);
-        actionBar.setDisplayUseLogoEnabled(true);// display app_icon.
-    }
 }
