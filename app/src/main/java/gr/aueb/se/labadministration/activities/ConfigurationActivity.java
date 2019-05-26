@@ -49,6 +49,7 @@ public class ConfigurationActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(R.drawable.app_icon);
         actionBar.setDisplayUseLogoEnabled(true);// display app_icon.
+        actionBar.setDisplayShowHomeEnabled(true);// display back button.
     }
 }
 
