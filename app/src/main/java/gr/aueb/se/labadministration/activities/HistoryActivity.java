@@ -106,10 +106,11 @@ public class HistoryActivity extends AppCompatActivity{
             case R.id.nav_history:
                 startActivity(new Intent(this, HistoryActivity.class));
                 break;
-            case R.id.nav_patterns:
+            case R.id.nav_labs:
                 startActivity(new Intent(this, LabActivity.class));
                 break;
-            default:
+            default: // R.id.nav_configuration
+                startActivity(new Intent(this, ConfigurationActivity.class));
         }
         return super.onOptionsItemSelected(item);
     }

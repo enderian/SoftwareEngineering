@@ -7,9 +7,13 @@
             android:icon="@drawable/ic_search_black_24dp"
             android:title="History"
             app:showAsAction="ifRoom"/>
-        <item android:id="@+id/nav_patterns"
-            android:icon="@drawable/ic_assignment_black_24dp"
-            android:title="Patterns Management"
+        <item android:id="@+id/nav_labs"
+            android:icon="@drawable/ic_computer_black_24dp"
+            android:title="Labs Management"
+            app:showAsAction="ifRoom"/>
+        <item android:id="@+id/nav_configuration"
+            android:icon="@drawable/ic_add_to_photos_black_24dp"
+            android:title="Configuration Management"
             app:showAsAction="ifRoom"/>
     </group>
 </menu>
