@@ -16,8 +16,8 @@ public class LaboratoryDAOMemory implements LaboratoryDAO {
         laboratories.add(new Laboratory("Lab3", "Aueb at Troy", true));
 
         laboratories.get(0).setTerminals(TerminalDAOMemory.terminals);
-        laboratories.get(1).setTerminals(new ArrayList<Terminal>(TerminalDAOMemory.terminals.subList(0,2)));
-        laboratories.get(2).setTerminals(new ArrayList<Terminal>(TerminalDAOMemory.terminals.subList(1,3)));
+        laboratories.get(1).setTerminals(new ArrayList<>(TerminalDAOMemory.terminals.subList(0,2)));
+        laboratories.get(2).setTerminals(new ArrayList<>(TerminalDAOMemory.terminals.subList(1,3)));
     }
 
     @Override

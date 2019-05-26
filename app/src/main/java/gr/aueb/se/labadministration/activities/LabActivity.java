@@ -44,8 +44,6 @@ public class LabActivity extends AppCompatActivity {
         listAdapterLabs = new ExpandableListAdapter(this, listLabs, listHashMapLabs);
         listViewLabs.setAdapter(listAdapterLabs);
 
-
-
     }
 
     void initListComputers(){
@@ -72,7 +70,7 @@ public class LabActivity extends AppCompatActivity {
             for(Terminal t: lab.getTerminals()){
                 terminals.add(t.getName());
             }
-            listHashMapLabs.put(listLabs.get(listHashMapLabs.size()-1), terminals);
+            listHashMapLabs.put(lab.getName(), terminals);
         }
 
     }
