@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.LabActivity"
+    tools:context=".fragments.ConfigurationFragment"
     android:orientation="vertical"
     android:background="@color/activityBackground">
-
-    <ExpandableListView
-        android:id="@+id/labExpandableListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorList"></ExpandableListView>
 
 </LinearLayout>

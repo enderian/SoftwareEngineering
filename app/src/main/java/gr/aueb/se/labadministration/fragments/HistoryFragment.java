@@ -1,4 +1,4 @@
-package gr.aueb.se.labadministration.activities;
+package gr.aueb.se.labadministration.fragments;
 
 import android.content.ComponentName;
 import android.content.Context;
@@ -6,10 +6,12 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.RadioGroup;
@@ -21,7 +23,7 @@ import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.domain.lab.Session;
 import gr.aueb.se.labadministration.services.HistoryService;
 
-public class HistoryActivity extends AppCompatActivity{
+public class HistoryFragment extends Fragment {
 
     private SearchView historySearchView;
     private ListView resultListView;
@@ -35,26 +37,30 @@ public class HistoryActivity extends AppCompatActivity{
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            HistoryActivity.this.service = ((HistoryService.HistoryServiceBinder) service).getService();
+            HistoryFragment.this.service = ((HistoryService.HistoryServiceBinder) service).getService();
         }
         @Override
         public void onServiceDisconnected(ComponentName name) {
-            HistoryActivity.this.service = null;
+            HistoryFragment.this.service = null;
         }
     };
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history);
-        makeActionBar();
-        bindService(new Intent(this, HistoryService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_history, container, false);
+    }
 
-        historySearchView = findViewById(R.id.historySearchView);
-        resultListView = findViewById(R.id.resultListView);
-        radioGroup = findViewById(R.id.radioGroup);
+    @Override
+    public void onStart() {
+        super.onStart();
+        getActivity().bindService(new Intent(getContext(), HistoryService.class), serviceConnection, Context.BIND_AUTO_CREATE);
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1 , resultsArrayList);
+        historySearchView = getView().findViewById(R.id.historySearchView);
+        resultListView = getView().findViewById(R.id.resultListView);
+        radioGroup = getView().findViewById(R.id.radioGroup);
+
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1 , resultsArrayList);
         resultListView.setAdapter(adapter);
 
         historySearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -90,35 +96,5 @@ public class HistoryActivity extends AppCompatActivity{
 
         historySearchView.setIconified(false);
         historySearchView.clearFocus();
-    }
-
-    // this method shows menu at main_activity
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    //this method is called when user press any button of navigation bar(wifi, cellular, refresh)
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_history:
-                startActivity(new Intent(this, HistoryActivity.class));
-                break;
-            case R.id.nav_labs:
-                startActivity(new Intent(this, LabActivity.class));
-                break;
-            default: // R.id.nav_configuration
-                startActivity(new Intent(this, ConfigurationActivity.class));
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    // makes the action bar.
-    private void makeActionBar() {
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setIcon(R.drawable.app_icon);
-        actionBar.setDisplayUseLogoEnabled(true);// display app_icon.
     }
 }

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <group android:checkableBehavior="single">
+        <item android:id="@+id/nav_labs"
+            android:icon="@drawable/ic_computer_black_24dp"
+            android:title="Labs Management"
+            android:checked="true"
+            app:showAsAction="ifRoom"/>
         <item android:id="@+id/nav_history"
             android:icon="@drawable/ic_search_black_24dp"
             android:title="History"
             app:showAsAction="ifRoom"/>
-        <item android:id="@+id/nav_labs"
-            android:icon="@drawable/ic_computer_black_24dp"
-            android:title="Labs Management"
-            app:showAsAction="ifRoom"/>
         <item android:id="@+id/nav_configuration"
             android:icon="@drawable/ic_add_to_photos_black_24dp"
-            android:title="Configuration Management"
+            android:title="Configurations"
             app:showAsAction="ifRoom"/>
     </group>
 </menu>

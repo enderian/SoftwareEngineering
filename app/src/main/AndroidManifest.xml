@@ -9,7 +9,10 @@
         android:roundIcon="@drawable/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ConfigurationActivity"></activity>
+
+        <activity
+            android:name=".activities.MainActivity"
+            android:label="@string/title_activity_main" />
 
         <service
             android:name=".services.SignInService"
@@ -24,8 +27,6 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity android:name=".activities.HistoryActivity" />
-        <activity android:name=".activities.LabActivity" />
         <activity android:name=".activities.SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

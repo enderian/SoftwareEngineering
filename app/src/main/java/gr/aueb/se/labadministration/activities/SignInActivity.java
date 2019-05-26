@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.fragments.LabFragment;
 import gr.aueb.se.labadministration.services.SignInService;
 import gr.aueb.se.labadministration.utilities.RequestResult;
 
@@ -49,7 +50,7 @@ public class SignInActivity extends AppCompatActivity {
         submitButton.setOnClickListener(view -> {
             RequestResult requestResult = this.service.signInRequest(getUsername(), getPassword());
             if (requestResult.isSuccessful()) {
-                Intent intent = new Intent(this, LabActivity.class);
+                Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             } else {
