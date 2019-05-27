@@ -4,6 +4,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * Setters & Getters Tests
+ */
 public class UserTest {
 
     private User user;
@@ -35,6 +38,9 @@ public class UserTest {
         Assert.assertNotNull(this.user.listSessions());
     }
 
+    /**
+     * Test that performs successful sign in
+     */
     @Test
     public void signIn() {
         Assert.assertTrue(this.user.signIn("password").isSuccessful());

@@ -27,6 +27,9 @@ import gr.aueb.se.labadministration.domain.people.Administrator;
 import gr.aueb.se.labadministration.domain.people.User;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 
+/**
+ * Tests for DAOs
+ */
 public class MemoryDAOTests {
 
     private static LaboratoryDAO laboratoryDAOMemory;
@@ -86,6 +89,9 @@ public class MemoryDAOTests {
         adminSession = new Session(terminal, administrator, Session.SessionStatus.FINISHED, new Date(), new Date());
     }
 
+    /**
+     * Test that saves Lab to Lab DAO
+     */
     @Test
     public void saveToLabDAO(){
         laboratoryDAOMemory.save(laboratory);
@@ -93,6 +99,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(laboratoryDAOMemory.findByName(laboratory.getName()));
     }
 
+    /**
+     * Test that removes Lab from Lab DAO
+     */
     @Test
     public void removeLabDAO(){
         laboratoryDAOMemory.remove(laboratory);
@@ -100,6 +109,9 @@ public class MemoryDAOTests {
         Assert.assertNull(laboratoryDAOMemory.findByName(laboratory.getName()));
     }
 
+    /**
+     * Test that searches with Lab DAO based on name and exists
+     */
     @Test
     public void searchLabDAOReturnsResult(){
         laboratoryDAOMemory.save(laboratory);
@@ -108,20 +120,29 @@ public class MemoryDAOTests {
         Assert.assertNotNull(lab);
     }
 
+    /**
+     * Test that searches with Lab DAO based on name and does not exist
+     */
     @Test
     public void searchLabDAOReturnsNull(){
         Laboratory lab = laboratoryDAOMemory.findByName("Test");
         Assert.assertNull(lab);
     }
 
+    /**
+     * Test that returns non empty list of Labs from Lab DAO
+     */
     @Test
     public void listAllLabs(){
         laboratoryDAOMemory.save(laboratory);
 
         ArrayList<Laboratory> labs = laboratoryDAOMemory.listAll();
-        Assert.assertNotNull(labs);
+        Assert.assertTrue(!labs.isEmpty());
     }
 
+    /**
+     * Test that saves SP to SP DAO
+     */
     @Test
     public void saveToSPDAO(){
         softwarePackageDAO.save(softwarePackage);
@@ -129,11 +150,17 @@ public class MemoryDAOTests {
         Assert.assertNotNull(softwarePackageDAO.findByName(softwarePackage.getName()));
     }
 
+    /**
+     * Test that removes SP from SP DAO
+     */
     @Test
     public void removeSPDAO(){
         softwarePackageDAO.delete(softwarePackage);
     }
 
+    /**
+     * Test that searches with SP DAO based on name and returns result
+     */
     @Test
     public void searchSPDAOReturnsResult(){
         softwarePackageDAO.save(softwarePackage);
@@ -143,6 +170,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches with SP DAO based on name and returns null
+     */
     @Test
     public void searchSPDAOReturnsNull(){
         SoftwarePackage result = softwarePackageDAO.findByName("2");
@@ -150,15 +180,21 @@ public class MemoryDAOTests {
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that returns a non empty list of SPs
+     */
     @Test
     public void listAllSP(){
         softwarePackageDAO.save(softwarePackage);
 
         ArrayList<SoftwarePackage> sps = softwarePackageDAO.listAll();
 
-        Assert.assertNotNull(sps);
+        Assert.assertTrue(!sps.isEmpty());
     }
 
+    /**
+     * Test that saves Terminal Config to Terminal Config DAO
+     */
     @Test
     public void saveToTCDAO(){
         terminalConfigurationDAO.save(configuration);
@@ -166,6 +202,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(terminalConfigurationDAO.findByName(configuration.getName()));
     }
 
+    /**
+     * Test that removes Terminal Config from Terminal Config DAO
+     */
     @Test
     public void deleteTCDAO(){
         terminalConfigurationDAO.delete(configuration);
@@ -173,6 +212,9 @@ public class MemoryDAOTests {
         Assert.assertNull(terminalConfigurationDAO.findByName(configuration.getName()));
     }
 
+    /**
+     * Test that searches for a Terminal config based on name and returns result
+     */
     @Test
     public void searchTCDAOReturnsResult(){
         terminalConfigurationDAO.save(configuration);
@@ -182,6 +224,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches for a Terminal config based on name and returns null
+     */
     @Test
     public void searchTCDAOReturnsNull(){
         TerminalConfiguration result = terminalConfigurationDAO.findByName("Test");
@@ -189,15 +234,21 @@ public class MemoryDAOTests {
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that returns non empty list of Terminal configs
+     */
     @Test
     public void listAllTCDAO(){
         terminalConfigurationDAO.save(configuration);
 
         Collection<TerminalConfiguration> configurations = terminalConfigurationDAO.listAll();
 
-        Assert.assertNotNull(configurations);
+        Assert.assertTrue(!configurations.isEmpty());
     }
 
+    /**
+     * Test that saves Terminal to Terminal DAO
+     */
     @Test
     public void saveToTDAO(){
         terminalDAO.save(terminal);
@@ -205,11 +256,17 @@ public class MemoryDAOTests {
         Assert.assertNotNull(terminalDAO.findByName(terminal.getName()));
     }
 
+    /**
+     * Test that deletes Terminal from Terminal DAO
+     */
     @Test
     public void deleteTDAO(){
         terminalDAO.delete(terminal);
     }
 
+    /**
+     * Test that searches for terminal based on name and returns result
+     */
     @Test
     public void searchTDAOReturnsResult(){
         terminalDAO.save(terminal);
@@ -219,6 +276,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches for terminal based on name and returns null
+     */
     @Test
     public void searchTDAOReturnsNull(){
         Terminal result = terminalDAO.findByName("Test");
@@ -226,6 +286,9 @@ public class MemoryDAOTests {
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that searches for terminal based on IP address and returns result
+     */
     @Test
     public void searchIPTDAOReturnsResult() throws UnknownHostException {
         terminalDAO.save(terminal);
@@ -235,6 +298,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches for terminal based on IP address and returns null
+     */
     @Test
     public void searchIPTDAOReturnsNull() throws UnknownHostException {
         Terminal result = terminalDAO.findByIP(InetAddress.getByName("192.168.1.1"));
@@ -242,22 +308,33 @@ public class MemoryDAOTests {
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that checks if updates to terminals happen successfully
+     */
     @Test
     public void updateTDAOStatus(){
         terminalDAO.save(terminal);
 
         terminalDAO.updateStatus(terminal, Terminal.TerminalStatus.AVAILABLE);
+
+        Assert.assertEquals(Terminal.TerminalStatus.AVAILABLE, terminalDAO.findByName(terminal.getName()).getStatus());
     }
 
+    /**
+     * Test that returns non empty list of terminals
+     */
     @Test
     public void listAllTDAO(){
         terminalDAO.save(terminal);
 
         ArrayList<Terminal> terminals = terminalDAO.listAll();
 
-        Assert.assertNotNull(terminals);
+        Assert.assertTrue(!terminals.isEmpty());
     }
 
+    /**
+     * Test that saves user to user DAO
+     */
     @Test
     public void saveToUserDAO(){
         userDAO.save(user);
@@ -265,6 +342,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(userDAO.find(user.getUsername()));
     }
 
+    /**
+     * Test that removes user from user DAO
+     */
     @Test
     public void deleteUserDAO(){
         userDAO.delete(user);
@@ -272,6 +352,9 @@ public class MemoryDAOTests {
         Assert.assertNull(userDAO.find(user.getUsername()));
     }
 
+    /**
+     * Test that searches user based on name and returns result
+     */
     @Test
     public void searchUserDAOReturnsResult(){
         userDAO.save(user);
@@ -281,6 +364,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches user based on name and returns null
+     */
     @Test
     public void searchUserDAOReturnsNull(){
         User result = userDAO.find("Test");
@@ -288,6 +374,9 @@ public class MemoryDAOTests {
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that returns all users from DAO
+     */
     @Test
     public void listAllUsers(){
         ArrayList<User> users = userDAO.listUsers();
@@ -295,6 +384,9 @@ public class MemoryDAOTests {
         Assert.assertTrue(!users.isEmpty());
     }
 
+    /**
+     * Test that finds all sessions of a user and returns result
+     */
     @Test
     public void listAllSessionsUserExistsInDAO(){
         userDAO.save(user);
@@ -304,6 +396,9 @@ public class MemoryDAOTests {
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that finds all sessions of a user and returns null
+     */
     @Test
     public void listAllSessionsUserDoesNotExistsInDAO(){
         ArrayList<Session> result = userDAO.listAllSessions(new User("Test", "2", "2"));
@@ -311,6 +406,9 @@ public class MemoryDAOTests {
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that returns all admins from DAO
+     */
     @Test
     public void listAllAdminsUserDAO(){
         userDAO.save(user);

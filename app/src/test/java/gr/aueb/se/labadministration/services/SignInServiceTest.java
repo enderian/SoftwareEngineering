@@ -20,6 +20,10 @@ public class SignInServiceTest {
         signIn = new SignInServiceStub();
     }
 
+    /**
+     * Test that performs successful sign in
+     * @throws NoSuchAlgorithmException
+     */
     @Test
     public void successfulSignIn() throws NoSuchAlgorithmException {
         RequestResult requestResult = signIn.signInRequest("p3160026", "password");
@@ -28,6 +32,10 @@ public class SignInServiceTest {
         Assert.assertEquals("Success", requestResult.getReasonOfFailure());
     }
 
+    /**
+     * Test that does not perform successful sign in due to empty password
+     * @throws NoSuchAlgorithmException
+     */
     @Test
     public void testEmptyPassword() throws NoSuchAlgorithmException {
         RequestResult requestResult = signIn.signInRequest("p3160026", null);
@@ -36,6 +44,10 @@ public class SignInServiceTest {
         Assert.assertEquals("Password cannot be empty", requestResult.getReasonOfFailure());
     }
 
+    /**
+     * Test that registers a user
+     * @throws NoSuchAlgorithmException
+     */
     @Test
     public void registerUser() throws NoSuchAlgorithmException {
 
@@ -45,6 +57,10 @@ public class SignInServiceTest {
         Assert.assertEquals("Success", requestResult.getReasonOfFailure());
     }
 
+    /**
+     * Test that does not perform successful sign in due to ban
+     * @throws NoSuchAlgorithmException
+     */
     @Test
     public void forbiddenUser() throws NoSuchAlgorithmException {
 
@@ -54,6 +70,10 @@ public class SignInServiceTest {
         Assert.assertEquals("You are not allowed to login", requestResult.getReasonOfFailure());
     }
 
+    /**
+     * Test that does not perform successful sign in due to wrong password
+     * @throws NoSuchAlgorithmException
+     */
     @Test
     public void wrongPassword() throws NoSuchAlgorithmException {
 
@@ -63,6 +83,10 @@ public class SignInServiceTest {
         Assert.assertEquals("Wrong password", requestResult.getReasonOfFailure());
     }
 
+    /**
+     * Test that does not perform successful sign in due to broken parameters
+     * @throws NoSuchAlgorithmException
+     */
     @Test
     public void brokenParameters() throws NoSuchAlgorithmException {
 
@@ -72,6 +96,10 @@ public class SignInServiceTest {
         Assert.assertEquals("User not found", requestResult.getReasonOfFailure());
     }
 
+    /**
+     * Test that performs successful sign in due to the fact that he is a non student
+     * @throws NoSuchAlgorithmException
+     */
     @Test
     public void notStudentLogin() throws NoSuchAlgorithmException {
 

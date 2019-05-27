@@ -8,6 +8,9 @@ import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
 
+/**
+ * Terminal Configuration DAO Stub
+ */
 public class ConfigurationServiceStub extends ConfigurationService {
 
     TerminalConfiguration configurations;

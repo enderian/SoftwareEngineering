@@ -27,6 +27,9 @@ public class LabServiceTest {
         labService = new LabServiceStub();
     }
 
+    /**
+     * Test that returns a list of labs but it's null due to stub
+     */
     @Test
     public void listAllLabs(){
         List<Laboratory> laboratories = labService.listLabs();
@@ -34,6 +37,9 @@ public class LabServiceTest {
         Assert.assertNull(laboratories);
     }
 
+    /**
+     * Test that reruns the terminals of a Lab
+     */
     @Test
     public void listComputers(){
         List<Terminal> terminals = labService.listComputers(new Laboratory("LAB", null, true));
@@ -41,6 +47,9 @@ public class LabServiceTest {
         Assert.assertTrue(!terminals.isEmpty());
     }
 
+    /**
+     * Test that returns the schedule of a lab
+     */
     @Test
     public void listSchedule(){
         List<DaySchedule> daySchedule = labService.listSchedule(new Laboratory("LAB", null, true));
@@ -48,6 +57,9 @@ public class LabServiceTest {
         Assert.assertTrue(!daySchedule.isEmpty());
     }
 
+    /**
+     * Test that saves a terminal (from UI)
+     */
     @Test
     public void saveTerminalTest(){
         Laboratory lab = new Laboratory("LAB", null, false);
@@ -74,6 +86,9 @@ public class LabServiceTest {
         Assert.assertNotNull(labService.getTerminalDAO().findByName("T2"));
     }
 
+    /**
+     * Test that finds a terminal (from UI)
+     */
     @Test
     public void findTerminal() {
         Terminal test = labService.findTerminal("LAB");
@@ -81,6 +96,9 @@ public class LabServiceTest {
         Assert.assertNotNull(test);
     }
 
+    /**
+     * Test that returns DAO
+     */
     @Test
     public void getLaboratoryDAO() {
         LaboratoryDAO dao = labService.getLaboratoryDAO();
@@ -88,6 +106,9 @@ public class LabServiceTest {
         Assert.assertNotNull(dao);
     }
 
+    /**
+     * Test that returns if a terminal is in use
+     */
     @Test
     public void testInUse(){
         boolean isInUse = labService.isTerminalInUse(new Terminal(null, null, null, 1,1,null));
@@ -95,6 +116,9 @@ public class LabServiceTest {
         Assert.assertTrue(isInUse);
     }
 
+    /**
+     * Test that returns if a terminal is offline
+     */
     @Test
     public void testOffline(){
         boolean isOffline = labService.isTerminalOffline(new Terminal(null, null, null, 1,1,null));
@@ -102,6 +126,9 @@ public class LabServiceTest {
         Assert.assertFalse(isOffline);
     }
 
+    /**
+     * Test that returns if a terminal is in maintenance
+     */
     @Test
     public void testInMaintenance(){
         boolean isInMaintenance = labService.isTerminalInMaintenance(new Terminal(null, null, null, 1,1,null));
@@ -109,6 +136,9 @@ public class LabServiceTest {
         Assert.assertFalse(isInMaintenance);
     }
 
+    /**
+     * Test that returns the status of a terminal
+     */
     @Test
     public void testStatus(){
         String status = labService.getStatus("t");
@@ -116,6 +146,9 @@ public class LabServiceTest {
         Assert.assertNotNull(status);
     }
 
+    /**
+     * Test that performs an action on a terminal successfully
+     */
     @Test
     public void testActionSuccess(){
         boolean test = labService.terminalAction("t", Terminal.TerminalStatus.AVAILABLE);

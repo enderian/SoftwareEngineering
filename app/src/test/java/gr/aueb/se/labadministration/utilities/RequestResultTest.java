@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Getters Tests
+ */
 public class RequestResultTest {
 
     private RequestResult requestResult;

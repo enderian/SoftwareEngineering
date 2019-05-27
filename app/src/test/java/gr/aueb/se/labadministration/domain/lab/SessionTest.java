@@ -13,6 +13,9 @@ import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.domain.people.User;
 
+/**
+ * Setters & Getters Tests
+ */
 public class SessionTest {
 
     private Terminal terminal;

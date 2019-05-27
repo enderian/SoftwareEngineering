@@ -12,6 +12,9 @@ import gr.aueb.se.labadministration.domain.lab.Session;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
 import gr.aueb.se.labadministration.domain.people.User;
 
+/**
+ * History DAO Stub
+ */
 public class HistoryServiceStub extends HistoryService {
 
     @Override

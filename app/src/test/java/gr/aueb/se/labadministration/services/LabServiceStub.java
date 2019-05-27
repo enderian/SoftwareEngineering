@@ -15,6 +15,9 @@ import gr.aueb.se.labadministration.domain.lab.Terminal;
 import gr.aueb.se.labadministration.domain.people.User;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 
+/**
+ * Laboratory & Terminal DAO Stub
+ */
 public class LabServiceStub extends LabService{
 
     private Terminal terminal = new Terminal(null,null,null,1,1,null);

@@ -30,6 +30,10 @@ public class TerminalBuilderTest {
         this.terminalConfiguration.addSoftwarePackage(softwarePackage);
     }
 
+    /**
+     * Test that creates Terminal successfully
+     * @throws UnknownHostException
+     */
     @Test
     public void createTerminal() throws UnknownHostException {
         Terminal terminal = new TerminalBuilder()
@@ -44,6 +48,10 @@ public class TerminalBuilderTest {
         Assert.assertNotNull(terminal);
     }
 
+    /**
+     * Test that does not create Terminal successfully
+     * @throws UnknownHostException
+     */
     @Test(expected = NullPointerException.class)
     public void createTerminalFailDueToNoConf() throws UnknownHostException {
         Terminal terminal = new TerminalBuilder()
@@ -55,6 +63,10 @@ public class TerminalBuilderTest {
                 .createTerminal();
     }
 
+    /**
+     * Test that does not create Terminal successfully
+     * @throws UnknownHostException
+     */
     @Test(expected = NullPointerException.class)
     public void createTerminalFailDueToNoHostname() throws UnknownHostException {
         Terminal terminal = new TerminalBuilder()
@@ -66,6 +78,10 @@ public class TerminalBuilderTest {
                 .createTerminal();
     }
 
+    /**
+     * Test that does not create Terminal successfully
+     * @throws UnknownHostException
+     */
     @Test(expected = NullPointerException.class)
     public void createTerminalFailDueToNoName() throws UnknownHostException {
         Terminal terminal = new TerminalBuilder()
@@ -77,6 +93,10 @@ public class TerminalBuilderTest {
                 .createTerminal();
     }
 
+    /**
+     * Test that does not create Terminal successfully
+     * @throws UnknownHostException
+     */
     @Test(expected = NullPointerException.class)
     public void createTerminalFailDueToNoIP() {
         Terminal terminal = new TerminalBuilder()

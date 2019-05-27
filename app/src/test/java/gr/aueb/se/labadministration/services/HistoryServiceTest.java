@@ -20,6 +20,9 @@ public class HistoryServiceTest {
         historyService = new HistoryServiceStub();
     }
 
+    /**
+     * Test that returns all sessions
+     */
     @Test
     public void getAllSessions(){
         List<Session> sessions = historyService.allSessions();
@@ -27,6 +30,9 @@ public class HistoryServiceTest {
         Assert.assertTrue(!sessions.isEmpty());
     }
 
+    /**
+     * Test that returns the sessions of a user
+     */
     @Test
     public void listSessionsOfUser(){
         List<Session> sessions = historyService.findSessionsByUser("d2");
@@ -34,6 +40,9 @@ public class HistoryServiceTest {
         Assert.assertTrue(!sessions.isEmpty());
     }
 
+    /**
+     * Test that returns the sessions of a terminal
+     */
     @Test
     public void listSessionsOfTerminal(){
         List<Session> sessions = historyService.findSessionsByComputer("T");

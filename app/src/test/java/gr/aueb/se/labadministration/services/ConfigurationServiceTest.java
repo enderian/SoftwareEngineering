@@ -22,6 +22,9 @@ public class ConfigurationServiceTest {
         configurationService = new ConfigurationServiceStub();
     }
 
+    /**
+     * Test that returns all configs but is null due to stub
+     */
     @Test
     public void listAllConfigs(){
         Collection<TerminalConfiguration> configurationList = configurationService.listAllConfigs();
@@ -29,6 +32,9 @@ public class ConfigurationServiceTest {
         Assert.assertNull(configurationList);
     }
 
+    /**
+     * Test that saves a config to the DAO (from UI)
+     */
     @Test
     public void saveConfig(){
         TerminalConfiguration configuration = new TerminalConfigurationBuilder()
@@ -45,6 +51,9 @@ public class ConfigurationServiceTest {
         Assert.assertEquals(test, configuration);
     }
 
+    /**
+     * Test that performs search of a config (from UI)
+     */
     @Test
     public void searchTest(){
         TerminalConfiguration test = configurationService.findConfig(
@@ -60,6 +69,9 @@ public class ConfigurationServiceTest {
         Assert.assertEquals(test.getName(), "T");
     }
 
+    /**
+     * Test that returns all configs
+     */
     @Test
     public void getAllConfigs(){
         TerminalConfigurationDAO dao = configurationService.getTerminalConfigurationDAO();

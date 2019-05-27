@@ -7,6 +7,9 @@ import gr.aueb.se.labadministration.domain.lab.Session;
 import gr.aueb.se.labadministration.domain.people.Administrator;
 import gr.aueb.se.labadministration.domain.people.User;
 
+/**
+ * Sign In User DAO Stub
+ */
 public class SignInServiceStub extends SignInService {
 
     @Override
