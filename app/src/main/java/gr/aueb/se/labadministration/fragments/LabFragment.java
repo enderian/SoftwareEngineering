@@ -37,6 +37,9 @@ import gr.aueb.se.labadministration.utilities.ExpandableListAdapter;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * The fragment that presents lab info
+ */
 public class LabFragment extends Fragment {
 
     private ExpandableListView listViewComputers, listViewShedules;
@@ -47,6 +50,9 @@ public class LabFragment extends Fragment {
 
     private LabService service;
 
+    /**
+     * Method that initiates connection with lab service
+     */
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -59,6 +65,9 @@ public class LabFragment extends Fragment {
         }
     };
 
+    /**
+     * Default Android Methods
+     */
     @Override
     public void onStart() {
         super.onStart();

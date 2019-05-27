@@ -28,6 +28,9 @@ import gr.aueb.se.labadministration.services.LabService;
 
 import static android.content.Context.MODE_PRIVATE;
 
+/**
+ * The fragment that presents a terminal
+ */
 public class TerminalFragment extends DialogFragment {
 
     private LabService labService;
@@ -36,6 +39,10 @@ public class TerminalFragment extends DialogFragment {
     private Terminal terminal;
     private ImageButton shutdown, restart, signout;
 
+    /**
+     * Method that initiates connection with lab service
+     * Also hides information and capabilities in case of normal user login
+     */
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
@@ -74,6 +81,9 @@ public class TerminalFragment extends DialogFragment {
         }
     };
 
+    /**
+     * Default Android Methods
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -125,6 +135,10 @@ public class TerminalFragment extends DialogFragment {
         });
     }
 
+    /**
+     * Method that refreshes the fragment when
+     * an action is performed on a terminal
+     */
     private void refresh(){
         FragmentTransaction manager = getFragmentManager().beginTransaction();
         manager.detach(this);

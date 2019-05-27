@@ -24,6 +24,9 @@ import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.domain.lab.Session;
 import gr.aueb.se.labadministration.services.HistoryService;
 
+/**
+ * The fragment that presents the history of a user or a terminal
+ */
 public class HistoryFragment extends Fragment {
 
     private SearchView historySearchView;
@@ -35,6 +38,9 @@ public class HistoryFragment extends Fragment {
 
     private HistoryService service;
 
+    /**
+     * Method that initiates connection with history service
+     */
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -46,6 +52,9 @@ public class HistoryFragment extends Fragment {
         }
     };
 
+    /**
+     * Default Android Methods
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

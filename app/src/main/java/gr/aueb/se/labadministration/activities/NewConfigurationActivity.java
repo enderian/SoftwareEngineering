@@ -22,6 +22,9 @@ import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.fragments.AddSoftwarePackageFragment;
 import gr.aueb.se.labadministration.services.ConfigurationService;
 
+/**
+ * The activity that registers a new terminal configuration
+ */
 public class NewConfigurationActivity extends AppCompatActivity {
 
     private EditText hardwareConfName, os, graphics, processor, storage, ram;
@@ -29,6 +32,9 @@ public class NewConfigurationActivity extends AppCompatActivity {
 
     private ConfigurationService service;
 
+    /**
+     * Method that initiates connection with configuration service
+     */
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -40,6 +46,9 @@ public class NewConfigurationActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Default Android Method
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +110,10 @@ public class NewConfigurationActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Method that checks all the inputs for a new terminal configuration
+     * @return true or false
+     */
     private boolean hardwareInputValidation(){
         if(!storage.getText().toString().trim().matches("\\d+") ||
                 !ram.getText().toString().trim().matches("\\d+") ){
@@ -115,5 +128,17 @@ public class NewConfigurationActivity extends AppCompatActivity {
             return false;
         }
         return true;
+    }
+
+
+    /**
+     * Default Android Method
+     * Unbinds services in order to avoid leakages
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopService(getIntent());
+        unbindService(serviceConnection);
     }
 }

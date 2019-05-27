@@ -17,6 +17,9 @@ import java.util.function.Consumer;
 import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
 
+/**
+ * The fragment that registers a software package
+ */
 public class AddSoftwarePackageFragment extends DialogFragment {
 
     private Consumer<SoftwarePackage> softwarePackageConsumer;
@@ -25,13 +28,24 @@ public class AddSoftwarePackageFragment extends DialogFragment {
     private EditText creationCommand;
     private EditText deleteCommand;
 
+    /**
+     * Default Constructor
+     */
     public AddSoftwarePackageFragment() {
     }
 
+    /**
+     * Constructor
+     * @param softwarePackageConsumer consumer for software packages
+     */
     public AddSoftwarePackageFragment(Consumer<SoftwarePackage> softwarePackageConsumer) {
         this.softwarePackageConsumer = softwarePackageConsumer;
     }
 
+    /**
+     * Method that checkes the data given
+     * @return true or false based on the data given
+     */
     private boolean softwareInputValidation(){
         if( softwareConfName.getText().toString().trim().equals("") ||
                 creationCommand.getText().toString().trim().equals("") ||
@@ -42,6 +56,9 @@ public class AddSoftwarePackageFragment extends DialogFragment {
         return true;
     }
 
+    /**
+     * Default Android Methods
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

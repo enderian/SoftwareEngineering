@@ -7,6 +7,9 @@ import gr.aueb.se.labadministration.domain.lab.Terminal;
 import java.net.InetAddress;
 import java.util.Objects;
 
+/**
+ * The class that builds a terminal
+ */
 public class TerminalBuilder {
 
     private String name;
@@ -46,6 +49,10 @@ public class TerminalBuilder {
         return this;
     }
 
+    /**
+     * The method that creates a terminal
+     * @return Terminal
+     */
     public Terminal createTerminal() {
         Objects.requireNonNull(name, "name is null");
         Objects.requireNonNull(hostname, "hostname is null");

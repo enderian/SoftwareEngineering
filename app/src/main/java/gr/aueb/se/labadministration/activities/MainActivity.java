@@ -15,8 +15,14 @@ import gr.aueb.se.labadministration.fragments.ConfigurationFragment;
 import gr.aueb.se.labadministration.fragments.HistoryFragment;
 import gr.aueb.se.labadministration.fragments.LabFragment;
 
+/**
+ * The main activity of the application, redirects to sign in activity
+ */
 public class MainActivity extends AppCompatActivity {
 
+    /**
+     * The bottom navigation bar, in case of admin the nav_history and nav_configuration options appear
+     */
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = item -> {
                 switch (item.getItemId()) {
@@ -34,12 +40,19 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             };
 
+    /**
+     * Fragment transaction method
+     * @param fragment to switch to
+     */
     public void switchFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_view, fragment);
         transaction.commit();
     }
 
+    /**
+     * Default Android Methods
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

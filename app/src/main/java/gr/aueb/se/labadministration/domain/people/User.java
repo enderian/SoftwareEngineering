@@ -7,6 +7,9 @@ import gr.aueb.se.labadministration.utilities.RequestResult;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * The class that defines a User
+ */
 public class User implements Serializable {
 
     private String username;
@@ -14,6 +17,12 @@ public class User implements Serializable {
     private String affiliation;
     private ArrayList<Session> sessions;
 
+    /**
+     * Constructor
+     * @param username of user
+     * @param passwordHash of user
+     * @param affiliation of user
+     */
     public User(String username, String passwordHash, String affiliation) {
         this.username = username;
         this.passwordHash = passwordHash;
@@ -21,6 +30,9 @@ public class User implements Serializable {
         this.sessions = new ArrayList<>();
     }
 
+    /**
+     * Setters & Getters
+     */
     public String getUsername() {
         return username;
     }
@@ -33,14 +45,27 @@ public class User implements Serializable {
         return affiliation;
     }
 
+    /**
+     * The method that registers a session
+     * @param session to add
+     */
     public boolean registerSession(Session session){
         return this.sessions.add(session);
     }
 
+    /**
+     * The method that returns a list of sessions associated with this user
+     * @return a list of sessions
+     */
     public ArrayList<Session> listSessions(){
         return this.sessions;
     }
 
+    /**
+     * Method that performs sign in of user
+     * @param password in plaintext
+     * @return a RequestResult that indicates success or failure of sign in
+     */
     public RequestResult signIn(String password) {
         if (password == null) return new RequestResult(false, false, "Password cannot be empty");
         if (username != null && !username.startsWith("p3") && affiliation.equals("student"))

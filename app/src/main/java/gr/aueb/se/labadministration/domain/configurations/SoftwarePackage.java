@@ -4,18 +4,30 @@ import androidx.annotation.NonNull;
 
 import java.io.Serializable;
 
+/**
+ * The class that defines a SoftwarePackage
+ */
 public class SoftwarePackage implements Serializable {
 
     private String name;
     private String installationCommand;
     private String uninstallCommand;
 
+    /**
+     * Constructor
+     * @param name of package
+     * @param installationCommand of package
+     * @param uninstallCommand of package
+     */
     public SoftwarePackage(String name, String installationCommand, String uninstallCommand) {
         this.name = name;
         this.installationCommand = installationCommand;
         this.uninstallCommand = uninstallCommand;
     }
 
+    /**
+     * Setters & Getters
+     */
     public String getName() {
         return name;
     }

@@ -17,6 +17,9 @@ import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.services.SignInService;
 import gr.aueb.se.labadministration.utilities.RequestResult;
 
+/**
+ * The activity that handles the sign in process
+ */
 public class SignInActivity extends AppCompatActivity {
 
     private EditText usernameEditText;
@@ -25,6 +28,9 @@ public class SignInActivity extends AppCompatActivity {
 
     private SignInService service;
 
+    /**
+     * The method that initiates connection with the sign in service
+     */
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -36,6 +42,9 @@ public class SignInActivity extends AppCompatActivity {
         }
     };
 
+    /**
+     * Default Android Method
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,11 +73,30 @@ public class SignInActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Method that extracts the data from the EditText
+     * @return string or null
+     */
     public String getUsername() {
         return (usernameEditText == null) ? null : usernameEditText.getText().toString();
     }
 
+    /**
+     * Method that extracts the data from the EditText
+     * @return string or null
+     */
     public String getPassword() {
         return (passwordEditText == null) ? null : passwordEditText.getText().toString();
+    }
+
+    /**
+     * Default Android Method
+     * Unbinds services in order to avoid leakages
+     */
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopService(getIntent());
+        unbindService(serviceConnection);
     }
 }

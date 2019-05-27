@@ -26,7 +26,9 @@ import gr.aueb.se.labadministration.activities.NewConfigurationActivity;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.services.ConfigurationService;
 
-
+/**
+ * The fragment that registers a TerminalConfiguration
+ */
 public class ConfigurationFragment extends Fragment {
 
     private List<TerminalConfiguration> configurationList = new ArrayList<>();
@@ -34,6 +36,9 @@ public class ConfigurationFragment extends Fragment {
 
     private ConfigurationService service;
 
+    /**
+     * Method that initiates connection with configuration service
+     */
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
@@ -48,6 +53,9 @@ public class ConfigurationFragment extends Fragment {
         }
     };
 
+    /**
+     * Default Android Methods
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -76,6 +84,7 @@ public class ConfigurationFragment extends Fragment {
             startActivity(new Intent(getContext(), NewConfigurationActivity.class));
         });
     }
+
 }
 
 

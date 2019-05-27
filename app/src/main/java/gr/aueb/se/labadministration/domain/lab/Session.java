@@ -7,6 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+/**
+ * The class that defines a Session
+ */
 public class Session implements Serializable {
 
     public enum SessionStatus{STARTING, STARTED, FINISHED, INTERRUPTED};
@@ -17,6 +20,14 @@ public class Session implements Serializable {
     private Date startTime;
     private Date endTime;
 
+    /**
+     * Constructor
+     * @param terminal of session
+     * @param user of session
+     * @param status of session
+     * @param startTime of session
+     * @param endTime of session
+     */
     public Session(Terminal terminal, User user, SessionStatus status, Date startTime, Date endTime) {
         this.terminal = terminal;
         this.user = user;
@@ -28,6 +39,9 @@ public class Session implements Serializable {
         this.terminal.registerSession(this);
     }
 
+    /**
+     * Setters & Getters
+     */
     public Terminal getTerminal() {
         return terminal;
     }
