@@ -110,6 +110,22 @@ public class MemoryDAOTests {
     }
 
     /**
+     * Test that saves Terminal to lab
+     */
+    @Test
+    public void addTerminal(){
+        Terminal terminal = new Terminal("TEST", null, null, 11, 1, null);
+
+        laboratoryDAOMemory.addTerminal(laboratory, terminal);
+
+        Laboratory test_lab = laboratoryDAOMemory.findByName(laboratory.getName());
+
+        ArrayList<Terminal> terminals = test_lab.getTerminals();
+
+        Assert.assertTrue(terminals.contains(terminal));
+    }
+
+    /**
      * Test that searches with Lab DAO based on name and exists
      */
     @Test

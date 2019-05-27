@@ -1,6 +1,7 @@
 package gr.aueb.se.labadministration.dao;
 
 import gr.aueb.se.labadministration.domain.lab.Laboratory;
+import gr.aueb.se.labadministration.domain.lab.Terminal;
 
 import java.util.ArrayList;
 
@@ -20,6 +21,12 @@ public interface LaboratoryDAO {
      * @param laboratory
      */
     void remove(Laboratory laboratory);
+
+    /**
+     * The method that adds a terminal to the lab
+     * @param terminal
+     */
+    void addTerminal(Laboratory laboratory, Terminal terminal);
 
     /**
      * The method that searches if a lab exists with that name

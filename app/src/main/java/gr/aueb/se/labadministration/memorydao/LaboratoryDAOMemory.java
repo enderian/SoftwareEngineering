@@ -48,6 +48,19 @@ public class LaboratoryDAOMemory implements LaboratoryDAO {
     }
 
     /**
+     * The method that adds a terminal to the lab
+     * @param terminal
+     */
+    @Override
+    public void addTerminal(Laboratory laboratory, Terminal terminal) {
+        for (Laboratory lab : laboratories){
+            if(lab.getName().equals(laboratory.getName())) {
+                lab.addTerminal(terminal);
+            }
+        }
+    }
+
+    /**
      * The method that searches if a lab exists with that name
      * @param name
      * @return a lab or null
