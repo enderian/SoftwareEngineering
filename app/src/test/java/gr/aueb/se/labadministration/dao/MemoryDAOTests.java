@@ -8,6 +8,7 @@ import org.junit.Test;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import gr.aueb.se.labadministration.domain.builder.TerminalBuilder;
@@ -192,7 +193,7 @@ public class MemoryDAOTests {
     public void listAllTCDAO(){
         terminalConfigurationDAO.save(configuration);
 
-        ArrayList<TerminalConfiguration> configurations = terminalConfigurationDAO.listAll();
+        Collection<TerminalConfiguration> configurations = terminalConfigurationDAO.listAll();
 
         Assert.assertNotNull(configurations);
     }

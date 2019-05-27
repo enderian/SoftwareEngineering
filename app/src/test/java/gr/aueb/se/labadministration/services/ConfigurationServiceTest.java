@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.util.Collection;
 import java.util.List;
 
 import gr.aueb.se.labadministration.dao.TerminalConfigurationDAO;
@@ -23,7 +24,7 @@ public class ConfigurationServiceTest {
 
     @Test
     public void listAllConfigs(){
-        List<TerminalConfiguration> configurationList = configurationService.listAllConfigs();
+        Collection<TerminalConfiguration> configurationList = configurationService.listAllConfigs();
 
         Assert.assertNull(configurationList);
     }

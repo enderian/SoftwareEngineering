@@ -1,10 +1,8 @@
-### Παραδοτέο R3
-
-> Έχει γίνει και μερική υλοποίηση του παραδοτέου με Guice (dependency injection) και Mockito στο branch R3-Guice.
+### Παραδοτέο R4
 
 # Εισαγωγή
 
-Στο παρών έγγραφο θα αναλυθούν η λογική της αρχιτεκτονικής και τα διαγράμματα ακολουθίας για την λογική πεδίου. Στο τέλος θα αναρτηθεί coverage report για τον κώδικα.
+Στο παρών έγγραφο θα αναλυθεί η τελική υλοποίηση της εφαρμογής στο Android framework.
 
 # Αρχιτεκτονική Λογισμικού
 
@@ -12,24 +10,21 @@
 
 ![](Deliverables/R3/package-diagram.png)
 
-Τα πακέτα builder, configurations, lab, people, schedule ανήκουν στο domain model. Το πακέτα dao & memorydao προσφέρουν πρόσβαση στα δεδομένα μας (Direct Memory Access). Τέλος έχουμε εφαρμόσει το μοντέλο model view presenter για τα fragments που θα δημιουργηθούν στο R4.
+Τα πακέτα builder, configurations, lab, people, schedule ανήκουν στο domain model. 
+Το πακέτα dao & memorydao προσφέρουν πρόσβαση στα δεδομένα μας (Direct Memory Access). 
+Το πακέτο services περιέχει τις υπηρεσίες (services), που εδώ λειτουργούν ως presenters.
 
-# Στατική Όψη Λογικής Πεδίου
+## Παραδείγματα λειτουργειών
 
-Παρακάτω παρουσιάζεται διαγραμματικά η στατική όψη της λογικής πεδίου.
+Ακολουθούν τα sequence diagrams για την συνδεση, και ως παράδειγμα την ανάγνωση ιστορικού ανά terminal και την αποθήκευση νέου configuration.
 
-![](Deliverables/R3/static-view.png)
+![](Deliverables/R4/sign-in.png)
 
-# Διαγράμματα Ακολουθίας Δυναμικής Όψης Λογικής Πεδίου
+![](Deliverables/R4/history-read.png)
 
-Παρακάτω παρουσιάζεται διαγραμματικά το διάγραμμα ακολουθίας για το signIn ενός χρήστη.
-
-![](Deliverables/R3/signin-seq.png)
-
-# Υλοποίηση Λογικής Πεδίου & Testing
-
-Η υλοποίηση της λογικής πεδίου και το testing μπορούν να βρεθούν στο Android Studio Project που έχει αναρτηθεί.
+![](Deliverables/R4/configuration-save.png)
 
 # Coverage Reports
 
-Το report για το coverage του κώδικα μπορεί να δημιουργηθεί μέσα από το Android Studio (Analyze -> Generate Coverage Report), αλλά συνοπτικά είχαμε 95% coverage στις κλάσεις, 99% coverage στις μεθόδους & 96% coverage στις γραμμές.
+Το report για το coverage του κώδικα μπορεί να δημιουργηθεί μέσα από το Android Studio (Analyze -> Generate Coverage Report), 
+αλλά συνοπτικά είχαμε 46% συνολικό coverage, 50% στα services/presenters και 100% σε DAO και μοντέλο πεδίου.
