@@ -32,5 +32,4 @@
 
 # Coverage Reports
 
-Το report για το coverage του κώδικα μπορεί να δημιουργηθεί μέσα από το Android Studio (Analyze -> Generate Coverage Report), 
-αλλά συνοπτικά είχαμε 46% συνολικό coverage, 50% στα services/presenters και 100% σε DAO και μοντέλο πεδίου.
+Το report για το coverage του κώδικα μπορεί να δημιουργηθεί μέσα από το Android Studio (Analyze -> Generate Coverage Report). Συνοπτικά με τις κλάσεις των activities και των fragments που απαιτούν Android tests είχαμε 46% συνολικό coverage, 50% στα services/presenters (λόγω μεθόδων Android) και 100% σε DAO και μοντέλο πεδίου.
