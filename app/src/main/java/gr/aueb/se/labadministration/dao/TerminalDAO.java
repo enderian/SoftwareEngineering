@@ -9,7 +9,6 @@ import java.util.ArrayList;
 /**
  * The interface the communicates with databases for the terminals
  */
-
 public interface TerminalDAO {
 
     /**

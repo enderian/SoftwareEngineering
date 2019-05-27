@@ -12,6 +12,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * The interface the communicates with memory for the terminals
+ */
 public class TerminalDAOMemory implements TerminalDAO {
 
     protected static ArrayList<Terminal> terminals = new ArrayList<>();
@@ -66,16 +69,29 @@ public class TerminalDAOMemory implements TerminalDAO {
         new Session(terminals.get(0), UserDAOMemory.users.get(0), Session.SessionStatus.STARTED, new Date(), null);
     }
 
+    /**
+     * The method that saves a terminal to the memory
+     * @param terminal
+     */
     @Override
     public void save(Terminal terminal) {
         terminals.add(terminal);
     }
 
+    /**
+     * The method that removes a terminal from the memory
+     * @param terminal
+     */
     @Override
     public void delete(Terminal terminal) {
         terminals.remove(terminal);
     }
 
+    /**
+     * The method that searches if a terminal exists with that name
+     * @param terminalName
+     * @return terminal or null
+     */
     @Override
     public Terminal findByName(String terminalName) {
         for(Terminal terminal : terminals){
@@ -84,6 +100,11 @@ public class TerminalDAOMemory implements TerminalDAO {
         return null;
     }
 
+    /**
+     * The method that searches if a terminal exists with that ip
+     * @param inetAddress
+     * @return terminal or null
+     */
     @Override
     public Terminal findByIP(InetAddress inetAddress) {
         for(Terminal terminal : terminals){
@@ -92,6 +113,11 @@ public class TerminalDAOMemory implements TerminalDAO {
         return null;
     }
 
+    /**
+     * The method that saves changes to the terminal
+     * @param terminal
+     * @param status of the terminal that moment
+     */
     @Override
     public void updateStatus(Terminal terminal, Terminal.TerminalStatus status){
         for(Terminal t : terminals){
@@ -99,6 +125,10 @@ public class TerminalDAOMemory implements TerminalDAO {
         }
     }
 
+    /**
+     * Returns all terminals
+     * @return
+     */
     @Override
     public ArrayList<Terminal> listAll() {
         return terminals;

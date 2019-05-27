@@ -8,6 +8,9 @@ import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * The interface the communicates with memory for the laboratories
+ */
 public class LaboratoryDAOMemory implements LaboratoryDAO {
 
     protected static ArrayList<Laboratory> laboratories = new ArrayList<Laboratory>();
@@ -26,18 +29,29 @@ public class LaboratoryDAOMemory implements LaboratoryDAO {
         laboratories.get(2).setSchedule(new ArrayList<>(Arrays.asList(new DaySchedule(1), new DaySchedule(5))));
     }
 
+    /**
+     * The method that saves a lab to the memory
+     * @param laboratory
+     */
     @Override
     public void save(Laboratory laboratory) {
         laboratories.add(laboratory);
     }
 
+    /**
+     * The method that removes a lab from the memory
+     * @param laboratory
+     */
     @Override
     public void remove(Laboratory laboratory) {
         laboratories.remove(laboratory);
     }
 
-
-
+    /**
+     * The method that searches if a lab exists with that name
+     * @param name
+     * @return a lab or null
+     */
     @Override
     public Laboratory findByName(String name) {
         for (Laboratory lab : laboratories){
@@ -46,6 +60,10 @@ public class LaboratoryDAOMemory implements LaboratoryDAO {
         return null;
     }
 
+    /**
+     * The method that returns all the labs
+     * @return
+     */
     @Override
     public ArrayList<Laboratory> listAll() {
         return laboratories;

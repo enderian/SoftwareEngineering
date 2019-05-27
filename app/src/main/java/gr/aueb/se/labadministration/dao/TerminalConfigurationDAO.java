@@ -8,7 +8,6 @@ import java.util.Collection;
 /**
  * The interface the communicates with databases for the terminal configurations
  */
-
 public interface TerminalConfigurationDAO {
 
     /**

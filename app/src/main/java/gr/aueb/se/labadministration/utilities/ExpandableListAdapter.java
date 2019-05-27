@@ -23,18 +23,30 @@ import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
 import gr.aueb.se.labadministration.fragments.TerminalFragment;
 
+/**
+ * The class that extends BaseExpandableListAdapter for our own purpose
+ */
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> listDataHeader; // contains the main categories e.x. lab1, lab2, lab3 etc.
     private HashMap<String, List<String>> listHashMap; // connects each main category with her items e.x. String lab1, List<String> computer_101, computer_102 etc.
 
+    /**
+     * Constructor
+     * @param context of app
+     * @param listDataHeader
+     * @param listHashMap
+     */
     public ExpandableListAdapter(Context context, List<String> listDataHeader, HashMap<String, List<String>> listHashMap) {
         this.context = context;
         this.listDataHeader = listDataHeader;
         this.listHashMap = listHashMap;
     }
 
+    /**
+     * Override Methods
+     */
     @Override
     public int getGroupCount() {
         return listDataHeader.size();
@@ -83,6 +95,9 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         return view;
     }
 
+    /**
+     * Method that provides popup information for a terminal
+     */
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         final String childText = (String)getChild(i, i1);

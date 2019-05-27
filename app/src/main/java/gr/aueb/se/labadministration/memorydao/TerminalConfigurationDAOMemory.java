@@ -9,6 +9,9 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * The interface the communicates with memory for the terminal configurations
+ */
 public class TerminalConfigurationDAOMemory implements TerminalConfigurationDAO {
 
     protected static HashMap<String, TerminalConfiguration> configurations = new HashMap<>();
@@ -30,16 +33,29 @@ public class TerminalConfigurationDAOMemory implements TerminalConfigurationDAO 
                 .createTerminalConfiguration());
     }
 
+    /**
+     * The method that saves a terminal configuration to the memory
+     * @param configuration
+     */
     @Override
     public void save(TerminalConfiguration configuration) {
         configurations.put(configuration.getName(), configuration);
     }
 
+    /**
+     * The method that removes a terminal configuration from the memory
+     * @param configuration
+     */
     @Override
     public void delete(TerminalConfiguration configuration) {
         configurations.remove(configuration.getName());
     }
 
+    /**
+     * The method that searches if a terminal configuration exists with that name
+     * @param configurationName
+     * @return terminal configuration or null
+     */
     @Override
     public TerminalConfiguration findByName(String configurationName) {
         for(TerminalConfiguration conf : configurations.values()){
@@ -48,6 +64,10 @@ public class TerminalConfigurationDAOMemory implements TerminalConfigurationDAO 
         return null;
     }
 
+    /**
+     * The method that returns all terminal configurations
+     * @return
+     */
     @Override
     public Collection<TerminalConfiguration> listAll() {
         return configurations.values();
