@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -25,6 +26,8 @@ import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
 import gr.aueb.se.labadministration.services.LabService;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class TerminalFragment extends DialogFragment {
 
     private LabService labService;
@@ -41,6 +44,17 @@ public class TerminalFragment extends DialogFragment {
 
             terminalTitle.setText(terminal.getName());
             terminalStatus.setText(terminal.getStatus().toString());
+
+            SharedPreferences sharedPreferences = getContext().getSharedPreferences("user", MODE_PRIVATE);
+            boolean administrator = sharedPreferences.getBoolean("administrator", false);
+
+            if (!administrator) {
+                shutdown.setVisibility(View.GONE);
+                restart.setVisibility(View.GONE);
+                signout.setVisibility(View.GONE);
+                signout.setVisibility(View.GONE);
+                return;
+            }
 
             if(labService.isTerminalOffline(terminal) || labService.isTerminalInMaintenance(terminal)){
                 shutdown.setVisibility(View.GONE);

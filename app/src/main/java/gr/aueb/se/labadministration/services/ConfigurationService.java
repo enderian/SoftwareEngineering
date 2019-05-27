@@ -7,6 +7,7 @@ import android.os.IBinder;
 
 import androidx.annotation.Nullable;
 
+import java.util.Collection;
 import java.util.List;
 
 import gr.aueb.se.labadministration.dao.TerminalConfigurationDAO;
@@ -35,7 +36,7 @@ public class ConfigurationService extends Service {
         return getTerminalConfigurationDAO().findByName(configuration.getName());
     }
 
-    public List<TerminalConfiguration> listAllConfigs(){
+    public Collection<TerminalConfiguration> listAllConfigs(){
         return getTerminalConfigurationDAO().listAll();
     }
 

@@ -24,7 +24,7 @@ public class TerminalDAOMemory implements TerminalDAO {
                     .setPositionX(0)
                     .setPositionY(0)
                     .setIpAddress(InetAddress.getByName("172.16.1.22"))
-                    .setConfiguration(TerminalConfigurationDAOMemory.configurations.get(0))
+                    .setConfiguration(TerminalConfigurationDAOMemory.configurations.get("CSLAB1"))
                     .createTerminal();
             Terminal term2 = new TerminalBuilder()
                     .setHostname("cslab1-23")
@@ -32,7 +32,7 @@ public class TerminalDAOMemory implements TerminalDAO {
                     .setPositionX(1)
                     .setPositionY(0)
                     .setIpAddress(InetAddress.getByName("172.16.1.23"))
-                    .setConfiguration(TerminalConfigurationDAOMemory.configurations.get(0))
+                    .setConfiguration(TerminalConfigurationDAOMemory.configurations.get("CSLAB1"))
                     .createTerminal();
             Terminal term3 = new TerminalBuilder()
                     .setHostname("cslab2-32")
@@ -40,7 +40,7 @@ public class TerminalDAOMemory implements TerminalDAO {
                     .setPositionX(0)
                     .setPositionY(0)
                     .setIpAddress(InetAddress.getByName("172.16.2.32"))
-                    .setConfiguration(TerminalConfigurationDAOMemory.configurations.get(1))
+                    .setConfiguration(TerminalConfigurationDAOMemory.configurations.get("CSLAB2"))
                     .createTerminal();
             Terminal term4 = new TerminalBuilder()
                     .setHostname("cslab2-33")
@@ -48,7 +48,7 @@ public class TerminalDAOMemory implements TerminalDAO {
                     .setPositionX(1)
                     .setPositionY(0)
                     .setIpAddress(InetAddress.getByName("172.16.2.33"))
-                    .setConfiguration(TerminalConfigurationDAOMemory.configurations.get(1))
+                    .setConfiguration(TerminalConfigurationDAOMemory.configurations.get("CSLAB2"))
                     .createTerminal();
             term1.setStatus(Terminal.TerminalStatus.AVAILABLE);
             term2.setStatus(Terminal.TerminalStatus.IN_MAINTENANCE);

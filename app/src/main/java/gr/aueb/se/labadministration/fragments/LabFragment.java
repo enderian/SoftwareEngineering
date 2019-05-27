@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.LayoutInflater;
@@ -17,11 +18,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.activities.NewConfigurationActivity;
+import gr.aueb.se.labadministration.activities.NewTerminalActivity;
 import gr.aueb.se.labadministration.dao.LaboratoryDAO;
 import gr.aueb.se.labadministration.domain.lab.Laboratory;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
@@ -29,6 +34,8 @@ import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 import gr.aueb.se.labadministration.memorydao.LaboratoryDAOMemory;
 import gr.aueb.se.labadministration.services.LabService;
 import gr.aueb.se.labadministration.utilities.ExpandableListAdapter;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class LabFragment extends Fragment {
 
@@ -91,6 +98,15 @@ public class LabFragment extends Fragment {
         listViewShedules.setAdapter(listAdapterShedules);
 
         labsRadioGroup.check(R.id.lab1RadioButton);
+
+        SharedPreferences sharedPreferences = getContext().getSharedPreferences("user", MODE_PRIVATE);
+        boolean administrator = sharedPreferences.getBoolean("administrator", false);
+
+        FloatingActionButton button = getView().findViewById(R.id.fab);
+        button.setVisibility(administrator ? View.VISIBLE : View.GONE);
+        button.setOnClickListener(click -> {
+            startActivity(new Intent(getContext(), NewTerminalActivity.class));
+        });
     }
 
 
