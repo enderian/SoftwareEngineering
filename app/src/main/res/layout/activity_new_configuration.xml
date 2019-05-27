@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activityBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="8sp"
+        tools:context=".activities.NewConfigurationActivity">
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:id="@+id/hardwareLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/hardware" />
+
+
+            <EditText
+                android:id="@+id/hardwareConfigurationName"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/confName" />
+
+            <EditText
+                android:id="@+id/os"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/osName" />
+
+            <EditText
+                android:id="@+id/graphicsCard"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/grafics" />
+
+            <EditText
+                android:id="@+id/processor"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/processor" />
+
+            <EditText
+                android:id="@+id/storageCapacity"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/storage" />
+
+            <EditText
+                android:id="@+id/ram"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/ram" />
+
+            <Spinner
+                android:id="@+id/softwarePackages"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/addSoftwareButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:layout_marginBottom="4sp"
+            android:text="@string/add_software_package"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/addConfigurationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:text="@string/submit"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+</ScrollView>

@@ -13,6 +13,9 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+/**
+ * Setters & Getters Tests
+ */
 public class LaboratoryTest {
 
     private Laboratory laboratory;

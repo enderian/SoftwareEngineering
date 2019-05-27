@@ -2,11 +2,13 @@ package gr.aueb.se.labadministration.dao;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 import gr.aueb.se.labadministration.domain.builder.TerminalBuilder;
@@ -25,285 +27,410 @@ import gr.aueb.se.labadministration.domain.people.Administrator;
 import gr.aueb.se.labadministration.domain.people.User;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 
+/**
+ * Tests for DAOs
+ */
 public class MemoryDAOTests {
 
-    private LaboratoryDAO laboratoryDAOMemory;
-    private Laboratory laboratory;
-    private Terminal terminal;
-    private DaySchedule daySchedule;
-    private TerminalConfiguration configuration;
-    private Administrator administrator;
-    private SoftwarePackageDAO softwarePackageDAO;
-    private SoftwarePackage softwarePackage;
-    private TerminalConfigurationDAO terminalConfigurationDAO;
-    private TerminalDAO terminalDAO;
-    private UserDAO userDAO;
-    private User user;
-    private Session userSession, adminSession;
+    private static LaboratoryDAO laboratoryDAOMemory;
+    private static Laboratory laboratory;
+    private static Terminal terminal;
+    private static DaySchedule daySchedule;
+    private static TerminalConfiguration configuration;
+    private static Administrator administrator;
+    private static SoftwarePackageDAO softwarePackageDAO;
+    private static SoftwarePackage softwarePackage;
+    private static TerminalConfigurationDAO terminalConfigurationDAO;
+    private static TerminalDAO terminalDAO;
+    private static UserDAO userDAO;
+    private static User user;
+    private static Session userSession, adminSession;
 
-    @Before
-    public void initialize() throws UnknownHostException {
+    @BeforeClass
+    public static void setup() throws UnknownHostException {
 
         //Laboratory DAO Testing Initialization
-        this.daySchedule = new DaySchedule(0);
-        this.configuration = new TerminalConfigurationBuilder()
+        daySchedule = new DaySchedule(0);
+        configuration = new TerminalConfigurationBuilder()
                 .setName("T")
                 .setOperatingSystem("OS")
                 .setProcessor("i")
                 .setstorageCapacity(2014)
                 .setTotalMemory(1024)
                 .createTerminalConfiguration();
-        this.terminal = new TerminalBuilder()
-                .setConfiguration(this.configuration)
+        terminal = new TerminalBuilder()
+                .setConfiguration(configuration)
                 .setHostname("T")
                 .setIpAddress(InetAddress.getByName("127.0.0.1"))
                 .setName("T")
                 .setPositionX(0).setPositionY(0).createTerminal();
-        this.administrator = new Administrator("p31xxxxx", "hash", "S");
-        this.laboratory = new Laboratory("LAB", "LOC", true);
-        this.laboratory.setOpen(true);
-        this.laboratory.addDaySchedule(daySchedule);
-        this.laboratory.addAdministrator(administrator);
-        this.laboratory.addTerminal(terminal);
-        this.laboratoryDAOMemory = new LaboratoryDAOMemory();
+        administrator = new Administrator("p31xxxxx", "hash", "S");
+        laboratory = new Laboratory("LAB", "LOC", true);
+        laboratory.setOpen(true);
+        laboratory.addDaySchedule(daySchedule);
+        laboratory.addAdministrator(administrator);
+        laboratory.addTerminal(terminal);
+        laboratoryDAOMemory = new LaboratoryDAOMemory();
 
         //SoftwarePackage DAO Testing Initialization
-        this.softwarePackageDAO = new SoftwarePackageDAOMemory();
-        this.softwarePackage = new SoftwarePackage("1", "2", "3");
+        softwarePackageDAO = new SoftwarePackageDAOMemory();
+        softwarePackage = new SoftwarePackage("1", "2", "3");
 
         //TerminalConfiguration DAO Testing Initialization
-        this.terminalConfigurationDAO = new TerminalConfigurationDAOMemory();
+        terminalConfigurationDAO = new TerminalConfigurationDAOMemory();
 
         //Terminal DAO Testing Initialization
-        this.terminalDAO = new TerminalDAOMemory();
+        terminalDAO = new TerminalDAOMemory();
 
         //User DAO Testing Initialization
-        this.user = new User("p30xxxx", "h", "S");
-        this.userDAO = new UserDAOMemory();
-        this.userSession = new Session(this.terminal, this.user, Session.SessionStatus.FINISHED, new Date(), new Date());
-        this.adminSession = new Session(this.terminal, this.administrator, Session.SessionStatus.FINISHED, new Date(), new Date());
+        user = new User("p30xxxx", "h", "S");
+        userDAO = new UserDAOMemory();
+        userSession = new Session(terminal, user, Session.SessionStatus.FINISHED, new Date(), new Date());
+        adminSession = new Session(terminal, administrator, Session.SessionStatus.FINISHED, new Date(), new Date());
     }
 
+    /**
+     * Test that saves Lab to Lab DAO
+     */
     @Test
     public void saveToLabDAO(){
-        this.laboratoryDAOMemory.save(this.laboratory);
+        laboratoryDAOMemory.save(laboratory);
+
+        Assert.assertNotNull(laboratoryDAOMemory.findByName(laboratory.getName()));
     }
 
+    /**
+     * Test that removes Lab from Lab DAO
+     */
     @Test
     public void removeLabDAO(){
-        this.laboratoryDAOMemory.save(this.laboratory);
+        laboratoryDAOMemory.remove(laboratory);
 
-        this.laboratoryDAOMemory.remove(this.laboratory);
+        Assert.assertNull(laboratoryDAOMemory.findByName(laboratory.getName()));
     }
 
+    /**
+     * Test that saves Terminal to lab
+     */
+    @Test
+    public void addTerminal(){
+        Terminal terminal = new Terminal("TEST", null, null, 11, 1, null);
+
+        laboratoryDAOMemory.addTerminal(laboratory, terminal);
+
+        Laboratory test_lab = laboratoryDAOMemory.findByName(laboratory.getName());
+
+        ArrayList<Terminal> terminals = test_lab.getTerminals();
+
+        Assert.assertTrue(terminals.contains(terminal));
+    }
+
+    /**
+     * Test that searches with Lab DAO based on name and exists
+     */
     @Test
     public void searchLabDAOReturnsResult(){
-        this.laboratoryDAOMemory.save(this.laboratory);
+        laboratoryDAOMemory.save(laboratory);
 
-        Laboratory lab = this.laboratoryDAOMemory.findByName("LAB");
+        Laboratory lab = laboratoryDAOMemory.findByName("LAB");
         Assert.assertNotNull(lab);
     }
 
+    /**
+     * Test that searches with Lab DAO based on name and does not exist
+     */
     @Test
     public void searchLabDAOReturnsNull(){
-        Laboratory lab = this.laboratoryDAOMemory.findByName("Test");
+        Laboratory lab = laboratoryDAOMemory.findByName("Test");
         Assert.assertNull(lab);
     }
 
+    /**
+     * Test that returns non empty list of Labs from Lab DAO
+     */
     @Test
     public void listAllLabs(){
-        this.laboratoryDAOMemory.save(this.laboratory);
+        laboratoryDAOMemory.save(laboratory);
 
-        ArrayList<Laboratory> labs = this.laboratoryDAOMemory.listAll();
-        Assert.assertNotNull(labs);
+        ArrayList<Laboratory> labs = laboratoryDAOMemory.listAll();
+        Assert.assertTrue(!labs.isEmpty());
     }
 
+    /**
+     * Test that saves SP to SP DAO
+     */
     @Test
     public void saveToSPDAO(){
-        this.softwarePackageDAO.save(this.softwarePackage);
+        softwarePackageDAO.save(softwarePackage);
+
+        Assert.assertNotNull(softwarePackageDAO.findByName(softwarePackage.getName()));
     }
 
+    /**
+     * Test that removes SP from SP DAO
+     */
     @Test
     public void removeSPDAO(){
-        this.softwarePackageDAO.save(this.softwarePackage);
-
-        this.softwarePackageDAO.delete(this.softwarePackage);
+        softwarePackageDAO.delete(softwarePackage);
     }
 
+    /**
+     * Test that searches with SP DAO based on name and returns result
+     */
     @Test
     public void searchSPDAOReturnsResult(){
-        this.softwarePackageDAO.save(this.softwarePackage);
+        softwarePackageDAO.save(softwarePackage);
 
-        SoftwarePackage result = this.softwarePackageDAO.findByName("1");
+        SoftwarePackage result = softwarePackageDAO.findByName("1");
 
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches with SP DAO based on name and returns null
+     */
     @Test
     public void searchSPDAOReturnsNull(){
-        SoftwarePackage result = this.softwarePackageDAO.findByName("2");
+        SoftwarePackage result = softwarePackageDAO.findByName("2");
 
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that returns a non empty list of SPs
+     */
     @Test
     public void listAllSP(){
-        this.softwarePackageDAO.save(this.softwarePackage);
+        softwarePackageDAO.save(softwarePackage);
 
-        ArrayList<SoftwarePackage> sps = this.softwarePackageDAO.listAll();
+        ArrayList<SoftwarePackage> sps = softwarePackageDAO.listAll();
 
-        Assert.assertNotNull(sps);
+        Assert.assertTrue(!sps.isEmpty());
     }
 
+    /**
+     * Test that saves Terminal Config to Terminal Config DAO
+     */
     @Test
     public void saveToTCDAO(){
-        this.terminalConfigurationDAO.save(this.configuration);
+        terminalConfigurationDAO.save(configuration);
+
+        Assert.assertNotNull(terminalConfigurationDAO.findByName(configuration.getName()));
     }
 
+    /**
+     * Test that removes Terminal Config from Terminal Config DAO
+     */
     @Test
     public void deleteTCDAO(){
-        this.terminalConfigurationDAO.save(this.configuration);
+        terminalConfigurationDAO.delete(configuration);
 
-        this.terminalConfigurationDAO.delete(this.configuration);
+        Assert.assertNull(terminalConfigurationDAO.findByName(configuration.getName()));
     }
 
+    /**
+     * Test that searches for a Terminal config based on name and returns result
+     */
     @Test
     public void searchTCDAOReturnsResult(){
-        this.terminalConfigurationDAO.save(this.configuration);
+        terminalConfigurationDAO.save(configuration);
 
-        TerminalConfiguration result = this.terminalConfigurationDAO.findByName("T");
+        TerminalConfiguration result = terminalConfigurationDAO.findByName("T");
 
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches for a Terminal config based on name and returns null
+     */
     @Test
     public void searchTCDAOReturnsNull(){
-        TerminalConfiguration result = this.terminalConfigurationDAO.findByName("Test");
+        TerminalConfiguration result = terminalConfigurationDAO.findByName("Test");
 
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that returns non empty list of Terminal configs
+     */
     @Test
     public void listAllTCDAO(){
-        this.terminalConfigurationDAO.save(this.configuration);
+        terminalConfigurationDAO.save(configuration);
 
-        ArrayList<TerminalConfiguration> configurations = this.terminalConfigurationDAO.listAll();
+        Collection<TerminalConfiguration> configurations = terminalConfigurationDAO.listAll();
 
-        Assert.assertNotNull(configurations);
+        Assert.assertTrue(!configurations.isEmpty());
     }
 
+    /**
+     * Test that saves Terminal to Terminal DAO
+     */
     @Test
     public void saveToTDAO(){
-        this.terminalDAO.save(this.terminal);
+        terminalDAO.save(terminal);
+
+        Assert.assertNotNull(terminalDAO.findByName(terminal.getName()));
     }
 
+    /**
+     * Test that deletes Terminal from Terminal DAO
+     */
     @Test
     public void deleteTDAO(){
-        this.terminalDAO.save(terminal);
-
-        this.terminalDAO.delete(this.terminal);
+        terminalDAO.delete(terminal);
     }
 
+    /**
+     * Test that searches for terminal based on name and returns result
+     */
     @Test
     public void searchTDAOReturnsResult(){
-        this.terminalDAO.save(terminal);
+        terminalDAO.save(terminal);
 
-        Terminal result = this.terminalDAO.findByName("T");
+        Terminal result = terminalDAO.findByName("T");
 
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches for terminal based on name and returns null
+     */
     @Test
     public void searchTDAOReturnsNull(){
-        Terminal result = this.terminalDAO.findByName("Test");
+        Terminal result = terminalDAO.findByName("Test");
 
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that searches for terminal based on IP address and returns result
+     */
     @Test
     public void searchIPTDAOReturnsResult() throws UnknownHostException {
-        this.terminalDAO.save(terminal);
+        terminalDAO.save(terminal);
 
-        Terminal result = this.terminalDAO.findByIP(InetAddress.getByName("127.0.0.1"));
+        Terminal result = terminalDAO.findByIP(InetAddress.getByName("127.0.0.1"));
 
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches for terminal based on IP address and returns null
+     */
     @Test
     public void searchIPTDAOReturnsNull() throws UnknownHostException {
-        Terminal result = this.terminalDAO.findByIP(InetAddress.getByName("192.168.1.1"));
+        Terminal result = terminalDAO.findByIP(InetAddress.getByName("192.168.1.1"));
 
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that checks if updates to terminals happen successfully
+     */
     @Test
     public void updateTDAOStatus(){
-        this.terminalDAO.save(terminal);
+        terminalDAO.save(terminal);
 
-        this.terminalDAO.updateStatus(this.terminal, Terminal.TerminalStatus.AVAILABLE);
+        terminalDAO.updateStatus(terminal, Terminal.TerminalStatus.AVAILABLE);
+
+        Assert.assertEquals(Terminal.TerminalStatus.AVAILABLE, terminalDAO.findByName(terminal.getName()).getStatus());
     }
 
+    /**
+     * Test that returns non empty list of terminals
+     */
     @Test
     public void listAllTDAO(){
-        this.terminalDAO.save(terminal);
+        terminalDAO.save(terminal);
 
-        ArrayList<Terminal> terminals = this.terminalDAO.listAll();
+        ArrayList<Terminal> terminals = terminalDAO.listAll();
 
-        Assert.assertNotNull(terminals);
+        Assert.assertTrue(!terminals.isEmpty());
     }
 
+    /**
+     * Test that saves user to user DAO
+     */
     @Test
     public void saveToUserDAO(){
-        this.userDAO.save(this.user);
+        userDAO.save(user);
+
+        Assert.assertNotNull(userDAO.find(user.getUsername()));
     }
 
+    /**
+     * Test that removes user from user DAO
+     */
     @Test
     public void deleteUserDAO(){
-        this.userDAO.save(this.user);
+        userDAO.delete(user);
 
-        this.userDAO.delete(this.user);
+        Assert.assertNull(userDAO.find(user.getUsername()));
     }
 
+    /**
+     * Test that searches user based on name and returns result
+     */
     @Test
     public void searchUserDAOReturnsResult(){
-        this.userDAO.save(this.user);
+        userDAO.save(user);
 
-        User result = this.userDAO.find("p30xxxx");
+        User result = userDAO.find("p30xxxx");
 
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that searches user based on name and returns null
+     */
     @Test
     public void searchUserDAOReturnsNull(){
-        User result = this.userDAO.find("Test");
+        User result = userDAO.find("Test");
 
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that returns all users from DAO
+     */
+    @Test
+    public void listAllUsers(){
+        ArrayList<User> users = userDAO.listUsers();
+
+        Assert.assertTrue(!users.isEmpty());
+    }
+
+    /**
+     * Test that finds all sessions of a user and returns result
+     */
     @Test
     public void listAllSessionsUserExistsInDAO(){
-        this.userDAO.save(this.user);
-        this.userSession.updateSessions();
-        this.adminSession.updateSessions();
+        userDAO.save(user);
 
-        ArrayList<Session> result = this.userDAO.listAllSessions(this.user);
+        ArrayList<Session> result = userDAO.listAllSessions(user);
 
         Assert.assertNotNull(result);
     }
 
+    /**
+     * Test that finds all sessions of a user and returns null
+     */
     @Test
     public void listAllSessionsUserDoesNotExistsInDAO(){
-        ArrayList<Session> result = this.userDAO.listAllSessions(new User("Test", "2", "2"));
+        ArrayList<Session> result = userDAO.listAllSessions(new User("Test", "2", "2"));
 
         Assert.assertNull(result);
     }
 
+    /**
+     * Test that returns all admins from DAO
+     */
     @Test
     public void listAllAdminsUserDAO(){
-        this.userDAO.save(this.user);
-        this.userDAO.save(this.administrator);
+        userDAO.save(user);
+        userDAO.save(administrator);
 
-        ArrayList<Administrator> result = this.userDAO.listAllAdministrators();
+        ArrayList<Administrator> result = userDAO.listAllAdministrators();
 
         Assert.assertNotNull(result);
     }

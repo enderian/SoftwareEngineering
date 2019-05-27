@@ -13,6 +13,9 @@ import gr.aueb.se.labadministration.domain.builder.TerminalConfigurationBuilder;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.domain.people.User;
 
+/**
+ * Setters & Getters Tests
+ */
 public class SessionTest {
 
     private Terminal terminal;
@@ -42,15 +45,6 @@ public class SessionTest {
                 .createTerminal();
 
         this.session = new Session(terminal, user, Session.SessionStatus.FINISHED, new Date(), new Date());
-
-    }
-
-    @Test
-    public void addSession(){
-
-        boolean result = session.updateSessions();
-
-        Assert.assertTrue(result);
 
     }
 

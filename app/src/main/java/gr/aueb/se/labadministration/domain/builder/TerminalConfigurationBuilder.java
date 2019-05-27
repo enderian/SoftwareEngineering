@@ -2,6 +2,9 @@ package gr.aueb.se.labadministration.domain.builder;
 
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 
+/**
+ * The class that builds a TerminalConfiguration
+ */
 public class TerminalConfigurationBuilder {
     private String processor;
     private String graphicsCard;
@@ -40,6 +43,10 @@ public class TerminalConfigurationBuilder {
         return this;
     }
 
+    /**
+     * The method that creates a terminal configuration
+     * @return TerminalConfiguration
+     */
     public TerminalConfiguration createTerminalConfiguration() {
         if (processor == null) return null;
         if (operatingSystem == null) return null;

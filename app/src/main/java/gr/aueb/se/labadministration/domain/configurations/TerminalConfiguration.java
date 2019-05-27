@@ -1,8 +1,16 @@
 package gr.aueb.se.labadministration.domain.configurations;
 
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
 
-public class TerminalConfiguration {
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+/**
+ * The class that defines a TerminalConfiguration
+ */
+public class TerminalConfiguration implements Serializable {
 
     private String processor;
     private String graphicsCard;
@@ -12,6 +20,15 @@ public class TerminalConfiguration {
     private String name;
     private ArrayList<SoftwarePackage> softwarePackages;
 
+    /**
+     * Constructor
+     * @param processor of terminal
+     * @param graphicsCard of terminal
+     * @param storateCapacity of terminal
+     * @param totalMemory of terminal
+     * @param operatingSystem of terminal
+     * @param name of terminal
+     */
     public TerminalConfiguration(String processor, String graphicsCard, int storateCapacity, int totalMemory, String operatingSystem, String name) {
         this.processor = processor;
         this.graphicsCard = graphicsCard;
@@ -22,6 +39,10 @@ public class TerminalConfiguration {
         this.softwarePackages = new ArrayList<SoftwarePackage>();
     }
 
+    /**
+     * Copy constructor
+     * @param terminalConfiguration to copy from
+     */
     public TerminalConfiguration(TerminalConfiguration terminalConfiguration) {
         this.processor = terminalConfiguration.processor;
         this.graphicsCard = terminalConfiguration.graphicsCard;
@@ -32,6 +53,9 @@ public class TerminalConfiguration {
         this.softwarePackages = terminalConfiguration.softwarePackages;
     }
 
+    /**
+     * Setters & Getters
+     */
     public String getProcessor() {
         return processor;
     }
@@ -56,11 +80,35 @@ public class TerminalConfiguration {
         return name;
     }
 
+    /**
+     * Method that adds a software package
+     * @param softwarePackage to add
+     * @return result as boolean
+     */
     public boolean addSoftwarePackage(SoftwarePackage softwarePackage){
         return this.softwarePackages.add(softwarePackage);
     }
 
+    /**
+     * Method that removes a software package
+     * @param softwarePackage to remove
+     * @return result as boolean
+     */
     public boolean removeSoftwarePackage(SoftwarePackage softwarePackage){
         return this.softwarePackages.remove(softwarePackage);
+    }
+
+    /**
+     * Method that returns a list of the software packages that the terminal configuration includes
+     * @return list with SoftwarePackage
+     */
+    public List<SoftwarePackage> listSoftwarePackages() {
+        return Collections.unmodifiableList(softwarePackages);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
     }
 }

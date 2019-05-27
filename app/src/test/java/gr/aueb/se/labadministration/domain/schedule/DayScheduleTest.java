@@ -6,6 +6,9 @@ import org.junit.Test;
 
 import java.util.Date;
 
+/**
+ * Setters & Getters Tests
+ */
 public class DayScheduleTest {
 
     private DaySchedule daySchedule;

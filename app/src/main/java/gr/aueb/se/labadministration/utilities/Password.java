@@ -3,11 +3,19 @@ package gr.aueb.se.labadministration.utilities;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Helper class that hashes a plaintext password
+ */
 public class Password {
 
     private Password() {
     }
 
+    /**
+     * Method that hashes a password
+     * @param password to hash
+     * @return hashed password
+     */
     public static String hash(String password) {
         MessageDigest md = null;
         try {

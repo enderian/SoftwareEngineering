@@ -3,6 +3,8 @@ package gr.aueb.se.labadministration.domain.builder;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.net.UnknownHostException;
+
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 
 
@@ -24,6 +26,10 @@ public class TerminalConfigurationBuilderTest {
 
     }
 
+    /**
+     * Test that creates Terminal Configuration successfully
+     * @throws UnknownHostException
+     */
     @Test
     public void createTerminalConfigurationWithNoGFX(){
 
@@ -39,6 +45,10 @@ public class TerminalConfigurationBuilderTest {
 
     }
 
+    /**
+     * Test that does not create Terminal Configuration successfully
+     * @throws UnknownHostException
+     */
     @Test
     public void createTerminalConfigurationFailDueToNoName(){
 
@@ -54,6 +64,10 @@ public class TerminalConfigurationBuilderTest {
 
     }
 
+    /**
+     * Test that does not create Terminal Configuration successfully
+     * @throws UnknownHostException
+     */
     @Test
     public void createTerminalConfigurationFailDueToNoOS(){
 
@@ -69,6 +83,10 @@ public class TerminalConfigurationBuilderTest {
 
     }
 
+    /**
+     * Test that does not create Terminal Configuration successfully
+     * @throws UnknownHostException
+     */
     @Test
     public void createTerminalConfigurationFailDueToNoStorage(){
 
@@ -84,6 +102,10 @@ public class TerminalConfigurationBuilderTest {
 
     }
 
+    /**
+     * Test that does not create Terminal Configuration successfully
+     * @throws UnknownHostException
+     */
     @Test
     public void createTerminalConfigurationFailDueToNoMemory(){
 

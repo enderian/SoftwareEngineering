@@ -1,3 +1,41 @@
 <resources>
-    <string name="app_name">LabAdministration</string>
+    <string name="app_name"> CS Labs App</string>
+
+    <!-- Activity Labs -->
+    <string name="lab1">Lab1</string>
+    <string name="lab2">Lab2</string>
+    <string name="lab3">Lab3</string>
+    <string name="computerTab">Computers</string>
+    <string name="scheduleTab">Schedule</string>
+
+    <!-- Activity Sign In -->
+    <string name="username">Username:</string>
+    <string name="password">Password:</string>
+    <string name="signIn">Sign In</string>
+    <string name="submit">Submit</string>
+
+    <!-- Search Sign In -->
+    <string name="computer">Computer</string>
+    <string name="user">User</string>
+    <string name="title_activity_main">CSLabs</string>
+
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_activity_new_configuration">New Configuration</string>
+
+    <!-- Activity Configuration -->
+    <string name="hardware">Hardware Configuration</string>
+    <string name="software">Software Configureation</string>
+    <string name="grafics">Graphics Card</string>
+    <string name="processor">Processor</string>
+    <string name="ram">RAM</string>
+    <string name="storage">Storage Capacity</string>
+    <string name="confName">Configuration Name</string>
+    <string name="osName">OS</string>
+    <string name="creationCommand">Creation Command</string>
+    <string name="deleteCommand">Delete Command</string>
+    <string name="add_software_package">Add Software Package</string>
+
+
 </resources>

@@ -6,13 +6,16 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
+/**
+ * Getters Tests
+ */
 public class RequestResultTest {
 
     private RequestResult requestResult;
 
     @Before
     public void initialize(){
-        this.requestResult = new RequestResult(true, "Success");
+        this.requestResult = new RequestResult(true,true, "Success");
     }
 
     @Test
@@ -23,5 +26,10 @@ public class RequestResultTest {
     @Test
     public void getReasonOfFailure() {
         Assert.assertNotNull(this.requestResult.getReasonOfFailure());
+    }
+
+    @Test
+    public void isAdministrator() {
+        Assert.assertTrue(this.requestResult.isAdministrator());
     }
 }

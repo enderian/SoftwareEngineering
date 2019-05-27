@@ -1,11 +1,14 @@
 package gr.aueb.se.labadministration.domain.lab;
 
+import androidx.annotation.NonNull;
+
 import gr.aueb.se.labadministration.domain.people.Administrator;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Laboratory {
+public class Laboratory implements Serializable {
 
     private String name;
     private String location;
@@ -104,4 +107,9 @@ public class Laboratory {
         return this.administrators.remove(administrator);
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

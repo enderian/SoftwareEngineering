@@ -2,10 +2,14 @@ package gr.aueb.se.labadministration.domain.lab;
 
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
-public class Terminal {
+/**
+ * The class that defines a Terminal
+ */
+public class Terminal implements Serializable {
 
     public enum TerminalStatus{OFFLINE, AVAILABLE, IN_USE, IN_MAINTENANCE};
 
@@ -18,6 +22,15 @@ public class Terminal {
     private TerminalConfiguration configuration;
     private ArrayList<Session> sessions;
 
+    /**
+     * Constructor
+     * @param name of terminal
+     * @param hostname of terminal
+     * @param ipAddress of terminal
+     * @param positionX of terminal
+     * @param positionY of terminal
+     * @param configuration of terminal
+     */
     public Terminal(String name, String hostname, InetAddress ipAddress, int positionX, int positionY, TerminalConfiguration configuration) {
         this.name = name;
         this.hostname = hostname;
@@ -28,6 +41,9 @@ public class Terminal {
         this.sessions = new ArrayList<Session>();
     }
 
+    /**
+     * Setters & Getters
+     */
     public String getName() {
         return name;
     }
@@ -84,7 +100,19 @@ public class Terminal {
         this.configuration = configuration;
     }
 
+    /**
+     * The method that registers a session
+     * @param session to add
+     */
     public boolean registerSession(Session session){
         return this.sessions.add(session);
+    }
+
+    /**
+     * The method that returns all sessions associated with this terminal
+     * @return a list of sessions
+     */
+    public ArrayList<Session> getSessions(){
+        return sessions;
     }
 }
