@@ -6,22 +6,26 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+
 import gr.aueb.se.labadministration.R;
-import gr.aueb.se.labadministration.dao.TerminalConfigurationDAO;
+import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 import gr.aueb.se.labadministration.fragments.AddSoftwarePackageFragment;
-import gr.aueb.se.labadministration.memorydao.TerminalConfigurationDAOMemory;
 import gr.aueb.se.labadministration.services.ConfigurationService;
 
 public class NewConfigurationActivity extends AppCompatActivity {
 
     private EditText hardwareConfName, os, graphics, processor, storage, ram;
+    private ArrayList<SoftwarePackage> softwarePackageArrayList = new ArrayList<>();
 
     private ConfigurationService service;
 
@@ -52,8 +56,15 @@ public class NewConfigurationActivity extends AppCompatActivity {
         storage = findViewById(R.id.storageCapacity);
         ram = findViewById(R.id.ram);
 
+        Spinner spinner = findViewById(R.id.softwarePackages);
+        ArrayAdapter<SoftwarePackage> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, softwarePackageArrayList);
+        spinner.setAdapter(adapter);
+
         addSoftwareButton.setOnClickListener(e -> {
-            new AddSoftwarePackageFragment().show(getSupportFragmentManager(), "add");
+            new AddSoftwarePackageFragment(pack -> {
+                softwarePackageArrayList.add(pack);
+                adapter.notifyDataSetChanged();
+            }).show(getSupportFragmentManager(), "add");
         });
 
         addButton.setOnClickListener(e->{
@@ -67,22 +78,33 @@ public class NewConfigurationActivity extends AppCompatActivity {
                     os.getText().toString(),
                     hardwareConfName.getText().toString()
             );
+            softwarePackageArrayList.forEach(configuration::addSoftwarePackage);
+            service.saveConfiguration(configuration);
 
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getApplicationContext(), MainActivity.class)
+                    .putExtra("configurations", true));
             finish();
-            Toast.makeText(getApplicationContext(), "hardware addition success", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Configuration addition success", Toast.LENGTH_SHORT).show();
         });
 
         TerminalConfiguration terminalConfiguration = (TerminalConfiguration) getIntent().getSerializableExtra("configuration");
         if (terminalConfiguration != null) {
-
+            hardwareConfName.setEnabled(false);
+            hardwareConfName.setText(terminalConfiguration.getName());
+            os.setText(terminalConfiguration.getOperatingSystem());
+            graphics.setText(terminalConfiguration.getGraphicsCard());
+            processor.setText(terminalConfiguration.getProcessor());
+            storage.setText(String.valueOf(terminalConfiguration.getStorateCapacity()));
+            ram.setText(String.valueOf(terminalConfiguration.getTotalMemory()));
+            softwarePackageArrayList.clear();
+            softwarePackageArrayList.addAll(terminalConfiguration.listSoftwarePackages());
         }
     }
 
     private boolean hardwareInputValidation(){
         if(!storage.getText().toString().trim().matches("\\d+") ||
                 !ram.getText().toString().trim().matches("\\d+") ){
-            Toast.makeText(getApplicationContext(), "Error: Storage and Ram should be integers", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Error: Storage and RAM should be integers", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(processor.getText().toString().trim().equals("") ||

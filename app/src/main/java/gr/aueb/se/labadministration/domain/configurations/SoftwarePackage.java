@@ -1,5 +1,7 @@
 package gr.aueb.se.labadministration.domain.configurations;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class SoftwarePackage implements Serializable {
@@ -36,5 +38,11 @@ public class SoftwarePackage implements Serializable {
 
     public void setUninstallCommand(String uninstallCommand) {
         this.uninstallCommand = uninstallCommand;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
     }
 }

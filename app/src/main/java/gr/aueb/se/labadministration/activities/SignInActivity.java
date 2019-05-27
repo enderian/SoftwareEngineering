@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.widget.Button;
@@ -52,7 +53,10 @@ public class SignInActivity extends AppCompatActivity {
             if (requestResult.isSuccessful()) {
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("administrator", requestResult.isAdministrator());
+
+                SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+                sharedPreferences.edit().putBoolean("administrator", requestResult.isAdministrator()).apply();
+
                 startActivity(intent);
             } else {
                 Toast.makeText(getApplicationContext(), requestResult.getReasonOfFailure(), Toast.LENGTH_SHORT).show();

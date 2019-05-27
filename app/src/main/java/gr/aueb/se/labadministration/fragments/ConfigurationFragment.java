@@ -1,7 +1,11 @@
 package gr.aueb.se.labadministration.fragments;
 
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,24 +24,29 @@ import java.util.List;
 import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.activities.NewConfigurationActivity;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
+import gr.aueb.se.labadministration.services.ConfigurationService;
 
 
 public class ConfigurationFragment extends Fragment {
 
     private List<TerminalConfiguration> configurationList = new ArrayList<>();
+    private ArrayAdapter<TerminalConfiguration> adapter;
 
-    /*private ConfigurationService configurationService;
+    private ConfigurationService service;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            ConfigurationFragment.this.service = ((HistoryService.HistoryServiceBinder) service).getService();
+            ConfigurationFragment.this.service = ((ConfigurationService.ConfigurationServiceBinder) service).getService();
+            configurationList.clear();
+            configurationList.addAll(ConfigurationFragment.this.service.listAllConfigs());
+            adapter.notifyDataSetChanged();
         }
         @Override
         public void onServiceDisconnected(ComponentName name) {
             ConfigurationFragment.this.service = null;
         }
-    };*/
+    };
 
     @Nullable
     @Override
@@ -49,9 +58,18 @@ public class ConfigurationFragment extends Fragment {
     public void onStart() {
         super.onStart();
 
-        ArrayAdapter configurationAdapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, configurationList);
+        adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, configurationList);
         ListView listView = getView().findViewById(R.id.configurations);
-        listView.setAdapter(configurationAdapter);
+        listView.setAdapter(adapter);
+
+        getActivity().bindService(new Intent(getContext(), ConfigurationService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            TerminalConfiguration configuration = configurationList.get(position);
+            Intent intent = new Intent(getContext(), NewConfigurationActivity.class);
+            intent.putExtra("configuration", configuration);
+            startActivity(intent);
+        });
 
         FloatingActionButton button = getView().findViewById(R.id.fab);
         button.setOnClickListener(click -> {

@@ -1,7 +1,11 @@
 package gr.aueb.se.labadministration.domain.configurations;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class TerminalConfiguration implements Serializable {
 
@@ -63,5 +67,15 @@ public class TerminalConfiguration implements Serializable {
 
     public boolean removeSoftwarePackage(SoftwarePackage softwarePackage){
         return this.softwarePackages.remove(softwarePackage);
+    }
+
+    public List<SoftwarePackage> listSoftwarePackages() {
+        return Collections.unmodifiableList(softwarePackages);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return getName();
     }
 }
