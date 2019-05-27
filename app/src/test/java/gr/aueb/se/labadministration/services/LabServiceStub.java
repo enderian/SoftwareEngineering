@@ -36,6 +36,11 @@ public class LabServiceStub extends LabService{
             }
 
             @Override
+            public void addTerminal(Laboratory laboratory, Terminal terminal) {
+
+            }
+
+            @Override
             public Laboratory findByName(String name) {
                 if (name==null) return null;
                 switch (name){
