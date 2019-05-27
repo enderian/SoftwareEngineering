@@ -5,11 +5,13 @@ import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import gr.aueb.se.labadministration.dao.LaboratoryDAO;
 import gr.aueb.se.labadministration.dao.TerminalDAO;
 import gr.aueb.se.labadministration.domain.lab.Laboratory;
+import gr.aueb.se.labadministration.domain.lab.Session;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
 import gr.aueb.se.labadministration.domain.schedule.DaySchedule;
 import gr.aueb.se.labadministration.memorydao.LaboratoryDAOMemory;
@@ -60,6 +62,36 @@ public class LabService extends Service {
 
     public List<DaySchedule> listSchedule(Laboratory lab){
         return getLaboratoryDAO().findByName(lab.getName()).getSchedule();
+    }
+
+    public boolean isTerminalInUse(Terminal terminal){
+        return getTerminalDAO().findByName(terminal.getName()).getStatus()==Terminal.TerminalStatus.IN_USE;
+    }
+
+    public boolean isTerminalOffline(Terminal terminal){
+        return getTerminalDAO().findByName(terminal.getName()).getStatus()==Terminal.TerminalStatus.OFFLINE;
+    }
+
+    public boolean isTerminalInMaintenance(Terminal terminal){
+        return getTerminalDAO().findByName(terminal.getName()).getStatus()==Terminal.TerminalStatus.IN_MAINTENANCE;
+    }
+
+    public String getStatus(String terminal){
+        Terminal.TerminalStatus status = getTerminalDAO().findByName(terminal).getStatus();
+        if(status == Terminal.TerminalStatus.IN_USE){
+            ArrayList<Session> sessions = getTerminalDAO().findByName(terminal).getSessions();
+            return sessions.get(sessions.size() - 1).getUser().getUsername();
+        }
+        return status.toString();
+    }
+
+    public boolean terminalAction(String terminal, Terminal.TerminalStatus status){
+        Terminal f_terminal = getTerminalDAO().findByName(terminal);
+        if (f_terminal != null){
+            f_terminal.setStatus(status);
+            return true;
+        }
+        return false;
     }
 
     @Override

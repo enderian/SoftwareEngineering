@@ -86,7 +86,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         final String childText = (String)getChild(i, i1);
-        System.out.println(childText);
         if(view == null){
             LayoutInflater inflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_item, null);
@@ -94,16 +93,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView listItem = view.findViewById(R.id.listItem);
         listItem.setText(childText);
         listItem.setOnClickListener(v ->  {
-            // TODO code to show each computer elements, mabe in Fragment
-            //listItem.setText("TODO: go to Fragment(ExpandableListAdapter)");
-            FragmentTransaction manager = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
-            TerminalFragment terminalFragment = new TerminalFragment();
-            Bundle bundle = new Bundle();
-            bundle.putString("terminal_name", childText);
-            terminalFragment.setArguments(bundle);
-            manager.add(terminalFragment, "Terminal");
-            manager.commit();
-
+            if(!childText.contains("Day")){
+                FragmentTransaction manager = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+                TerminalFragment terminalFragment = new TerminalFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("terminal_name", childText);
+                terminalFragment.setArguments(bundle);
+                manager.add(terminalFragment, "Terminal");
+                manager.commit();
+            }
         });
         return view;
     }

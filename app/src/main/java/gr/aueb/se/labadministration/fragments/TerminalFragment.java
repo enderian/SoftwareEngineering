@@ -10,13 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import gr.aueb.se.labadministration.R;
 import gr.aueb.se.labadministration.domain.lab.Terminal;
@@ -28,6 +31,7 @@ public class TerminalFragment extends DialogFragment {
     private String terminalName;
     private TextView terminalTitle, terminalStatus;
     private Terminal terminal;
+    private ImageButton shutdown, restart, signout;
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
         @Override
@@ -37,6 +41,17 @@ public class TerminalFragment extends DialogFragment {
 
             terminalTitle.setText(terminal.getName());
             terminalStatus.setText(terminal.getStatus().toString());
+
+            if(labService.isTerminalOffline(terminal) || labService.isTerminalInMaintenance(terminal)){
+                shutdown.setVisibility(View.GONE);
+                restart.setVisibility(View.GONE);
+                signout.setVisibility(View.GONE);
+            }
+
+            if(labService.isTerminalInUse(terminal)){
+                signout.setVisibility(View.VISIBLE);
+            }
+            else signout.setVisibility(View.GONE);
         }
 
         @Override
@@ -62,6 +77,48 @@ public class TerminalFragment extends DialogFragment {
 
         terminalTitle = getView().findViewById(R.id.terminal_name);
         terminalStatus = getView().findViewById(R.id.terminal_status);
+        shutdown = getView().findViewById(R.id.terminal_shut_off);
+        restart = getView().findViewById(R.id.terminal_reboot);
+        signout = getView().findViewById(R.id.terminal_sign_out);
 
+        shutdown.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                labService.terminalAction(terminalName, Terminal.TerminalStatus.OFFLINE);
+
+                refresh();
+            }
+        });
+
+        restart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                labService.terminalAction(terminalName, Terminal.TerminalStatus.IN_MAINTENANCE);
+
+                labService.terminalAction(terminalName, Terminal.TerminalStatus.AVAILABLE);
+
+                refresh();
+            }
+        });
+
+        signout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                labService.terminalAction(terminalName, Terminal.TerminalStatus.AVAILABLE);
+
+                refresh();
+            }
+        });
+    }
+
+    private void refresh(){
+        FragmentTransaction manager = getFragmentManager().beginTransaction();
+        manager.detach(this);
+        TerminalFragment terminalFragment = new TerminalFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("terminal_name", terminalName);
+        terminalFragment.setArguments(bundle);
+        manager.add(terminalFragment, "Terminal");
+        manager.commit();
     }
 }

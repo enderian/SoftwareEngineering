@@ -87,4 +87,39 @@ public class LabServiceTest {
 
         Assert.assertNotNull(dao);
     }
+
+    @Test
+    public void testInUse(){
+        boolean isInUse = labService.isTerminalInUse(new Terminal(null, null, null, 1,1,null));
+
+        Assert.assertTrue(isInUse);
+    }
+
+    @Test
+    public void testOffline(){
+        boolean isOffline = labService.isTerminalOffline(new Terminal(null, null, null, 1,1,null));
+
+        Assert.assertFalse(isOffline);
+    }
+
+    @Test
+    public void testInMaintenance(){
+        boolean isInMaintenance = labService.isTerminalInMaintenance(new Terminal(null, null, null, 1,1,null));
+
+        Assert.assertFalse(isInMaintenance);
+    }
+
+    @Test
+    public void testStatus(){
+        String status = labService.getStatus("t");
+
+        Assert.assertNotNull(status);
+    }
+
+    @Test
+    public void testActionSuccess(){
+        boolean test = labService.terminalAction("t", Terminal.TerminalStatus.AVAILABLE);
+
+        Assert.assertTrue(test);
+    }
 }
