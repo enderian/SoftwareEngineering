@@ -70,7 +70,7 @@
                 android:hint="@string/ram" />
 
             <Spinner
-                android:id="@+id/spinner2"
+                android:id="@+id/softwarePackages"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 

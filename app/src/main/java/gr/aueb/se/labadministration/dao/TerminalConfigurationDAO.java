@@ -3,6 +3,7 @@ package gr.aueb.se.labadministration.dao;
 import gr.aueb.se.labadministration.domain.configurations.TerminalConfiguration;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  * The interface the communicates with databases for the terminal configurations
@@ -33,6 +34,6 @@ public interface TerminalConfigurationDAO {
      * The method that returns all terminal configurations
      * @return
      */
-    ArrayList<TerminalConfiguration> listAll();
+    Collection<TerminalConfiguration> listAll();
 
 }

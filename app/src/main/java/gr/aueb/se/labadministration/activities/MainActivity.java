@@ -1,5 +1,6 @@
 package gr.aueb.se.labadministration.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBar;
@@ -44,11 +45,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         makeActionBar();
-        switchFragment(new LabFragment());
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
-        boolean administrator = getIntent().getBooleanExtra("administrator", false);
+        if (getIntent().getBooleanExtra("configurations", false)) {
+            navView.setSelectedItemId(R.id.nav_configuration);
+            switchFragment(new ConfigurationFragment());
+        } else {
+            switchFragment(new LabFragment());
+        }
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("user", MODE_PRIVATE);
+        boolean administrator = sharedPreferences.getBoolean("administrator", false);
 
         navView.getMenu().findItem(R.id.nav_history).setVisible(administrator);
         navView.getMenu().findItem(R.id.nav_configuration).setVisible(administrator);

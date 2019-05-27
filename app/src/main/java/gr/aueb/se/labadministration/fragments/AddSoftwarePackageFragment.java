@@ -12,13 +12,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.function.Consumer;
+
 import gr.aueb.se.labadministration.R;
+import gr.aueb.se.labadministration.domain.configurations.SoftwarePackage;
 
 public class AddSoftwarePackageFragment extends DialogFragment {
+
+    private Consumer<SoftwarePackage> softwarePackageConsumer;
 
     private EditText softwareConfName;
     private EditText creationCommand;
     private EditText deleteCommand;
+
+    public AddSoftwarePackageFragment() {
+    }
+
+    public AddSoftwarePackageFragment(Consumer<SoftwarePackage> softwarePackageConsumer) {
+        this.softwarePackageConsumer = softwarePackageConsumer;
+    }
 
     private boolean softwareInputValidation(){
         if( softwareConfName.getText().toString().trim().equals("") ||
@@ -37,8 +49,8 @@ public class AddSoftwarePackageFragment extends DialogFragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onStart() {
+        super.onStart();
 
         softwareConfName = getView().findViewById(R.id.softwareConfigurationName);
         creationCommand = getView().findViewById(R.id.creationCommand);
@@ -46,8 +58,12 @@ public class AddSoftwarePackageFragment extends DialogFragment {
 
         Button addButton = getView().findViewById(R.id.addConfigurationButton);
         addButton.setOnClickListener(event -> {
-            if (softwareInputValidation()) {
-
+            if (softwareInputValidation() && softwarePackageConsumer != null) {
+                softwarePackageConsumer.accept(new SoftwarePackage(
+                        softwareConfName.getText().toString(),
+                        creationCommand.getText().toString(),
+                        deleteCommand.getText().toString()));
+                dismiss();
             }
         });
     }

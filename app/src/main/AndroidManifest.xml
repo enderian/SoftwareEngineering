@@ -22,6 +22,10 @@
             android:name=".services.HistoryService"
             android:enabled="true"
             android:exported="false" />
+        <service
+            android:name=".services.ConfigurationService"
+            android:enabled="true"
+            android:exported="false" />
 
         <activity android:name=".activities.NewConfigurationActivity" />
 
